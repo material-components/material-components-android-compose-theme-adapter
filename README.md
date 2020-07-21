@@ -2,7 +2,7 @@
 
 A library that enables reuse of Material themes defined in XML for theming in [Jetpack Compose](https://developer.android.com/jetpackcompose).
 
-The basis of theming in Jetpack Compose comes through the [`MaterialTheme`][materialtheme] function, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
+The basis of theming in Jetpack Compose is the [`MaterialTheme`][materialtheme] composable, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
 
 ``` kotlin
 MaterialTheme(
