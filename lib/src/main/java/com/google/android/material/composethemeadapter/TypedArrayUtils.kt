@@ -31,7 +31,6 @@ import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.geometry.Offset
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.Shadow
-import androidx.ui.material.Typography
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontStyle
@@ -173,36 +172,6 @@ internal fun parseShapeAppearance(
     }
 }
 
-internal fun Typography.merge(
-    h1: TextStyle = emptyTextStyle,
-    h2: TextStyle = emptyTextStyle,
-    h3: TextStyle = emptyTextStyle,
-    h4: TextStyle = emptyTextStyle,
-    h5: TextStyle = emptyTextStyle,
-    h6: TextStyle = emptyTextStyle,
-    subtitle1: TextStyle = emptyTextStyle,
-    subtitle2: TextStyle = emptyTextStyle,
-    body1: TextStyle = emptyTextStyle,
-    body2: TextStyle = emptyTextStyle,
-    button: TextStyle = emptyTextStyle,
-    caption: TextStyle = emptyTextStyle,
-    overline: TextStyle = emptyTextStyle
-) = copy(
-    h1 = this.h1.merge(h1),
-    h2 = this.h2.merge(h2),
-    h3 = this.h3.merge(h3),
-    h4 = this.h4.merge(h4),
-    h5 = this.h5.merge(h5),
-    h6 = this.h6.merge(h6),
-    subtitle1 = this.subtitle1.merge(subtitle1),
-    subtitle2 = this.subtitle2.merge(subtitle2),
-    body1 = this.body1.merge(body1),
-    body2 = this.body2.merge(body2),
-    button = this.button.merge(button),
-    caption = this.caption.merge(caption),
-    overline = this.overline.merge(overline)
-)
-
 private val tempTypedValue = ThreadLocal<TypedValue>()
 
 internal fun TypedArray.getComposeColor(
@@ -341,5 +310,3 @@ private inline val TypedValue.complexUnitCompat
         Build.VERSION.SDK_INT > 22 -> complexUnit
         else -> TypedValue.COMPLEX_UNIT_MASK and (data shr TypedValue.COMPLEX_UNIT_SHIFT)
     }
-
-private val emptyTextStyle = TextStyle()
