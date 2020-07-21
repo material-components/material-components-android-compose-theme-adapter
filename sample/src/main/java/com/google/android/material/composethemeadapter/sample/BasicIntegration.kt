@@ -74,35 +74,35 @@ fun MdcSample() {
         VerticalScroller {
             Column(Modifier.padding(16.dp)) {
                 CircularProgressIndicator()
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 Button(onClick = {}) {
                     Text(text = "Button")
                 }
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 OutlinedButton(onClick = {}) {
                     Text(text = "Outlined Button")
                 }
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 TextButton(onClick = {}) {
                     Text(text = "Text Button")
                 }
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 FloatingActionButton(
                     onClick = {},
                     icon = { Icon(Icons.Default.Favorite) }
                 )
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 ExtendedFloatingActionButton(
                     onClick = {},
                     text = { Text(text = "Extended FAB") },
                     icon = { Icon(Icons.Default.Favorite) }
                 )
-                Spacer(modifier = Modifier.preferredHeight(8.dp))
+                VerticalSpacer()
 
                 Text(
                     text = "H1",
@@ -155,4 +155,9 @@ fun MdcSample() {
             }
         }
     }
+}
+
+@Composable
+private fun VerticalSpacer() {
+    Spacer(Modifier.preferredHeight(8.dp))
 }

@@ -30,7 +30,7 @@ import java.util.HashMap
 
 /**
  * A [ListActivity] which automatically populates the list of sample activities in this app
- * with the category defined in the string resource named `sample_activity_category`.
+ * with the category defined as the app package name + `.SAMPLE_CODE`.
  */
 class MainActivity : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class MainActivity : ListActivity() {
         val myData = ArrayList<Map<String, Any>>()
 
         val mainIntent = Intent(Intent.ACTION_MAIN, null)
-        mainIntent.addCategory(getString(R.string.sample_activity_category))
+        mainIntent.addCategory("${applicationInfo.packageName}.SAMPLE_CODE")
 
         val list = packageManager.queryIntentActivities(mainIntent, 0) ?: return myData
 

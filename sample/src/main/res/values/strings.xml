@@ -17,6 +17,4 @@
 <resources>
     <string name="app_name">Compose Theme Adapter Sample</string>
     <string name="basic_integration">Basic integration sample</string>
-
-    <string name="sample_activity_category" translatable="false">com.google.android.material.composethemeadapter.sample.SAMPLE_CODE</string>
 </resources>
