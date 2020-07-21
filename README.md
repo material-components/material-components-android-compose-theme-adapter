@@ -34,7 +34,7 @@ The `MaterialThemeFromMdcTheme()` function will automatically read the host cont
 val context = ContextAmbient.current
 var (colors, type, shapes) = generateMaterialThemeFromMdcTheme(context)
 
-// Modify colors, type or shapes are required. Then pass them
+// Modify colors, type or shapes as required. Then pass them
 // through to MaterialTheme...
 
 MaterialTheme(
