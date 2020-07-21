@@ -28,7 +28,6 @@
         <item name="android:shadowDx">4.43</item>
         <item name="android:shadowDy">8.19</item>
         <item name="android:shadowRadius">2.13</item>
-
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline3" parent="TextAppearance.MaterialComponents.Headline3">

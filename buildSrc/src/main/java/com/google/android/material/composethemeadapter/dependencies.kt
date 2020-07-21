@@ -45,10 +45,7 @@ object Libs {
             const val test = "androidx.ui:ui-test:$version"
         }
 
-        const val core = "androidx.core:core:1.2.0"
         const val coreKtx = "androidx.core:core-ktx:1.2.0"
-
-        const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha01"
 
         object Test {
             private const val version = "1.2.0"
