@@ -58,7 +58,7 @@ import java.lang.reflect.Method
 import kotlin.concurrent.getOrSet
 
 /**
- * A [MaterialTheme] which reads the corresponding values from an
+ * A [MaterialTheme] which reads the corresponding values from a
  * Material Design Components Android theme in the given [context].
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
