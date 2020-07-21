@@ -1,6 +1,6 @@
 # MDC-Android Compose Theme Adapter
 
-A library that enables reuse of Material themes defined in XML for theming in [Jetpack Compose](https://developer.android.com/jetpackcompose).
+A library that enables reuse of Material themes defined in XML for theming in [Jetpack Compose][compose].
 
 The basis of theming in Jetpack Compose is the [`MaterialTheme`][materialtheme] composable, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
 
@@ -57,9 +57,6 @@ There are some known limitations with the implementation at the moment:
 * `android:fontVariationSettings` is currently not supported, as variable fonts are not supported in Compose yet.
 * MDC `ShapeAppearances` allow setting of corner families (cut, rounded) per corner, whereas Compose's [Shapes][shapes] allows a single corner family for the entire shape. Therefore only the `app:cornerFamily` attribute is read, others (`app:cornerFamilyTopLeft`, etc) are ignored.
 
- [materialtheme]: https://developer.android.com/reference/kotlin/androidx/ui/material/MaterialTheme
- [shapes]: https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes
-
 ---
 
 ## Contributions
@@ -85,6 +82,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[compose]: https://developer.android.com/jetpack/compose
-[snap]: https://oss.sonatype.org/content/repositories/snapshots/dev/chrisbanes/accompanist/
-[mdc]: https://material.io/develop/android/
+ [compose]: https://developer.android.com/jetpack/compose
+ [mdc]: https://material.io/develop/android/
+ [materialtheme]: https://developer.android.com/reference/kotlin/androidx/ui/material/MaterialTheme
+ [shapes]: https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes
