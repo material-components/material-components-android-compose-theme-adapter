@@ -93,7 +93,7 @@ fun MaterialThemeFromMdcTheme(
     // (via `applyStyle()`, `rebase()`, `setTo()`), but the majority of apps do not use those.
     val key = context.theme.key ?: context.theme
 
-    val (colors, type, shapes) = remember(key) {
+    val themeParams = remember(key) {
         generateMaterialThemeFromMdcTheme(
             context = context,
             readColors = readColors,
@@ -104,9 +104,9 @@ fun MaterialThemeFromMdcTheme(
     }
 
     MaterialTheme(
-        colors = colors ?: MaterialTheme.colors,
-        typography = type ?: MaterialTheme.typography,
-        shapes = shapes ?: MaterialTheme.shapes,
+        colors = themeParams.colors ?: MaterialTheme.colors,
+        typography = themeParams.typography ?: MaterialTheme.typography,
+        shapes = themeParams.shapes ?: MaterialTheme.shapes,
         content = content
     )
 }
@@ -303,17 +303,17 @@ fun generateMaterialThemeFromMdcTheme(
          */
         val shapes = if (readShapes) {
             Shapes(
-                small = readShapeAppearance(
+                small = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
                     fallbackShape = emptyShapes.small
                 ),
-                medium = readShapeAppearance(
+                medium = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
                     fallbackShape = emptyShapes.medium
                 ),
-                large = readShapeAppearance(
+                large = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
                     fallbackShape = emptyShapes.large
@@ -411,7 +411,7 @@ private fun textStyleFromTextAppearance(
     }
 }
 
-private fun readShapeAppearance(
+private fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
     fallbackShape: CornerBasedShape
