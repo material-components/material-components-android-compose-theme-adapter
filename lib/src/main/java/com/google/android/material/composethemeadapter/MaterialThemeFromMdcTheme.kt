@@ -17,7 +17,6 @@
 package com.google.android.material.composethemeadapter
 
 import android.content.Context
-import android.content.res.Configuration
 import android.content.res.Resources
 import android.content.res.TypedArray
 import android.graphics.Typeface
@@ -66,12 +65,15 @@ import kotlin.concurrent.getOrSet
  * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
  * You can customize this through the [setTextColors] parameter.
  *
- * @param context The context to read the theme from
- * @param readColors whether the read the MDC color palette from the context's theme
- * @param readTypography whether the read the MDC typography text appearances from the context's theme
- * @param readShapes whether the read the MDC shape appearances from the context's theme
+ * @param context The context to read the theme from.
+ * @param readColors whether the read the MDC color palette from the context's theme.
+ * If `false`, the current value of [MaterialTheme.colors] is preserved.
+ * @param readTypography whether the read the MDC text appearances from [context]'s theme.
+ * If `false`, the current value of [MaterialTheme.typography] is preserved.
+ * @param readShapes whether the read the MDC shape appearances from the context's theme.
+ * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
- * theme. Defaults to `false`
+ * theme. Defaults to `false`.
  */
 @Composable
 fun MaterialThemeFromMdcTheme(
@@ -102,12 +104,22 @@ fun MaterialThemeFromMdcTheme(
     }
 
     MaterialTheme(
-        typography = type,
-        colors = colors,
-        shapes = shapes,
+        colors = colors ?: MaterialTheme.colors,
+        typography = type ?: MaterialTheme.typography,
+        shapes = shapes ?: MaterialTheme.shapes,
         content = content
     )
 }
+
+/**
+ * This class contains the individual components of a [MaterialTheme]: [ColorPalette], [Typography]
+ * and [Shapes].
+ */
+data class ThemeParameters(
+    val colors: ColorPalette?,
+    val typography: Typography?,
+    val shapes: Shapes?
+)
 
 /**
  * This effect generates the components of a [androidx.ui.material.MaterialTheme], reading the
@@ -118,13 +130,19 @@ fun MaterialThemeFromMdcTheme(
  * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
  * You can customize this through the [setTextColors] parameter.
  *
- * @param context The context to read the theme from
- * @param density The current density
- * @param readColors whether the read the MDC color palette from the context's theme
- * @param readTypography whether the read the MDC typography text appearances from the context's theme
- * @param readShapes whether the read the MDC shape appearances from the context's theme
+ * The individual components of the returned [ThemeParameters] may be `null`, depending on the
+ * matching 'read' parameter. For example, if you set [readColors] to `false`,
+ * [ThemeParameters.colors] will be null.
+ *
+ * @param context The context to read the theme from.
+ * @param density The current density.
+ * @param readColors whether the read the MDC color palette from the context's theme.
+ * @param readTypography whether the read the MDC text appearances from [context]'s theme.
+ * @param readShapes whether the read the MDC shape appearances from the context's theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
- * theme and set them on the resulting [TextStyle]s. Defaults to `false`
+ * theme. Defaults to `false`.
+ * @return [ThemeParameters] instance containing the resulting [ColorPalette], [Typography]
+ * and [Shapes].
  */
 fun generateMaterialThemeFromMdcTheme(
     context: Context,
@@ -133,14 +151,14 @@ fun generateMaterialThemeFromMdcTheme(
     readTypography: Boolean = true,
     readShapes: Boolean = true,
     setTextColors: Boolean = false
-): Triple<ColorPalette, Typography, Shapes> {
+): ThemeParameters {
     return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme).use { ta ->
         require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme_isMaterialTheme)) {
             "MaterialThemeUsingMdcTheme requires the host context's theme" +
                 " to extend Theme.MaterialComponents"
         }
 
-        val colors: ColorPalette = if (readColors) {
+        val colors: ColorPalette? = if (readColors) {
             /* First we'll read the Material color palette */
             val primary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimary)
             val primaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimaryVariant)
@@ -187,15 +205,7 @@ fun generateMaterialThemeFromMdcTheme(
                     onError = onError
                 )
             }
-        } else {
-            // Else we create an empty color palette based on the configuration's uiMode
-            val uiMode = context.resources.configuration.uiMode
-            if ((uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
-                darkColorPalette()
-            } else {
-                lightColorPalette()
-            }
-        }
+        } else null
 
         /**
          * Next we'll generate a typography instance, using the Material Theme text appearances
@@ -204,10 +214,9 @@ fun generateMaterialThemeFromMdcTheme(
          * We create a normal 'empty' instance first to start from the defaults, then merge in our
          * generated text styles from the Android theme.
          */
-        var typography = Typography()
 
-        if (readTypography) {
-            typography = typography.merge(
+        val typography = if (readTypography) {
+            Typography().merge(
                 h1 = textStyleFromTextAppearance(
                     context,
                     density,
@@ -287,7 +296,7 @@ fun generateMaterialThemeFromMdcTheme(
                     setTextColors
                 )
             )
-        }
+        } else null
 
         /**
          * Now read the shape appearances
@@ -310,11 +319,9 @@ fun generateMaterialThemeFromMdcTheme(
                     fallbackSize = CornerSize(0.dp)
                 )
             )
-        } else {
-            Shapes()
-        }
+        } else null
 
-        Triple(colors, typography, shapes)
+        ThemeParameters(colors, typography, shapes)
     }
 }
 
