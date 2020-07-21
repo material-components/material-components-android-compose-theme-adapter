@@ -340,31 +340,41 @@ private fun textStyleFromTextAppearance(
         // Variable fonts are not supported in Compose yet
 
         // FYI, this only works with static font files in assets
-        val fontFamilyWeight = when {
-            a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily) -> {
-                a.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
-            }
-            a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_fontFamily) -> {
-                a.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTextAppearance_fontFamily)
-            }
-            else -> null
+        var fontFamily: FontFamilyWithWeight? = null
+        if (a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_fontFamily)) {
+            fontFamily = a.getFontFamilyOrNull(
+                R.styleable.ComposeThemeAdapterTextAppearance_fontFamily
+            )
+        }
+        if (fontFamily == null &&
+            a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
+        ) {
+            fontFamily = a.getFontFamilyOrNull(
+                R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily
+            )
         }
 
         TextStyle(
-            color = if (setTextColors) {
-                a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
-            } else Color.Unset,
+            color = when {
+                setTextColors -> {
+                    a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
+                }
+                else -> Color.Unset
+            },
             fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
             lineHeight = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density),
             fontFamily = when {
-                fontFamilyWeight != null -> fontFamilyWeight.fontFamily
+                fontFamily != null -> fontFamily.fontFamily
                 // Values below are from frameworks/base attrs.xml
                 typeface == 1 -> FontFamily.SansSerif
                 typeface == 2 -> FontFamily.Serif
                 typeface == 3 -> FontFamily.Monospace
                 else -> null
             },
-            fontStyle = if ((textStyle and Typeface.ITALIC) != 0) FontStyle.Italic else FontStyle.Normal,
+            fontStyle = when {
+                (textStyle and Typeface.ITALIC) != 0 -> FontStyle.Italic
+                else -> FontStyle.Normal
+            },
             fontWeight = when {
                 textFontWeight in 0..149 -> FontWeight.W100
                 textFontWeight in 150..249 -> FontWeight.W200
@@ -378,7 +388,7 @@ private fun textStyleFromTextAppearance(
                 // Else, check the text style for bold
                 (textStyle and Typeface.BOLD) != 0 -> FontWeight.Bold
                 // Else, the font family might have an implicit weight (san-serif-light, etc)
-                fontFamilyWeight != null -> fontFamilyWeight.weight
+                fontFamily != null -> fontFamily.weight
                 else -> null
             },
             fontFeatureSettings = a.getString(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFeatureSettings),
@@ -494,8 +504,8 @@ private fun TypedArray.getComposeColor(
  * @param index index of attribute to retrieve.
  * @param fallback Value to return if the attribute is not defined or cannot be coerced to an [FontFamily].
  */
-private fun TypedArray.getFontFamily(index: Int, fallback: FontFamily): FontFamilyWeight {
-    return getFontFamilyOrNull(index) ?: FontFamilyWeight(fallback)
+private fun TypedArray.getFontFamily(index: Int, fallback: FontFamily): FontFamilyWithWeight {
+    return getFontFamilyOrNull(index) ?: FontFamilyWithWeight(fallback)
 }
 
 /**
@@ -504,22 +514,22 @@ private fun TypedArray.getFontFamily(index: Int, fallback: FontFamily): FontFami
  *
  * @param index index of attribute to retrieve.
  */
-private fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWeight? {
+private fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
     val tv = tempTypedValue.getOrSet { TypedValue() }
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_STRING) {
         if (tv.resourceId != 0) {
             // If there's a resource ID, it's probably a @font resource
-            return FontFamilyWeight(font(tv.resourceId).asFontFamily())
+            return FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
         }
         return when (tv.string) {
-            "san-serif" -> FontFamilyWeight(FontFamily.SansSerif)
-            "sans-serif-thin" -> FontFamilyWeight(FontFamily.SansSerif, FontWeight.Thin)
-            "san-serif-light" -> FontFamilyWeight(FontFamily.SansSerif, FontWeight.Light)
-            "sans-serif-medium" -> FontFamilyWeight(FontFamily.SansSerif, FontWeight.Medium)
-            "sans-serif-black" -> FontFamilyWeight(FontFamily.SansSerif, FontWeight.Black)
-            "serif" -> FontFamilyWeight(FontFamily.Serif)
-            "cursive" -> FontFamilyWeight(FontFamily.Cursive)
-            "monospace" -> FontFamilyWeight(FontFamily.Monospace)
+            "san-serif" -> FontFamilyWithWeight(FontFamily.SansSerif)
+            "sans-serif-thin" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Thin)
+            "san-serif-light" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Light)
+            "sans-serif-medium" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Medium)
+            "sans-serif-black" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Black)
+            "serif" -> FontFamilyWithWeight(FontFamily.Serif)
+            "cursive" -> FontFamilyWithWeight(FontFamily.Cursive)
+            "monospace" -> FontFamilyWithWeight(FontFamily.Monospace)
             // TODO: Compose does not expose a FontFamily for "sans-serif-condensed" yet
             else -> null
         }
@@ -527,7 +537,7 @@ private fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWeight? {
     return null
 }
 
-private data class FontFamilyWeight(
+private data class FontFamilyWithWeight(
     val fontFamily: FontFamily,
     val weight: FontWeight = FontWeight.Normal
 )
