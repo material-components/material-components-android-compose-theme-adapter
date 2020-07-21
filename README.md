@@ -14,7 +14,7 @@ MaterialTheme(
 }
 ```
 
-This library allows you to re-use your existing Material Design Components for Android themes within Jetpack Compose, like so:
+This library allows you to re-use your existing [Material Design Components for Android](https://github.com/material-components/material-components-android) themes within Jetpack Compose, like so:
 
 
 ``` kotlin
