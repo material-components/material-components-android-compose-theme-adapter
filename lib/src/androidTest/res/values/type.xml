@@ -18,13 +18,13 @@
 <resources>
 
     <style name="TextAppearance.MdcThemeTest.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="android:fontFamily">@font/rubik_300</item>
+        <item name="fontFamily">@font/rubik_300</item>
         <item name="android:textSize">97.54sp</item>
         <item name="android:letterSpacing">-0.0015</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
-        <item name="android:shadowColor">@color/OliveDrab</item>
+        <item name="android:shadowColor">@color/olive_drab</item>
         <item name="android:shadowDx">4.43</item>
         <item name="android:shadowDy">8.19</item>
         <item name="android:shadowRadius">2.13</item>
@@ -44,7 +44,7 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:fontFamily">@font/rubik_400</item>
+        <item name="fontFamily">@font/rubik_400</item>
         <item name="android:textSize">16.26sp</item>
         <item name="android:letterSpacing">0.005</item>
     </style>
@@ -59,7 +59,7 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:fontFamily">@font/rubik_500</item>
+        <item name="fontFamily">@font/rubik_500</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Caption" parent="TextAppearance.MaterialComponents.Caption">

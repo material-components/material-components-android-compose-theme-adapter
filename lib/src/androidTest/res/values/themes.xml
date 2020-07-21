@@ -19,18 +19,18 @@
 
     <style name="Theme.MdcThemeTest" parent="Theme.MaterialComponents.DayNight">
         <!-- Colors -->
-        <item name="colorPrimary">@color/Aquamarine</item>
-        <item name="colorPrimaryVariant">@color/RoyalBlue</item>
-        <item name="colorOnPrimary">@color/MidnightBlue</item>
-        <item name="colorSecondary">@color/DarkGoldenrod</item>
-        <item name="colorSecondaryVariant">@color/BlueViolet</item>
-        <item name="colorOnSecondary">@color/SlateGray</item>
-        <item name="colorSurface">@color/MediumSpringGreen</item>
-        <item name="colorOnSurface">@color/Navy</item>
-        <item name="android:colorBackground">@color/IndianRed</item>
-        <item name="colorOnBackground">@color/Orchid</item>
-        <item name="colorError">@color/DarkSalmon</item>
-        <item name="colorOnError">@color/Beige</item>
+        <item name="colorPrimary">@color/aquamarine</item>
+        <item name="colorPrimaryVariant">@color/royal_blue</item>
+        <item name="colorOnPrimary">@color/midnight_blue</item>
+        <item name="colorSecondary">@color/dark_golden_rod</item>
+        <item name="colorSecondaryVariant">@color/blue_violet</item>
+        <item name="colorOnSecondary">@color/slate_gray</item>
+        <item name="colorSurface">@color/spring_green</item>
+        <item name="colorOnSurface">@color/navy</item>
+        <item name="android:colorBackground">@color/light_coral</item>
+        <item name="colorOnBackground">@color/orchid</item>
+        <item name="colorError">@color/dark_salmon</item>
+        <item name="colorOnError">@color/beige</item>
 
         <!-- Text Appearances -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.MdcThemeTest.Headline1</item>
