@@ -54,22 +54,22 @@ class MaterialThemeTest {
         MaterialThemeFromMdcTheme {
             val color = MaterialTheme.colors
 
-            assertEquals(colorResource(R.color.Aquamarine), color.primary)
-            assertEquals(colorResource(R.color.RoyalBlue), color.primaryVariant)
-            assertEquals(colorResource(R.color.MidnightBlue), color.onPrimary)
+            assertEquals(colorResource(R.color.aquamarine), color.primary)
+            assertEquals(colorResource(R.color.royal_blue), color.primaryVariant)
+            assertEquals(colorResource(R.color.midnight_blue), color.onPrimary)
 
-            assertEquals(colorResource(R.color.DarkGoldenrod), color.secondary)
-            assertEquals(colorResource(R.color.BlueViolet), color.secondaryVariant)
-            assertEquals(colorResource(R.color.SlateGray), color.onSecondary)
+            assertEquals(colorResource(R.color.dark_golden_rod), color.secondary)
+            assertEquals(colorResource(R.color.blue_violet), color.secondaryVariant)
+            assertEquals(colorResource(R.color.slate_gray), color.onSecondary)
 
-            assertEquals(colorResource(R.color.MediumSpringGreen), color.surface)
-            assertEquals(colorResource(R.color.Navy), color.onSurface)
+            assertEquals(colorResource(R.color.spring_green), color.surface)
+            assertEquals(colorResource(R.color.navy), color.onSurface)
 
-            assertEquals(colorResource(R.color.DarkSalmon), color.error)
-            assertEquals(colorResource(R.color.Beige), color.onError)
+            assertEquals(colorResource(R.color.dark_salmon), color.error)
+            assertEquals(colorResource(R.color.beige), color.onError)
 
-            assertEquals(colorResource(R.color.IndianRed), color.background)
-            assertEquals(colorResource(R.color.Orchid), color.onBackground)
+            assertEquals(colorResource(R.color.light_coral), color.background)
+            assertEquals(colorResource(R.color.orchid), color.onBackground)
         }
     }
 
@@ -121,7 +121,7 @@ class MaterialThemeTest {
 
             assertNotNull(typography.h2.shadow)
             typography.h2.shadow!!.run {
-                assertEquals(colorResource(R.color.OliveDrab), color)
+                assertEquals(colorResource(R.color.olive_drab), color)
                 assertEquals(4.43f, offset.x)
                 assertEquals(8.19f, offset.y)
                 assertEquals(2.13f, blurRadius)
