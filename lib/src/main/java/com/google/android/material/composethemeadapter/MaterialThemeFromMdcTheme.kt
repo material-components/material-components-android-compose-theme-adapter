@@ -64,13 +64,13 @@ import kotlin.concurrent.getOrSet
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
  * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
- * You can customize this through the [useTextColors] parameter.
+ * You can customize this through the [setTextColors] parameter.
  *
  * @param context The context to read the theme from
  * @param readColors whether the read the MDC color palette from the context's theme
  * @param readTypography whether the read the MDC typography text appearances from the context's theme
  * @param readShapes whether the read the MDC shape appearances from the context's theme
- * @param useTextColors whether to read the colors from the `TextAppearance`s associated from the
+ * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`
  */
 @Composable
@@ -79,7 +79,7 @@ fun MaterialThemeFromMdcTheme(
     readColors: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
-    useTextColors: Boolean = false,
+    setTextColors: Boolean = false,
     children: @Composable () -> Unit
 ) {
     // We try and use the theme key value if available, which should be a perfect key for caching
@@ -97,7 +97,7 @@ fun MaterialThemeFromMdcTheme(
             readColors = readColors,
             readTypography = readTypography,
             readShapes = readShapes,
-            useTextColors = useTextColors
+            setTextColors = setTextColors
         )
     }
 
@@ -116,15 +116,15 @@ fun MaterialThemeFromMdcTheme(
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
  * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
- * You can customize this through the [useTextColors] parameter.
+ * You can customize this through the [setTextColors] parameter.
  *
  * @param context The context to read the theme from
  * @param density The current density
  * @param readColors whether the read the MDC color palette from the context's theme
  * @param readTypography whether the read the MDC typography text appearances from the context's theme
  * @param readShapes whether the read the MDC shape appearances from the context's theme
- * @param useTextColors whether to read the colors from the `TextAppearance`s associated from the
- * theme. Defaults to `false`
+ * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
+ * theme and set them on the resulting [TextStyle]s. Defaults to `false`
  */
 fun generateMaterialThemeFromMdcTheme(
     context: Context,
@@ -132,7 +132,7 @@ fun generateMaterialThemeFromMdcTheme(
     readColors: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
-    useTextColors: Boolean = false
+    setTextColors: Boolean = false
 ): Triple<ColorPalette, Typography, Shapes> {
     return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme).use { ta ->
         require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme_isMaterialTheme)) {
@@ -212,79 +212,79 @@ fun generateMaterialThemeFromMdcTheme(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline1),
-                    useTextColors
+                    setTextColors
                 ),
                 h2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline2),
-                    useTextColors
+                    setTextColors
                 ),
                 h3 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline3),
-                    useTextColors
+                    setTextColors
                 ),
                 h4 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline4),
-                    useTextColors
+                    setTextColors
                 ),
                 h5 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline5),
-                    useTextColors
+                    setTextColors
                 ),
                 h6 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline6),
-                    useTextColors
+                    setTextColors
                 ),
                 subtitle1 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle1),
-                    useTextColors
+                    setTextColors
                 ),
                 subtitle2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle2),
-                    useTextColors
+                    setTextColors
                 ),
                 body1 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody1),
-                    useTextColors
+                    setTextColors
                 ),
                 body2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody2),
-                    useTextColors
+                    setTextColors
                 ),
                 button = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceButton),
-                    useTextColors
+                    setTextColors
                 ),
                 caption = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceCaption),
-                    useTextColors
+                    setTextColors
                 ),
                 overline = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceOverline),
-                    useTextColors
+                    setTextColors
                 )
             )
         }
@@ -322,7 +322,7 @@ private fun textStyleFromTextAppearance(
     context: Context,
     density: Density,
     @StyleRes id: Int,
-    useTextColor: Boolean
+    setTextColors: Boolean
 ): TextStyle {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterTextAppearance).use { a ->
         val textStyle = a.getInt(R.styleable.ComposeThemeAdapterTextAppearance_android_textStyle, -1)
@@ -344,7 +344,7 @@ private fun textStyleFromTextAppearance(
         }
 
         TextStyle(
-            color = if (useTextColor) {
+            color = if (setTextColors) {
                 a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
             } else Color.Unset,
             fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),

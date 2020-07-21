@@ -53,7 +53,7 @@ MaterialTheme(
 There are some known limitations with the implementation at the moment:
 
 * This relies on your Activity/Context theme extending one of the `Theme.MaterialComponents` themes.
-* Text colors are not read from any text appearances by default. You can enable it via the `useTextColors` function parameter.
+* Text colors are not read from any text appearances by default. You can enable it via the `setTextColors` function parameter.
 * `android:fontVariationSettings` is currently not supported, as variable fonts are not supported in Compose yet.
 * MDC `ShapeAppearances` allow setting of corner families (cut, rounded) per corner, whereas Compose's [Shapes][shapes] allows a single corner family for the entire shape. Therefore only the `app:cornerFamily` attribute is read, others (`app:cornerFamilyTopLeft`, etc) are ignored.
 
