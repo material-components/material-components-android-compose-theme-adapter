@@ -306,17 +306,17 @@ fun generateMaterialThemeFromMdcTheme(
                 small = readShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
-                    fallbackSize = CornerSize(4.dp)
+                    fallbackShape = emptyShapes.small
                 ),
                 medium = readShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
-                    fallbackSize = CornerSize(4.dp)
+                    fallbackShape = emptyShapes.medium
                 ),
                 large = readShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
-                    fallbackSize = CornerSize(0.dp)
+                    fallbackShape = emptyShapes.large
                 )
             )
         } else null
@@ -414,12 +414,11 @@ private fun textStyleFromTextAppearance(
 private fun readShapeAppearance(
     context: Context,
     @StyleRes id: Int,
-    fallbackSize: CornerSize
+    fallbackShape: CornerBasedShape
 ): CornerBasedShape {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
-        val defaultCornerSize = a.getCornerSize(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize,
-            fallbackSize
+        val defaultCornerSize = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
         )
         val cornerSizeTL = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
@@ -441,18 +440,18 @@ private fun readShapeAppearance(
         when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
             0 -> {
                 RoundedCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize,
-                    topRight = cornerSizeTR ?: defaultCornerSize,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize
+                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
+                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
+                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
+                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
                 )
             }
             1 -> {
                 CutCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize,
-                    topRight = cornerSizeTR ?: defaultCornerSize,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize
+                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
+                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
+                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
+                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
                 )
             }
             else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
@@ -460,34 +459,37 @@ private fun readShapeAppearance(
     }
 }
 
+private val emptyShapes = Shapes()
+private val emptyTextStyle = TextStyle()
+
 private fun Typography.merge(
-    h1: TextStyle = TextStyle(),
-    h2: TextStyle = TextStyle(),
-    h3: TextStyle = TextStyle(),
-    h4: TextStyle = TextStyle(),
-    h5: TextStyle = TextStyle(),
-    h6: TextStyle = TextStyle(),
-    subtitle1: TextStyle = TextStyle(),
-    subtitle2: TextStyle = TextStyle(),
-    body1: TextStyle = TextStyle(),
-    body2: TextStyle = TextStyle(),
-    button: TextStyle = TextStyle(),
-    caption: TextStyle = TextStyle(),
-    overline: TextStyle = TextStyle()
+    h1: TextStyle = emptyTextStyle,
+    h2: TextStyle = emptyTextStyle,
+    h3: TextStyle = emptyTextStyle,
+    h4: TextStyle = emptyTextStyle,
+    h5: TextStyle = emptyTextStyle,
+    h6: TextStyle = emptyTextStyle,
+    subtitle1: TextStyle = emptyTextStyle,
+    subtitle2: TextStyle = emptyTextStyle,
+    body1: TextStyle = emptyTextStyle,
+    body2: TextStyle = emptyTextStyle,
+    button: TextStyle = emptyTextStyle,
+    caption: TextStyle = emptyTextStyle,
+    overline: TextStyle = emptyTextStyle
 ) = copy(
-    h1 = h1.merge(h1),
-    h2 = h2.merge(h2),
-    h3 = h3.merge(h3),
-    h4 = h4.merge(h4),
-    h5 = h5.merge(h5),
-    h6 = h6.merge(h6),
-    subtitle1 = subtitle1.merge(subtitle1),
-    subtitle2 = subtitle2.merge(subtitle2),
-    body1 = body1.merge(body1),
-    body2 = body2.merge(body2),
-    button = button.merge(button),
-    caption = caption.merge(caption),
-    overline = overline.merge(overline)
+    h1 = this.h1.merge(h1),
+    h2 = this.h2.merge(h2),
+    h3 = this.h3.merge(h3),
+    h4 = this.h4.merge(h4),
+    h5 = this.h5.merge(h5),
+    h6 = this.h6.merge(h6),
+    subtitle1 = this.subtitle1.merge(subtitle1),
+    subtitle2 = this.subtitle2.merge(subtitle2),
+    body1 = this.body1.merge(body1),
+    body2 = this.body2.merge(body2),
+    button = this.button.merge(button),
+    caption = this.caption.merge(caption),
+    overline = this.overline.merge(overline)
 )
 
 private val tempTypedValue = ThreadLocal<TypedValue>()
