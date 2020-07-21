@@ -1,6 +1,8 @@
 # MDC-Android Compose Theme Adapter
 
-A library that enables reuse of Material themes defined in XML for theming in [Jetpack Compose][compose].
+A library that enables reuse of [Material Design Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
+
+
 
 The basis of theming in Jetpack Compose is the [`MaterialTheme`][materialtheme] composable, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
 
@@ -14,7 +16,24 @@ MaterialTheme(
 }
 ```
 
-This library allows you to re-use your existing [Material Design Components for Android](https://github.com/material-components/material-components-android) themes within Jetpack Compose, like so:
+[Material Design Components for Android][mdc] themes allow for similar theming for views via XML theme attributes, like so:
+
+``` xml
+<style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight">
+    <!-- Material color attributes -->
+    <item name="colorPrimary">@color/purple_500</item>
+    <item name="colorSecondary">@color/green_200</item>
+
+    <!-- Material type attributes-->
+    <item name="textAppearanceBody1">@style/TextAppearance.MyApp.Body1</item>
+    <item name="textAppearanceBody2">@style/TextAppearance.MyApp.Body2</item>
+
+    <!-- Material shape attributes-->
+    <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyApp.SmallComponent</item>
+</style>
+```
+
+This library attempts to bridge the gap between [Material Design Components for Android][mdc] XML themes, and themes in [Jetpack Compose][compose], allowing your composable `MaterialTheme` to be based on the `Activity`'s XML theme:
 
 
 ``` kotlin
@@ -24,7 +43,7 @@ MaterialThemeFromMdcTheme {
 }
 ```
 
-This is especially handy when you're migrating an existing app, a fragment (or other UI container) a piece at a time.
+This is especially handy when you're migrating an existing app, a fragment (or other UI container) at a time.
 
 ### Customizing the theme
 
@@ -52,10 +71,11 @@ MaterialTheme(
 
 There are some known limitations with the implementation at the moment:
 
-* This relies on your Activity/Context theme extending one of the `Theme.MaterialComponents` themes.
-* Text colors are not read from any text appearances by default. You can enable it via the `setTextColors` function parameter.
-* `android:fontVariationSettings` is currently not supported, as variable fonts are not supported in Compose yet.
-* MDC `ShapeAppearances` allow setting of corner families (cut, rounded) per corner, whereas Compose's [Shapes][shapes] allows a single corner family for the entire shape. Therefore only the `app:cornerFamily` attribute is read, others (`app:cornerFamilyTopLeft`, etc) are ignored.
+* This relies on your `Activity`/`Context` theme extending one of the `Theme.MaterialComponents` themes.
+* Text colors are not read from the text appearances by default. You can enable it via the `setTextColors` function parameter.
+* Variable fonts are not supported in Compose yet, meaning that the value of `android:fontVariationSettings` are currently ignored.
+* MDC `ShapeAppearances` allow setting of different corner families (cut, rounded) on each corner, whereas Compose's [Shapes][shapes] allows only a single corner family for the entire shape. Therefore only the `app:cornerFamily` attribute is read, others (`app:cornerFamilyTopLeft`, etc) are ignored.
+* You can modify the resulting `MaterialTheme` in Compose as required, but this _only_ works in Compose. Any changes you make will not be reflected in the Activity theme.
 
 ---
 
