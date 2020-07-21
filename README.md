@@ -1,6 +1,6 @@
 # MDC-Android Compose Theme Adapter
 
-A library that enables reuse of [Material Design Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
+A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
 
 
@@ -16,7 +16,7 @@ MaterialTheme(
 }
 ```
 
-[Material Design Components for Android][mdc] themes allow for similar theming for views via XML theme attributes, like so:
+[Material Components for Android][mdc] themes allow for similar theming for views via XML theme attributes, like so:
 
 ``` xml
 <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight">
@@ -33,7 +33,7 @@ MaterialTheme(
 </style>
 ```
 
-This library attempts to bridge the gap between [Material Design Components for Android][mdc] XML themes, and themes in [Jetpack Compose][compose], allowing your composable `MaterialTheme` to be based on the `Activity`'s XML theme:
+This library attempts to bridge the gap between [Material Components for Android][mdc] XML themes, and themes in [Jetpack Compose][compose], allowing your composable `MaterialTheme` to be based on the `Activity`'s XML theme:
 
 
 ``` kotlin

@@ -34,8 +34,8 @@ import androidx.ui.unit.Density
 import java.lang.reflect.Method
 
 /**
- * A [MaterialTheme] which reads the corresponding values from a
- * Material Design Components Android theme in the given [context].
+ * A [MaterialTheme] which reads the corresponding values from a Material Components Android
+ * theme in the given [context].
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
@@ -100,7 +100,7 @@ data class ThemeParameters(
 
 /**
  * This effect generates the components of a [androidx.ui.material.MaterialTheme], reading the
- * values from an Material Design Components Android theme.
+ * values from an Material Components for Android theme.
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
