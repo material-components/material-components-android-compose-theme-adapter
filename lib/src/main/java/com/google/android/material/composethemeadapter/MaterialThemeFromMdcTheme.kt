@@ -80,7 +80,7 @@ fun MaterialThemeFromMdcTheme(
     readTypography: Boolean = true,
     readShapes: Boolean = true,
     useTextColors: Boolean = false,
-    children: @Composable () -> Unit
+    content: @Composable () -> Unit
 ) {
     // We try and use the theme key value if available, which should be a perfect key for caching
     // and avoid the expensive theme lookups in re-compositions.
