@@ -54,8 +54,8 @@ dependencies {
     implementation project(':lib')
 
     implementation Libs.AndroidX.Compose.runtime
-    implementation Libs.AndroidX.UI.material
-    implementation Libs.AndroidX.UI.layout
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.layout
 
     implementation Libs.AndroidX.coreKtx
 
