@@ -340,19 +340,9 @@ private fun textStyleFromTextAppearance(
         // Variable fonts are not supported in Compose yet
 
         // FYI, this only works with static font files in assets
-        var fontFamily: FontFamilyWithWeight? = null
-        if (a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_fontFamily)) {
-            fontFamily = a.getFontFamilyOrNull(
-                R.styleable.ComposeThemeAdapterTextAppearance_fontFamily
-            )
-        }
-        if (fontFamily == null &&
-            a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
-        ) {
-            fontFamily = a.getFontFamilyOrNull(
-                R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily
-            )
-        }
+        val fontFamily: FontFamilyWithWeight? = a.getFontFamilyOrNull(
+            R.styleable.ComposeThemeAdapterTextAppearance_fontFamily
+        ) ?: a.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
 
         TextStyle(
             color = when {
@@ -362,7 +352,11 @@ private fun textStyleFromTextAppearance(
                 else -> Color.Unset
             },
             fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
-            lineHeight = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density),
+            lineHeight = run {
+                a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density)
+                    ?: a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density)
+                    ?: TextUnit.Inherit
+            },
             fontFamily = when {
                 fontFamily != null -> fontFamily.fontFamily
                 // Values below are from frameworks/base attrs.xml

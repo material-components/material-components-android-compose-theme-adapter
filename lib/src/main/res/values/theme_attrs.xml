@@ -67,7 +67,9 @@
         <attr name="android:shadowDy" />
         <attr name="android:shadowRadius" />
 
+        <attr name="lineHeight" />
         <attr name="android:lineHeight" />
+
         <attr name="android:letterSpacing" />
 
         <attr name="android:fontFeatureSettings" />
