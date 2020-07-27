@@ -1,6 +1,6 @@
 # Using a Snapshot Version of the Library
 
-If you would like to depend on the cutting edge version of the MDC-Android
+If you would like to depend on the cutting edge version of the MDC-Android Compose Theme Adapter
 library, you can use the
 [snapshot versions][packages]
 that are published to
