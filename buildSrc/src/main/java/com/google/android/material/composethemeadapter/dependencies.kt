@@ -21,7 +21,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha04"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha05"
 
     const val mdc = "com.google.android.material:material:1.1.0"
 

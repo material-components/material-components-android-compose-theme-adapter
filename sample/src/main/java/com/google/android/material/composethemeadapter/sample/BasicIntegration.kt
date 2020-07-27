@@ -43,7 +43,7 @@ import androidx.ui.material.icons.Icons
 import androidx.ui.material.icons.filled.Favorite
 import androidx.ui.res.stringResource
 import androidx.ui.unit.dp
-import com.google.android.material.composethemeadapter.MaterialThemeFromMdcTheme
+import com.google.android.material.composethemeadapter.MdcTheme
 
 class BasicIntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,15 +53,15 @@ class BasicIntegrationActivity : AppCompatActivity() {
         setContentView(contentView)
 
         contentView.setContent(Recomposer.current()) {
-            MaterialThemeFromMdcTheme {
-                MdcSample()
+            MdcTheme {
+                ComponentsSample()
             }
         }
     }
 }
 
 @Composable
-fun MdcSample() {
+fun ComponentsSample() {
     Scaffold(
         topBar = {
             TopAppBar(
