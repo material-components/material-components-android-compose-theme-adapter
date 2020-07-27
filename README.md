@@ -77,6 +77,24 @@ There are some known limitations with the implementation at the moment:
 
 ---
 
+## Usage
+
+```groovy
+repositories {
+    google()
+}
+
+dependencies {
+    implementation "com.google.android.material:composethemeadapter:<version>"
+}
+```
+
+### Library Snapshots
+
+Snapshots of the current development version of this library are available, which track the latest commit. See [here](./docs/using-snapshot-version.md) for more information on how to use them.
+
+---
+
 ## Contributions
 
 Please contribute! We will gladly review any pull requests.
