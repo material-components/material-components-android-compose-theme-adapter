@@ -21,7 +21,7 @@ maven {
 ```
 
 Then you can use a snapshot version by adding a
-`com.google.android.material:composethemeadapter:<version>-SNAPSHOT` dependency as per
+`com.google.android.material:compose-theme-adapter:<version>-SNAPSHOT` dependency as per
 usual (see latest release
 [here][versions]).
 This will fetch the latest snapshot version, which your Gradle build won't
@@ -33,7 +33,7 @@ See the offical doc on
 for additional information.
 
 If you prefer to depend on a specific snapshot version, you can add
-`com.google.android.material:composethemeadapter:<version>-<uniqueversion>`, where
+`com.google.android.material:compose-theme-adapter:<version>-<uniqueversion>`, where
 `<uniqueversion>` is a combination of the date, a timestamp, and a counter (see
 all versions
 [here](https://github.com/material-components/material-components-android/packages/81484/versions)).
