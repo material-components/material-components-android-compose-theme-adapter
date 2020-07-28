@@ -1,0 +1,21 @@
+public final class com/google/android/material/composethemeadapter/MdcTheme {
+	public static final fun MdcTheme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public static synthetic fun createMdcTheme$default (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+}
+
+public final class com/google/android/material/composethemeadapter/ThemeParameters {
+	public fun <init> (Landroidx/compose/material/Colors;Landroidx/compose/material/Typography;Landroidx/compose/material/Shapes;)V
+	public final fun component1 ()Landroidx/compose/material/Colors;
+	public final fun component2 ()Landroidx/compose/material/Typography;
+	public final fun component3 ()Landroidx/compose/material/Shapes;
+	public final fun copy (Landroidx/compose/material/Colors;Landroidx/compose/material/Typography;Landroidx/compose/material/Shapes;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public static synthetic fun copy$default (Lcom/google/android/material/composethemeadapter/ThemeParameters;Landroidx/compose/material/Colors;Landroidx/compose/material/Typography;Landroidx/compose/material/Shapes;ILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColors ()Landroidx/compose/material/Colors;
+	public final fun getShapes ()Landroidx/compose/material/Shapes;
+	public final fun getTypography ()Landroidx/compose/material/Typography;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

@@ -29,11 +29,20 @@ buildscript {
         classpath Libs.Kotlin.gradlePlugin
 
         classpath Libs.gradleMavenPublishPlugin
+
+        classpath Libs.Dokka.gradlePlugin
+        classpath Libs.Kotlin.binaryCompatibility
     }
 }
 
 plugins {
     id "com.diffplug.spotless" version "5.1.1"
+}
+
+apply plugin: 'binary-compatibility-validator'
+apiValidation {
+    // Ignore the sample from API tracking/checking
+    ignoredProjects += ["sample"]
 }
 
 subprojects {
@@ -58,7 +67,7 @@ subprojects {
         }
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
             allWarningsAsErrors = true
@@ -70,6 +79,32 @@ subprojects {
             freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 
             freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+        }
+    }
+
+    // Must be afterEvaluate or else com.vanniktech.maven.publish will overwrite our
+    // dokka configuration.
+    afterEvaluate {
+        tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
+            configuration {
+                jdkVersion = 8
+                reportUndocumented = false
+                skipDeprecated = true
+                skipEmptyPackages = true
+
+                externalDocumentationLink {
+                    url = new URL("https://developer.android.com/reference/")
+                    packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
+                }
+                externalDocumentationLink {
+                    url = new URL("https://developer.android.com/reference/kotlin/")
+                    packageListUrl = new URL("https://developer.android.com/reference/kotlin/androidx/ui/package-list")
+                }
+                externalDocumentationLink {
+                    url = new URL("https://developer.android.com/reference/")
+                    packageListUrl = new URL("https://developer.android.com/reference/com/google/android/material/package-list")
+                }
+            }
         }
     }
 }
