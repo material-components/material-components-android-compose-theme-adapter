@@ -17,7 +17,6 @@
 import com.google.android.material.composethemeadapter.Libs
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
 
 android {
@@ -66,3 +65,12 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.runner
 }
 
+apply plugin: 'com.vanniktech.maven.publish'
+
+mavenPublish {
+    targets {
+        uploadArchives {
+            snapshotRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter"
+        }
+    }
+}
