@@ -115,3 +115,16 @@ jobs:
         env:
           SONATYPE_NEXUS_USERNAME: ${{ github.repository_owner }}
           SONATYPE_NEXUS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove current local Maven repo if it exists
+        continue-on-error: true
+        working-directory: ~/.m2
+        run: rm -rf *
+
+      - name: Install to local Maven repo
+        run: ./gradlew installArchives
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: maven-release
+          path: ~/.m2/repository
