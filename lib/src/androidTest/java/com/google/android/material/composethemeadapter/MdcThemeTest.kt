@@ -45,13 +45,13 @@ import org.junit.runners.JUnit4
 
 @MediumTest
 @RunWith(JUnit4::class)
-class MaterialThemeTest {
+class MdcThemeTest {
     @get:Rule
     val composeTestRule = AndroidComposeTestRule<MdcActivity>()
 
     @Test
     fun colors() = composeTestRule.setContent {
-        MaterialThemeFromMdcTheme {
+        MdcTheme {
             val color = MaterialTheme.colors
 
             assertEquals(colorResource(R.color.aquamarine), color.primary)
@@ -75,7 +75,7 @@ class MaterialThemeTest {
 
     @Test
     fun shapes() = composeTestRule.setContent {
-        MaterialThemeFromMdcTheme {
+        MdcTheme {
             val shapes = MaterialTheme.shapes
             val density = DensityAmbient.current
 
@@ -105,7 +105,7 @@ class MaterialThemeTest {
 
     @Test
     fun type() = composeTestRule.setContent {
-        MaterialThemeFromMdcTheme {
+        MdcTheme {
             val typography = MaterialTheme.typography
             val density = DensityAmbient.current
 

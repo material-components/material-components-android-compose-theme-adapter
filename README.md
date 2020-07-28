@@ -2,8 +2,6 @@
 
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
-
-
 The basis of theming in Jetpack Compose is the [`MaterialTheme`][materialtheme] composable, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
 
 ``` kotlin
@@ -37,9 +35,9 @@ This library attempts to bridge the gap between [Material Components for Android
 
 
 ``` kotlin
-MaterialThemeFromMdcTheme {
+MdcTheme {
     // MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography
-    // will now contain copies of the context theme
+    // will now contain copies of the context's theme
 }
 ```
 
@@ -47,18 +45,18 @@ This is especially handy when you're migrating an existing app, a fragment (or o
 
 ### Customizing the theme
 
-The `MaterialThemeFromMdcTheme()` function will automatically read the host context's MDC theme and pass them to [`MaterialTheme`][materialtheme] on your behalf, but if you want to customize the generated values, you can do so via the `generateMaterialThemeFromMdcTheme()` function:
+The `MdcTheme()` function will automatically read the host context's MDC theme and pass them to [`MaterialTheme`][materialtheme] on your behalf, but if you want to customize the generated values, you can do so via the `createMdcTheme()` function:
 
 ``` kotlin
 val context = ContextAmbient.current
-var (colors, type, shapes) = generateMaterialThemeFromMdcTheme(context)
+var (colors, type, shapes) = createMdcTheme(context)
 
 // Modify colors, type or shapes as required. Then pass them
 // through to MaterialTheme...
 
 MaterialTheme(
-    typography = type,
     colors = colors,
+    typography = type,
     shapes = shapes
 ) {
     // rest of layout

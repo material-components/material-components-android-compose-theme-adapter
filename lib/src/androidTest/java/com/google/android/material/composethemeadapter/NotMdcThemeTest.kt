@@ -25,13 +25,13 @@ import org.junit.runners.JUnit4
 
 @MediumTest
 @RunWith(JUnit4::class)
-class NotMaterialThemeTest {
+class NotMdcThemeTest {
     @get:Rule
     val composeTestRule = AndroidComposeTestRule<NotMdcActivity>()
 
     @Test(expected = IllegalArgumentException::class)
-    fun isNotMaterialTheme() = composeTestRule.setContent {
-        MaterialThemeFromMdcTheme {
+    fun throwForNonMdcTheme() = composeTestRule.setContent {
+        MdcTheme {
             // Nothing to do here, exception should be thrown
         }
     }

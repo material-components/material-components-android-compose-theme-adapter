@@ -34,7 +34,7 @@ import androidx.ui.unit.Density
 import java.lang.reflect.Method
 
 /**
- * A [MaterialTheme] which reads the corresponding values from a Material Components Android
+ * A [MaterialTheme] which reads the corresponding values from a Material Components for Android
  * theme in the given [context].
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
@@ -53,7 +53,7 @@ import java.lang.reflect.Method
  * theme. Defaults to `false`.
  */
 @Composable
-fun MaterialThemeFromMdcTheme(
+fun MdcTheme(
     context: Context = ContextAmbient.current,
     readColors: Boolean = true,
     readTypography: Boolean = true,
@@ -71,7 +71,7 @@ fun MaterialThemeFromMdcTheme(
     val key = context.theme.key ?: context.theme
 
     val themeParams = remember(key) {
-        generateMaterialThemeFromMdcTheme(
+        createMdcTheme(
             context = context,
             readColors = readColors,
             readTypography = readTypography,
@@ -99,7 +99,7 @@ data class ThemeParameters(
 )
 
 /**
- * This effect generates the components of a [androidx.ui.material.MaterialTheme], reading the
+ * This function creates the components of a [androidx.ui.material.MaterialTheme], reading the
  * values from an Material Components for Android theme.
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
@@ -121,7 +121,7 @@ data class ThemeParameters(
  * @return [ThemeParameters] instance containing the resulting [ColorPalette], [Typography]
  * and [Shapes].
  */
-fun generateMaterialThemeFromMdcTheme(
+fun createMdcTheme(
     context: Context,
     density: Density = Density(context),
     readColors: Boolean = true,
@@ -185,11 +185,11 @@ fun generateMaterialThemeFromMdcTheme(
         } else null
 
         /**
-         * Next we'll generate a typography instance, using the Material Theme text appearances
+         * Next we'll create a typography instance, using the Material Theme text appearances
          * for TextStyles.
          *
          * We create a normal 'empty' instance first to start from the defaults, then merge in our
-         * generated text styles from the Android theme.
+         * created text styles from the Android theme.
          */
 
         val typography = if (readTypography) {
