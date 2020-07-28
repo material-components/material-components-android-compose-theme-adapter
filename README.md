@@ -85,7 +85,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.google.android.material:composethemeadapter:<version>"
+    implementation "com.google.android.material:compose-theme-adapter:<version>"
 }
 ```
 
