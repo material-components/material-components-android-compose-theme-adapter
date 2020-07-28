@@ -1,0 +1,41 @@
+# Project information
+site_name: 'MDC-Android Compose Theme Adapter'
+site_description: 'A library that enables reuse of Material Components for Android XML themes for theming in Jetpack Compose.'
+site_author: 'Material Components'
+site_url: 'https://material-components.github.io/material-components-android-compose-theme-adapter/'
+remote_branch: gh-pages
+
+# Repository
+repo_name: 'MDC-Android Compose Theme Adapter'
+repo_url: 'https://github.com/material-components/material-components-android-compose-theme-adapter'
+
+# Navigation
+nav:
+  - 'Overview': index.md
+  - 'API': api/lib/index.md
+  - 'Snapshots': using-snapshot-version.md
+  - 'Contributing': contributing.md
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  favicon: 'favicon.ico'
+  logo: 'logo.svg'
+  palette:
+    primary: 'black'
+    accent: 'white'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.superfences

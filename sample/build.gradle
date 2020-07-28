@@ -16,9 +16,10 @@
 
 import com.google.android.material.composethemeadapter.Libs
 
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
 
 android {
     compileSdkVersion 30

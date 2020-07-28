@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+@file:JvmName("MdcTheme")
 package com.google.android.material.composethemeadapter
 
 import android.content.Context
