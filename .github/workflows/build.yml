@@ -86,7 +86,7 @@ jobs:
           path: junit
 
   deploy:
-    if: github.event_name == 'push' # only deploy for pushed commits (not PRs)
+    #DONOTSHIP if: github.event_name == 'push' # only deploy for pushed commits (not PRs)
     runs-on: ubuntu-latest
     needs: [build, test]
     env:
@@ -115,3 +115,15 @@ jobs:
         env:
           SONATYPE_NEXUS_USERNAME: ${{ github.repository_owner }}
           SONATYPE_NEXUS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove current local Maven repo
+        working-directory: ~/.m2
+        run: rm -rf *
+
+      - name: Install to local Maven repo
+        run: ./gradlew installArchives
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: maven-repo
+          path: ~/.m2
