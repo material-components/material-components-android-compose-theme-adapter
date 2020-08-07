@@ -17,7 +17,7 @@
 package com.google.android.material.composethemeadapter
 
 import androidx.test.filters.MediumTest
-import androidx.ui.test.android.AndroidComposeTestRule
+import androidx.ui.test.android.createAndroidComposeRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,7 +27,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class NotMdcThemeTest {
     @get:Rule
-    val composeTestRule = AndroidComposeTestRule<NotMdcActivity>()
+    val composeTestRule = createAndroidComposeRule<NotMdcActivity>()
 
     @Test(expected = IllegalArgumentException::class)
     fun throwForNonMdcTheme() = composeTestRule.setContent {

@@ -2,7 +2,7 @@
 
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
-The basis of theming in Jetpack Compose is the [`MaterialTheme`][materialtheme] composable, where you provide [`ColorPalette`](https://developer.android.com/reference/kotlin/androidx/ui/material/ColorPalette), [`Shapes`](https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes) and [`Typography`](https://developer.android.com/reference/kotlin/androidx/ui/material/Typography) instances containing your styling parameters:
+The basis of theming in [Jetpack Compose][compose] is the [`MaterialTheme`][materialtheme] composable, where you provide [`Colors`][colors], [`Shapes`][shapes] and [`Typography`][typography] instances containing your styling parameters:
 
 ``` kotlin
 MaterialTheme(
@@ -31,7 +31,7 @@ MaterialTheme(
 </style>
 ```
 
-This library attempts to bridge the gap between [Material Components for Android][mdc] XML themes, and themes in [Jetpack Compose][compose], allowing your composable `MaterialTheme` to be based on the `Activity`'s XML theme:
+This library attempts to bridge the gap between [Material Components for Android][mdc] XML themes, and themes in [Jetpack Compose][compose], allowing your composable [`MaterialTheme`][materialtheme] to be based on the `Activity`'s XML theme:
 
 
 ``` kotlin
@@ -120,5 +120,7 @@ limitations under the License.
 
  [compose]: https://developer.android.com/jetpack/compose
  [mdc]: https://material.io/develop/android/
- [materialtheme]: https://developer.android.com/reference/kotlin/androidx/ui/material/MaterialTheme
- [shapes]: https://developer.android.com/reference/kotlin/androidx/ui/material/Shapes
+ [materialtheme]: https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme
+ [shapes]: https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes
+ [colors]: https://developer.android.com/reference/kotlin/androidx/compose/material/Colors
+ [typography]: https://developer.android.com/reference/kotlin/androidx/compose/material/Typography

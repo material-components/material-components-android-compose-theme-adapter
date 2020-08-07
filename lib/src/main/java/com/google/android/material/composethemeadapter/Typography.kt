@@ -16,8 +16,8 @@
 
 package com.google.android.material.composethemeadapter
 
-import androidx.ui.material.Typography
-import androidx.ui.text.TextStyle
+import androidx.compose.material.Typography
+import androidx.compose.ui.text.TextStyle
 
 private val emptyTextStyle = TextStyle()
 

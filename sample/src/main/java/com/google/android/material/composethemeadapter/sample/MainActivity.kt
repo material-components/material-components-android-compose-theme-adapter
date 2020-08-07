@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION") // ListActivity
+
 package com.google.android.material.composethemeadapter.sample
 
+import android.annotation.SuppressLint
 import android.app.ListActivity
 import android.content.Intent
 import android.os.Bundle
@@ -53,7 +56,8 @@ class MainActivity : ListActivity() {
         val mainIntent = Intent(Intent.ACTION_MAIN, null)
         mainIntent.addCategory("${applicationInfo.packageName}.SAMPLE_CODE")
 
-        val list = packageManager.queryIntentActivities(mainIntent, 0) ?: return myData
+        @SuppressLint("QueryPermissionsNeeded")
+        val list = packageManager.queryIntentActivities(mainIntent, 0)
 
         val prefixPath: Array<String>?
         var prefixWithSlash = prefix
