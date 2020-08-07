@@ -22,7 +22,11 @@
     <application>
 
         <activity
-            android:name=".MdcActivity"
+            android:name=".LightMdcActivity"
+            android:theme="@style/Theme.MdcThemeTest" />
+
+        <activity
+            android:name=".DarkMdcActivity"
             android:theme="@style/Theme.MdcThemeTest" />
 
         <activity
