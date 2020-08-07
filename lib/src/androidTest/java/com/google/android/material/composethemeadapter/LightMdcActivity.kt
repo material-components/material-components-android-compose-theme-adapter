@@ -16,6 +16,16 @@
 
 package com.google.android.material.composethemeadapter
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
-class MdcActivity : AppCompatActivity()
+/**
+ * An [AppCompatActivity] which forces the night mode to 'light theme'.
+ */
+class LightMdcActivity : AppCompatActivity() {
+    override fun attachBaseContext(newBase: Context) {
+        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        super.attachBaseContext(newBase)
+    }
+}
