@@ -16,6 +16,7 @@
 
 package com.google.android.material.composethemeadapter
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -59,8 +60,13 @@ class MdcThemeTest {
             assertEquals(colorResource(R.color.midnight_blue), color.onPrimary)
 
             assertEquals(colorResource(R.color.dark_golden_rod), color.secondary)
-            assertEquals(colorResource(R.color.blue_violet), color.secondaryVariant)
             assertEquals(colorResource(R.color.slate_gray), color.onSecondary)
+            if (!isSystemInDarkTheme()) {
+                assertEquals(colorResource(R.color.blue_violet), color.secondaryVariant)
+            } else {
+                // In dark theme secondaryVariant is ignored and always return secondary
+                assertEquals(colorResource(R.color.dark_golden_rod), color.secondaryVariant)
+            }
 
             assertEquals(colorResource(R.color.spring_green), color.surface)
             assertEquals(colorResource(R.color.navy), color.onSurface)
