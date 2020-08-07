@@ -18,19 +18,19 @@ package com.google.android.material.composethemeadapter
 
 import android.content.Context
 import android.content.res.Resources
-import androidx.compose.Composable
-import androidx.compose.remember
+import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Density
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
-import androidx.ui.core.ContextAmbient
-import androidx.ui.material.ColorPalette
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Shapes
-import androidx.ui.material.Typography
-import androidx.ui.material.darkColorPalette
-import androidx.ui.material.lightColorPalette
-import androidx.ui.text.TextStyle
-import androidx.ui.unit.Density
 import java.lang.reflect.Method
 
 /**
@@ -39,7 +39,7 @@ import java.lang.reflect.Method
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
+ * [androidx.compose.material.Emphasis] through [androidx.compose.material.ProvideEmphasis].
  * You can customize this through the [setTextColors] parameter.
  *
  * @param context The context to read the theme from.
@@ -89,22 +89,22 @@ fun MdcTheme(
 }
 
 /**
- * This class contains the individual components of a [MaterialTheme]: [ColorPalette], [Typography]
+ * This class contains the individual components of a [MaterialTheme]: [Colors], [Typography]
  * and [Shapes].
  */
 data class ThemeParameters(
-    val colors: ColorPalette?,
+    val colors: Colors?,
     val typography: Typography?,
     val shapes: Shapes?
 )
 
 /**
- * This function creates the components of a [androidx.ui.material.MaterialTheme], reading the
+ * This function creates the components of a [androidx.compose.material.MaterialTheme], reading the
  * values from an Material Components for Android theme.
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.ui.material.Emphasis] through [androidx.ui.material.ProvideEmphasis].
+ * [androidx.compose.material.Emphasis] through [androidx.compose.material.ProvideEmphasis].
  * You can customize this through the [setTextColors] parameter.
  *
  * The individual components of the returned [ThemeParameters] may be `null`, depending on the
@@ -118,7 +118,7 @@ data class ThemeParameters(
  * @param readShapes whether the read the MDC shape appearances from the context's theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
- * @return [ThemeParameters] instance containing the resulting [ColorPalette], [Typography]
+ * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
  * and [Shapes].
  */
 fun createMdcTheme(
@@ -135,7 +135,7 @@ fun createMdcTheme(
                 " to extend Theme.MaterialComponents"
         }
 
-        val colors: ColorPalette? = if (readColors) {
+        val colors: Colors? = if (readColors) {
             /* First we'll read the Material color palette */
             val primary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimary)
             val primaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimaryVariant)
@@ -153,7 +153,7 @@ fun createMdcTheme(
             val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterTheme_isLightTheme, true)
 
             if (isLightTheme) {
-                lightColorPalette(
+                lightColors(
                     primary = primary,
                     primaryVariant = primaryVariant,
                     onPrimary = onPrimary,
@@ -168,7 +168,7 @@ fun createMdcTheme(
                     onError = onError
                 )
             } else {
-                darkColorPalette(
+                darkColors(
                     primary = primary,
                     primaryVariant = primaryVariant,
                     onPrimary = onPrimary,
