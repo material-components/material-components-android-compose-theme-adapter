@@ -1,0 +1,573 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A library that enables reuse of Material Components for Android XML themes for theming in Jetpack Compose.">
+      
+      
+        <link rel="canonical" href="https://material-components.github.io/material-components-android-compose-theme-adapter/">
+      
+      
+        <meta name="author" content="Material Components">
+      
+      <link rel="shortcut icon" href="favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.6">
+    
+    
+      
+        <title>MDC-Android Compose Theme Adapter</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.63b94e9e.min.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/palette.7f672a1f.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mdc-android-compose-theme-adapter" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://material-components.github.io/material-components-android-compose-theme-adapter/" title="MDC-Android Compose Theme Adapter" class="md-header-nav__button md-logo" aria-label="MDC-Android Compose Theme Adapter">
+      
+  <img src="logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MDC-Android Compose Theme Adapter
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/material-components/material-components-android-compose-theme-adapter/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MDC-Android Compose Theme Adapter
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://material-components.github.io/material-components-android-compose-theme-adapter/" title="MDC-Android Compose Theme Adapter" class="md-nav__button md-logo" aria-label="MDC-Android Compose Theme Adapter">
+      
+  <img src="logo.svg" alt="logo">
+
+    </a>
+    MDC-Android Compose Theme Adapter
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/material-components/material-components-android-compose-theme-adapter/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MDC-Android Compose Theme Adapter
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Overview
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="." title="Overview" class="md-nav__link md-nav__link--active">
+      Overview
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-the-theme" class="md-nav__link">
+    Customizing the theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#library-snapshots" class="md-nav__link">
+    Library Snapshots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributions" class="md-nav__link">
+    Contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="api/lib/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="using-snapshot-version/" title="Snapshots" class="md-nav__link">
+      Snapshots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-the-theme" class="md-nav__link">
+    Customizing the theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#library-snapshots" class="md-nav__link">
+    Library Snapshots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributions" class="md-nav__link">
+    Contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/material-components/material-components-android-compose-theme-adapter/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="mdc-android-compose-theme-adapter">MDC-Android Compose Theme Adapter<a class="headerlink" href="#mdc-android-compose-theme-adapter" title="Permanent link">&para;</a></h1>
+<p>A library that enables reuse of <a href="https://material.io/develop/android/">Material Components for Android</a> XML themes for theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
+<p>The basis of theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors"><code>Colors</code></a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes"><code>Shapes</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span>
+    <span class="n">typography</span> <span class="p">=</span> <span class="n">type</span><span class="p">,</span>
+    <span class="n">colors</span> <span class="p">=</span> <span class="n">colors</span><span class="p">,</span>
+    <span class="n">shapes</span> <span class="p">=</span> <span class="n">shapes</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Surface, Scaffold, etc</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><a href="https://material.io/develop/android/">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Material color attributes --&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorPrimary&quot;</span><span class="nt">&gt;</span>@color/purple_500<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorSecondary&quot;</span><span class="nt">&gt;</span>@color/green_200<span class="nt">&lt;/item&gt;</span>
+
+    <span class="c">&lt;!-- Material type attributes--&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBody1&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.Body1<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBody2&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.Body2<span class="nt">&lt;/item&gt;</span>
+
+    <span class="c">&lt;!-- Material shape attributes--&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;shapeAppearanceSmallComponent&quot;</span><span class="nt">&gt;</span>@style/ShapeAppearance.MyApp.SmallComponent<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+
+<p>This library attempts to bridge the gap between <a href="https://material.io/develop/android/">Material Components for Android</a> XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MdcTheme</span> <span class="p">{</span>
+    <span class="c1">// MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography</span>
+    <span class="c1">// will now contain copies of the context&#39;s theme</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This is especially handy when you're migrating an existing app, a fragment (or other UI container) at a time.</p>
+<h3 id="customizing-the-theme">Customizing the theme<a class="headerlink" href="#customizing-the-theme" title="Permanent link">&para;</a></h3>
+<p>The <code>MdcTheme()</code> function will automatically read the host context's MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdcTheme()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">val</span> <span class="py">context</span> <span class="p">=</span> <span class="n">ContextAmbient</span><span class="p">.</span><span class="n">current</span>
+<span class="k">var</span> <span class="p">(</span><span class="py">colors</span><span class="p">,</span> <span class="py">type</span><span class="p">,</span> <span class="py">shapes</span><span class="p">)</span> <span class="p">=</span> <span class="n">createMdcTheme</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+<span class="c1">// Modify colors, type or shapes as required. Then pass them</span>
+<span class="c1">// through to MaterialTheme...</span>
+
+<span class="n">MaterialTheme</span><span class="p">(</span>
+    <span class="n">colors</span> <span class="p">=</span> <span class="n">colors</span><span class="p">,</span>
+    <span class="n">typography</span> <span class="p">=</span> <span class="n">type</span><span class="p">,</span>
+    <span class="n">shapes</span> <span class="p">=</span> <span class="n">shapes</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// rest of layout</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p>There are some known limitations with the implementation at the moment:</p>
+<ul>
+<li>This relies on your <code>Activity</code>/<code>Context</code> theme extending one of the <code>Theme.MaterialComponents</code> themes.</li>
+<li>Text colors are not read from the text appearances by default. You can enable it via the <code>setTextColors</code> function parameter.</li>
+<li>Variable fonts are not supported in Compose yet, meaning that the value of <code>android:fontVariationSettings</code> are currently ignored.</li>
+<li>MDC <code>ShapeAppearances</code> allow setting of different corner families (cut, rounded) on each corner, whereas Compose's <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes">Shapes</a> allows only a single corner family for the entire shape. Therefore only the <code>app:cornerFamily</code> attribute is read, others (<code>app:cornerFamilyTopLeft</code>, etc) are ignored.</li>
+<li>You can modify the resulting <code>MaterialTheme</code> in Compose as required, but this <em>only</em> works in Compose. Any changes you make will not be reflected in the Activity theme.</li>
+</ul>
+<hr />
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">google</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<h3 id="library-snapshots">Library Snapshots<a class="headerlink" href="#library-snapshots" title="Permanent link">&para;</a></h3>
+<p>Snapshots of the current development version of this library are available, which track the latest commit. See <a href="./using-snapshot-version">here</a> for more information on how to use them.</p>
+<hr />
+<h2 id="contributions">Contributions<a class="headerlink" href="#contributions" title="Permanent link">&para;</a></h2>
+<p>Please contribute! We will gladly review any pull requests.
+Make sure to read the <a href="/contributing">Contributing</a> page first though.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Copyright 2020 The Android Open Source Project
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="api/lib/" title="API" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                API
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
