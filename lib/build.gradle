@@ -81,6 +81,7 @@ mavenPublish {
     targets {
         uploadArchives {
             snapshotRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter"
+            releaseRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter"
         }
     }
 }
