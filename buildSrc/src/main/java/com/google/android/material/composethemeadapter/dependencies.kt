@@ -28,7 +28,7 @@ object Libs {
     const val mdc = "com.google.android.material:material:1.1.0"
 
     object Kotlin {
-        const val version = "1.4.0-rc"
+        const val version = "1.4.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -42,7 +42,7 @@ object Libs {
     object AndroidX {
         object Compose {
             const val snapshot = ""
-            const val version = "0.1.0-dev16"
+            const val version = "0.1.0-dev17"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
