@@ -1,5 +1,5 @@
 public final class com/google/android/material/composethemeadapter/MdcTheme {
-	public static final fun MdcTheme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun MdcTheme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
 	public static synthetic fun createMdcTheme$default (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
 }
