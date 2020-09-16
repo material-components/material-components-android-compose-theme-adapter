@@ -25,10 +25,10 @@ object Libs {
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.12.0"
 
-    const val mdc = "com.google.android.material:material:1.1.0"
+    const val mdc = "com.google.android.material:material:1.2.1"
 
     object Kotlin {
-        const val version = "1.4.0"
+        const val version = "1.4.10"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -60,10 +60,10 @@ object Libs {
             const val test = "androidx.ui:ui-test:${version}"
         }
 
-        const val coreKtx = "androidx.core:core-ktx:1.2.0"
+        const val coreKtx = "androidx.core:core-ktx:1.3.1"
 
         object Test {
-            private const val version = "1.2.0"
+            private const val version = "1.3.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
