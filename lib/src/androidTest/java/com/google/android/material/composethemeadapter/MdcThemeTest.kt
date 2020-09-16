@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.MediumTest
-import androidx.ui.test.android.AndroidComposeTestRule
+import androidx.ui.test.AndroidComposeTestRule
 import com.google.android.material.composethemeadapter.test.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
