@@ -60,10 +60,10 @@ object Libs {
             const val test = "androidx.ui:ui-test:${version}"
         }
 
-        const val coreKtx = "androidx.core:core-ktx:1.2.0"
+        const val coreKtx = "androidx.core:core-ktx:1.3.1"
 
         object Test {
-            private const val version = "1.2.0"
+            private const val version = "1.3.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
