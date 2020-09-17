@@ -6,5 +6,5 @@ cp CONTRIBUTING.md docs/contributing.md
 sed -i 's/CONTRIBUTING.md/\/contributing/' docs/index.md
 sed -i 's/docs\/using-snapshot-version.md/using-snapshot-version/' docs/index.md
 
-# Deploy to Github pages.
-mkdocs gh-deploy
+# Build the docs
+./gradlew clean dokka
