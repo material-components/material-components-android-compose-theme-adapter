@@ -32,9 +32,12 @@ jobs:
       - name: Generate cache key
         run: ./checksum.sh checksum.txt
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
           key: gradle-${{ hashFiles('checksum.txt') }}
 
       - name: Build, lint and spotless
@@ -62,9 +65,12 @@ jobs:
       - name: Generate cache key
         run: ./checksum.sh checksum.txt
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
           key: gradle-${{ hashFiles('checksum.txt') }}
 
       - name: Run tests
@@ -105,9 +111,12 @@ jobs:
       - name: Generate cache key
         run: ./checksum.sh checksum.txt
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
           key: gradle-${{ hashFiles('checksum.txt') }}
 
       - name: Deploy to GitHub packages
