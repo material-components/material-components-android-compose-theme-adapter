@@ -68,7 +68,7 @@ internal fun textStyleFromTextAppearance(
                 setTextColors -> {
                     a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
                 }
-                else -> Color.Unset
+                else -> Color.Unspecified
             },
             fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
             lineHeight = run {
@@ -107,7 +107,7 @@ internal fun textStyleFromTextAppearance(
             fontFeatureSettings = a.getString(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFeatureSettings),
             shadow = run {
                 val shadowColor = a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowColor)
-                if (shadowColor != Color.Unset) {
+                if (shadowColor != Color.Unspecified) {
                     val dx = a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowDx, 0f)
                     val dy = a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowDy, 0f)
                     val rad = a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowRadius, 0f)
@@ -176,7 +176,7 @@ private val tempTypedValue = ThreadLocal<TypedValue>()
 
 internal fun TypedArray.getComposeColor(
     index: Int,
-    fallbackColor: Color = Color.Unset
+    fallbackColor: Color = Color.Unspecified
 ): Color = if (hasValue(index)) Color(getColorOrThrow(index)) else fallbackColor
 
 /**
