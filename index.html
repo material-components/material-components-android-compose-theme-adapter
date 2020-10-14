@@ -15,7 +15,7 @@
         <meta name="author" content="Material Components">
       
       <link rel="shortcut icon" href="favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
     
     
       
@@ -203,7 +203,7 @@
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="." title="Overview" class="md-nav__link md-nav__link--active">
+    <a href="." class="md-nav__link md-nav__link--active">
       Overview
     </a>
     
@@ -281,7 +281,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/lib/" title="API" class="md-nav__link">
+    <a href="api/lib/" class="md-nav__link">
       API
     </a>
   </li>
@@ -293,7 +293,7 @@
 
 
   <li class="md-nav__item">
-    <a href="using-snapshot-version/" title="Snapshots" class="md-nav__link">
+    <a href="using-snapshot-version/" class="md-nav__link">
       Snapshots
     </a>
   </li>
@@ -305,7 +305,7 @@
 
 
   <li class="md-nav__item">
-    <a href="contributing/" title="Contributing" class="md-nav__link">
+    <a href="contributing/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -410,7 +410,6 @@
     <span class="c1">// Surface, Scaffold, etc</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p><a href="https://material.io/develop/android/">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight&quot;</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- Material color attributes --&gt;</span>
@@ -425,14 +424,12 @@
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;shapeAppearanceSmallComponent&quot;</span><span class="nt">&gt;</span>@style/ShapeAppearance.MyApp.SmallComponent<span class="nt">&lt;/item&gt;</span>
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
-
 <p>This library attempts to bridge the gap between <a href="https://material.io/develop/android/">Material Components for Android</a> XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MdcTheme</span> <span class="p">{</span>
     <span class="c1">// MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography</span>
     <span class="c1">// will now contain copies of the context&#39;s theme</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>This is especially handy when you're migrating an existing app, a fragment (or other UI container) at a time.</p>
 <h3 id="customizing-the-theme">Customizing the theme<a class="headerlink" href="#customizing-the-theme" title="Permanent link">&para;</a></h3>
 <p>The <code>MdcTheme()</code> function will automatically read the host context's MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdcTheme()</code> function:</p>
@@ -450,9 +447,7 @@
     <span class="c1">// rest of layout</span>
 <span class="p">}</span>
 </code></pre></div>
-
 </details>
-
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <p>There are some known limitations with the implementation at the moment:</p>
 <ul>
@@ -472,7 +467,6 @@
     <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span>
 <span class="o">}</span>
 </code></pre></div>
-
 <h3 id="library-snapshots">Library Snapshots<a class="headerlink" href="#library-snapshots" title="Permanent link">&para;</a></h3>
 <p>Snapshots of the current development version of this library are available, which track the latest commit. See <a href="./using-snapshot-version">here</a> for more information on how to use them.</p>
 <hr />
@@ -513,7 +507,7 @@ limitations under the License.
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
         
-          <a href="api/lib/" title="API" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="api/lib/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
@@ -547,7 +541,7 @@ limitations under the License.
     </div>
     
       <script src="assets/javascripts/vendor.77e55a48.min.js"></script>
-      <script src="assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
