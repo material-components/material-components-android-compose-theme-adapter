@@ -27,6 +27,9 @@ import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.asFontFamily
 import androidx.compose.ui.text.font.font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.GenericFontFamily
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -55,7 +58,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
         fun activities() = listOf(DarkMdcActivity::class.java, LightMdcActivity::class.java)
     }
 
-    private val activityRule = ActivityScenarioRule<T>(activityClass)
+    private val activityRule = ActivityScenarioRule(activityClass)
 
     @get:Rule
     val composeTestRule = AndroidComposeTestRule(activityRule)
@@ -131,6 +134,12 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
             val rubik300 = font(R.font.rubik_300).asFontFamily()
             val rubik400 = font(R.font.rubik_400).asFontFamily()
             val rubik500 = font(R.font.rubik_500).asFontFamily()
+            val sansSerif = FontFamilyWithWeight(FontFamily.SansSerif)
+            val sansSerifLight = FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Light)
+            val sansSerifBlack = FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Black)
+            val serif = FontFamilyWithWeight(FontFamily.Serif)
+            val cursive = FontFamilyWithWeight(FontFamily.Cursive)
+            val monospace = FontFamilyWithWeight(FontFamily.Monospace)
 
             typography.h1.run {
                 assertTextUnitEquals(97.54.sp, fontSize, density)
@@ -146,6 +155,26 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
                 assertEquals(2.13f, blurRadius)
             }
 
+            typography.h3.run {
+                assertEquals(sansSerif.fontFamily, fontFamily)
+                assertEquals(sansSerif.weight, fontWeight)
+            }
+
+            typography.h4.run {
+                assertEquals(sansSerifLight.fontFamily, fontFamily)
+                assertEquals(sansSerifLight.weight, fontWeight)
+            }
+
+            typography.h5.run {
+                assertEquals(sansSerifBlack.fontFamily, fontFamily)
+                assertEquals(sansSerifBlack.weight, fontWeight)
+            }
+
+            typography.h6.run {
+                assertEquals(serif.fontFamily, fontFamily)
+                assertEquals(serif.weight, fontWeight)
+            }
+
             typography.body1.run {
                 assertTextUnitEquals(16.26.sp, fontSize, density)
                 assertTextUnitEquals(0.005.em, letterSpacing, density)
@@ -153,8 +182,30 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
                 assertNull(shadow)
             }
 
+            typography.body2.run {
+                assertEquals(cursive.fontFamily, fontFamily)
+                assertEquals(cursive.weight, fontWeight)
+            }
+
+            typography.subtitle1.run {
+                assertEquals(monospace.fontFamily, fontFamily)
+                assertEquals(monospace.weight, fontWeight)
+            }
+
+            typography.subtitle2.run {
+                assertEquals(GenericFontFamily::class, fontFamily!!::class)
+            }
+
             typography.button.run {
                 assertEquals(rubik500, fontFamily)
+            }
+
+            typography.caption.run {
+                assertEquals(GenericFontFamily::class, fontFamily!!::class)
+            }
+
+            typography.overline.run {
+                assertEquals(GenericFontFamily::class, fontFamily!!::class)
             }
         }
     }

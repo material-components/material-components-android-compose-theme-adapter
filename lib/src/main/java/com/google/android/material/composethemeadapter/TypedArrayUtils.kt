@@ -200,21 +200,23 @@ internal fun TypedArray.getFontFamily(index: Int, fallback: FontFamily): FontFam
 internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
     val tv = tempTypedValue.getOrSet { TypedValue() }
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_STRING) {
-        if (tv.resourceId != 0) {
-            // If there's a resource ID, it's probably a @font resource
-            return FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
-        }
         return when (tv.string) {
-            "san-serif" -> FontFamilyWithWeight(FontFamily.SansSerif)
+            "sans-serif" -> FontFamilyWithWeight(FontFamily.SansSerif)
             "sans-serif-thin" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Thin)
-            "san-serif-light" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Light)
+            "sans-serif-light" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Light)
             "sans-serif-medium" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Medium)
             "sans-serif-black" -> FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Black)
             "serif" -> FontFamilyWithWeight(FontFamily.Serif)
             "cursive" -> FontFamilyWithWeight(FontFamily.Cursive)
             "monospace" -> FontFamilyWithWeight(FontFamily.Monospace)
-            // TODO: Compose does not expose a FontFamily for "sans-serif-condensed" yet
-            else -> null
+            // TODO: Compose does not expose a FontFamily for all strings yet
+            else -> {
+                if (tv.resourceId != 0 && tv.string.startsWith("res/font/")) {
+                    FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
+                } else {
+                    null
+                }
+            }
         }
     }
     return null

@@ -31,15 +31,19 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">sans-serif</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">sans-serif-light</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">sans-serif-black</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">serif</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Body1" parent="TextAppearance.MaterialComponents.Body1">
@@ -49,12 +53,15 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">cursive</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">monospace</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">sans-serif-condensed</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Button" parent="TextAppearance.MaterialComponents.Button">
@@ -62,9 +69,15 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@string/sans_serif_condensed_light</item>
     </style>
 
+    <!-- Having a string resource with a font family causes TypedValue to have a resource ID -->
+    <!-- eg. TextAppearance.AppCompat -->
+    <string name="sans_serif_condensed_light">sans-serif-condensed-light</string>
+
     <style name="TextAppearance.MdcThemeTest.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">sans-serif-condensed-medium</item>
     </style>
 
 </resources>
