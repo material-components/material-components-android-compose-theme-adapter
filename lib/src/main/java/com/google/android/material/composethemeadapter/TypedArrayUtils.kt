@@ -212,6 +212,7 @@ internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
             // TODO: Compose does not expose a FontFamily for all strings yet
             else -> {
                 if (tv.resourceId != 0 && tv.string.startsWith("res/font/")) {
+                    // If there's a resource ID and the string starts with res/font, it's probably a @font resource
                     FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
                 } else {
                     null
