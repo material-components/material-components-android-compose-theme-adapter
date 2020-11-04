@@ -25,11 +25,11 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.asFontFamily
-import androidx.compose.ui.text.font.font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.GenericFontFamily
+import androidx.compose.ui.text.font.asFontFamily
+import androidx.compose.ui.text.font.font
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
