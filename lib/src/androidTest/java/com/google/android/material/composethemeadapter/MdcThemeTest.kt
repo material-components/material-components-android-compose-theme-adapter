@@ -27,7 +27,6 @@ import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.GenericFontFamily
 import androidx.compose.ui.text.font.asFontFamily
 import androidx.compose.ui.text.font.font
 import androidx.compose.ui.unit.Density
@@ -193,7 +192,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
             }
 
             typography.subtitle2.run {
-                assertEquals(GenericFontFamily::class, fontFamily!!::class)
+                assertEquals(FontFamily.SansSerif, fontFamily)
             }
 
             typography.button.run {
@@ -201,11 +200,11 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
             }
 
             typography.caption.run {
-                assertEquals(GenericFontFamily::class, fontFamily!!::class)
+                assertEquals(FontFamily.SansSerif, fontFamily)
             }
 
             typography.overline.run {
-                assertEquals(GenericFontFamily::class, fontFamily!!::class)
+                assertEquals(FontFamily.SansSerif, fontFamily)
             }
         }
     }
