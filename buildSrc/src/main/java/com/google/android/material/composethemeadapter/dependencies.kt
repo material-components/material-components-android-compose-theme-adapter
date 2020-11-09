@@ -41,13 +41,16 @@ object Libs {
 
     object AndroidX {
         object Compose {
-            const val snapshot = ""
+            const val snapshot = "6953474"
 
             @JvmStatic
             val snapshotUrl: String
-                get() = "https://androidx.dev/snapshots/builds/$snapshot/artifacts/ui/repository/"
+                get() {
+                    check(snapshot.isNotEmpty()) { "Snapshot version not set" }
+                    return "https://androidx.dev/snapshots/builds/$snapshot/artifacts/repository/"
+                }
 
-            private const val version = "1.0.0-alpha06"
+            private const val version = "1.0.0-SNAPSHOT"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
@@ -57,7 +60,7 @@ object Libs {
             const val material = "androidx.compose.material:material:${version}"
 
             const val tooling = "androidx.ui:ui-tooling:${version}"
-            const val test = "androidx.ui:ui-test:${version}"
+            const val test = "androidx.compose.ui:ui-test-junit4:${version}"
         }
 
         const val coreKtx = "androidx.core:core-ktx:1.3.1"

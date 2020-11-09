@@ -25,6 +25,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.asFontFamily
@@ -37,7 +38,6 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.MediumTest
-import androidx.ui.test.AndroidComposeTestRule
 import com.google.android.material.composethemeadapter.test.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
