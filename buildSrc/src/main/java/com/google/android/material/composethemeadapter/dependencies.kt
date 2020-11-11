@@ -41,7 +41,7 @@ object Libs {
 
     object AndroidX {
         object Compose {
-            const val snapshot = "6953474"
+            const val snapshot = "6964664"
 
             @JvmStatic
             val snapshotUrl: String
