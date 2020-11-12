@@ -5,7 +5,7 @@ public final class com/google/android/material/composethemeadapter/MdcTheme {
 }
 
 public final class com/google/android/material/composethemeadapter/ThemeParameters {
-    public static final field $stable I
+	public static final field $stable I
 	public fun <init> (Landroidx/compose/material/Colors;Landroidx/compose/material/Typography;Landroidx/compose/material/Shapes;)V
 	public final fun component1 ()Landroidx/compose/material/Colors;
 	public final fun component2 ()Landroidx/compose/material/Typography;
