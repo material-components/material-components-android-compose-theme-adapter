@@ -96,7 +96,7 @@ subprojects {
                 }
                 externalDocumentationLink {
                     url = new URL("https://developer.android.com/reference/kotlin/")
-                    packageListUrl = new URL("https://developer.android.com/reference/kotlin/androidx/ui/package-list")
+                    packageListUrl = new URL("https://developer.android.com/reference/kotlin/androidx/package-list")
                 }
                 externalDocumentationLink {
                     url = new URL("https://developer.android.com/reference/")
