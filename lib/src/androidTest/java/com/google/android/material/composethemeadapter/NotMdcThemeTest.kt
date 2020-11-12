@@ -16,8 +16,8 @@
 
 package com.google.android.material.composethemeadapter
 
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.filters.MediumTest
-import androidx.ui.test.createAndroidComposeRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
