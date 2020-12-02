@@ -22,10 +22,10 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.DensityAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientDensity
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.asFontFamily
@@ -36,7 +36,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.MediumTest
 import com.google.android.material.composethemeadapter.test.R
 import org.junit.Assert.assertEquals
@@ -57,10 +56,8 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
         fun activities() = listOf(DarkMdcActivity::class.java, LightMdcActivity::class.java)
     }
 
-    private val activityRule = ActivityScenarioRule(activityClass)
-
     @get:Rule
-    val composeTestRule = AndroidComposeTestRule(activityRule)
+    val composeTestRule = createAndroidComposeRule(activityClass)
 
     @Test
     fun colors() = composeTestRule.setContent {
@@ -76,7 +73,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
 
             // We don't check isSystemInDarkTheme() here since that only checks the system
             // dark theme setting: https://issuetracker.google.com/163103826
-            if (ContextAmbient.current.isInDarkTheme()) {
+            if (AmbientContext.current.isInDarkTheme()) {
                 // In dark theme secondaryVariant is ignored and always return secondary
                 assertEquals(colorResource(R.color.dark_golden_rod), color.secondaryVariant)
             } else {
@@ -98,7 +95,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
     fun shapes() = composeTestRule.setContent {
         MdcTheme {
             val shapes = MaterialTheme.shapes
-            val density = DensityAmbient.current
+            val density = AmbientDensity.current
 
             shapes.small.run {
                 assertTrue(this is CutCornerShape)
@@ -128,7 +125,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
     fun type() = composeTestRule.setContent {
         MdcTheme {
             val typography = MaterialTheme.typography
-            val density = DensityAmbient.current
+            val density = AmbientDensity.current
 
             val rubik300 = font(R.font.rubik_300).asFontFamily()
             val rubik400 = font(R.font.rubik_400).asFontFamily()
