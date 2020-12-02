@@ -74,7 +74,7 @@ internal fun textStyleFromTextAppearance(
             lineHeight = run {
                 a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density)
                     ?: a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density)
-                    ?: TextUnit.Inherit
+                    ?: TextUnit.Unspecified
             },
             fontFamily = when {
                 fontFamily != null -> fontFamily.fontFamily
@@ -118,7 +118,7 @@ internal fun textStyleFromTextAppearance(
                 a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_android_letterSpacing) -> {
                     a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_letterSpacing, 0f).em
                 }
-                else -> TextUnit.Inherit
+                else -> TextUnit.Unspecified
             }
         )
     }
@@ -240,7 +240,7 @@ internal data class FontFamilyWithWeight(
 internal fun TypedArray.getTextUnit(
     index: Int,
     density: Density,
-    fallback: TextUnit = TextUnit.Inherit
+    fallback: TextUnit = TextUnit.Unspecified
 ): TextUnit = getTextUnitOrNull(index, density) ?: fallback
 
 /**
