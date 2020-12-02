@@ -91,7 +91,7 @@ fun ComponentsSample() {
 
                 FloatingActionButton(
                     onClick = {},
-                    icon = { Icon(Icons.Default.Favorite) }
+                    content = { Icon(Icons.Default.Favorite) }
                 )
                 VerticalSpacer()
 

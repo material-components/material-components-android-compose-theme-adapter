@@ -27,7 +27,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.core.content.res.getResourceIdOrThrow
@@ -55,7 +55,7 @@ import java.lang.reflect.Method
  */
 @Composable
 fun MdcTheme(
-    context: Context = ContextAmbient.current,
+    context: Context = AmbientContext.current,
     readColors: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
