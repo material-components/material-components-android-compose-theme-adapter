@@ -121,12 +121,6 @@ jobs:
             ~/.gradle/caches/build-cache-*
           key: gradle-${{ hashFiles('checksum.txt') }}
 
-      - name: Deploy to GitHub packages
-        run: ./gradlew uploadArchives --no-parallel
-        env:
-          SONATYPE_NEXUS_USERNAME: ${{ github.repository_owner }}
-          SONATYPE_NEXUS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Remove current local Maven repo if it exists
         continue-on-error: true
         working-directory: ~/.m2
@@ -139,3 +133,9 @@ jobs:
         with:
           name: maven-release
           path: ~/.m2/repository
+
+      - name: Deploy to GitHub packages
+        run: ./gradlew uploadArchives --no-parallel
+        env:
+          SONATYPE_NEXUS_USERNAME: ${{ github.repository_owner }}
+          SONATYPE_NEXUS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
