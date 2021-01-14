@@ -17,7 +17,6 @@
 package com.google.android.material.composethemeadapter.sample
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.Column
@@ -38,9 +37,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Recomposer
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.android.material.composethemeadapter.MdcTheme
@@ -49,10 +47,10 @@ class BasicIntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val contentView = FrameLayout(this)
+        val contentView = ComposeView(this)
         setContentView(contentView)
 
-        contentView.setContent(Recomposer.current()) {
+        contentView.setContent {
             MdcTheme {
                 ComponentsSample()
             }

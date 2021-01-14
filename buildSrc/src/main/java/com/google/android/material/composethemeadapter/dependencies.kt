@@ -47,7 +47,7 @@ object Libs {
             val snapshotUrl: String
                 get() = "https://androidx.dev/snapshots/builds/$snapshot/artifacts/ui/repository/"
 
-            private const val version = "1.0.0-alpha09"
+            private const val version = "1.0.0-alpha10"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
