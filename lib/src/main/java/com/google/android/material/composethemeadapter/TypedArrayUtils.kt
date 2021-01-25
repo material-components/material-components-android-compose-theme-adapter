@@ -235,9 +235,9 @@ private fun Resources.parseXmlFontFamily(resourceId: Int): FontListFontFamily? {
         if (result is FontResourcesParserCompat.FontFamilyFilesResourceEntry) {
             val fonts = result.entries.map { font ->
                 font(
-                  resId = font.resourceId,
-                  weight = fontWeightOf(font.weight),
-                  style = if (font.isItalic) FontStyle.Italic else FontStyle.Normal
+                    resId = font.resourceId,
+                    weight = fontWeightOf(font.weight),
+                    style = if (font.isItalic) FontStyle.Italic else FontStyle.Normal
                 )
             }
             return fontFamily(fonts)
