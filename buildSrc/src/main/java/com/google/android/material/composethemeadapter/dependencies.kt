@@ -45,7 +45,12 @@ object Libs {
 
             @JvmStatic
             val snapshotUrl: String
-                get() = "https://androidx.dev/snapshots/builds/$snapshot/artifacts/ui/repository/"
+                get() = when {
+                    snapshot.isNotEmpty() -> {
+                        "https://androidx.dev/snapshots/builds/$snapshot/artifacts/repository/"
+                    }
+                    else -> throw IllegalArgumentException("Snapshot version not set")
+                }
 
             private const val version = "1.0.0-alpha10"
 
