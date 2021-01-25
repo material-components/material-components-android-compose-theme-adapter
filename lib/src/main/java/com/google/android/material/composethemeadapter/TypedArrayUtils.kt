@@ -16,11 +16,14 @@
 
 package com.google.android.material.composethemeadapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.os.Build
 import android.util.TypedValue
+import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
@@ -31,15 +34,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontListFontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.asFontFamily
 import androidx.compose.ui.text.font.font
+import androidx.compose.ui.text.font.fontFamily
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.core.content.res.FontResourcesParserCompat
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import kotlin.concurrent.getOrSet
@@ -181,24 +187,12 @@ internal fun TypedArray.getComposeColor(
 
 /**
  * Returns the given index as a [FontFamily] and [FontWeight],
- * or [fallback] if the value can not be coerced to a [FontFamily].
- *
- * @param index index of attribute to retrieve.
- * @param fallback Value to return if the attribute is not defined or cannot be coerced to a
- * [FontFamily].
- */
-internal fun TypedArray.getFontFamily(index: Int, fallback: FontFamily): FontFamilyWithWeight {
-    return getFontFamilyOrNull(index) ?: FontFamilyWithWeight(fallback)
-}
-
-/**
- * Returns the given index as a [FontFamily] and [FontWeight],
  * or `null` if the value can not be coerced to a [FontFamily].
  *
  * @param index index of attribute to retrieve.
  */
 internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
-    val tv = tempTypedValue.getOrSet { TypedValue() }
+    val tv = tempTypedValue.getOrSet(::TypedValue)
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_STRING) {
         return when (tv.string) {
             "sans-serif" -> FontFamilyWithWeight(FontFamily.SansSerif)
@@ -211,16 +205,61 @@ internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
             "monospace" -> FontFamilyWithWeight(FontFamily.Monospace)
             // TODO: Compose does not expose a FontFamily for all strings yet
             else -> {
-                if (tv.resourceId != 0 && tv.string.startsWith("res/font/")) {
-                    // If there's a resource ID and the string starts with res/font, it's probably a @font resource
-                    FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
-                } else {
-                    null
-                }
+                // If there's a resource ID and the string starts with res/font,
+                // it's probably a @font resource
+                if (tv.resourceId != 0 && tv.string.startsWith("res/font")) {
+                    // If we're running on API 23+ and the resource is an XML, we can parse
+                    // the fonts into a full FontFamily.
+                    if (Build.VERSION.SDK_INT >= 23 && tv.string.endsWith(".xml")) {
+                        resources.parseXmlFontFamily(tv.resourceId)?.let(::FontFamilyWithWeight)
+                    } else {
+                        // Otherwise we just load it as a single font
+                        FontFamilyWithWeight(font(tv.resourceId).asFontFamily())
+                    }
+                } else null
             }
         }
     }
     return null
+}
+
+@SuppressLint("RestrictedApi") // FontResourcesParserCompat.*
+@RequiresApi(23) // XML font families with >1 fonts are only supported on API 23+
+private fun Resources.parseXmlFontFamily(resourceId: Int): FontListFontFamily? {
+    val parser = getXml(resourceId)
+
+    // Can't use {} since XmlResourceParser is AutoCloseable, not Closeable
+    @Suppress("ConvertTryFinallyToUseCall")
+    try {
+        val result = FontResourcesParserCompat.parse(parser, this)
+        if (result is FontResourcesParserCompat.FontFamilyFilesResourceEntry) {
+            val fonts = result.entries.map { font ->
+                font(
+                  resId = font.resourceId,
+                  weight = fontWeightOf(font.weight),
+                  style = if (font.isItalic) FontStyle.Italic else FontStyle.Normal
+                )
+            }
+            return fontFamily(fonts)
+        }
+    } finally {
+        parser.close()
+    }
+    return null
+}
+
+private fun fontWeightOf(weight: Int): FontWeight = when (weight) {
+    in 0..149 -> FontWeight.W100
+    in 150..249 -> FontWeight.W200
+    in 250..349 -> FontWeight.W300
+    in 350..449 -> FontWeight.W400
+    in 450..549 -> FontWeight.W500
+    in 550..649 -> FontWeight.W600
+    in 650..749 -> FontWeight.W700
+    in 750..849 -> FontWeight.W800
+    in 850..999 -> FontWeight.W900
+    // Else, we use the 'normal' weight
+    else -> FontWeight.W400
 }
 
 internal data class FontFamilyWithWeight(
