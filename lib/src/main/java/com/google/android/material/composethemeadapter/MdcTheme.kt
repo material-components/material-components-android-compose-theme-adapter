@@ -132,7 +132,7 @@ fun createMdcTheme(
 ): ThemeParameters {
     return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme).use { ta ->
         require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme_isMaterialTheme)) {
-            "MaterialThemeUsingMdcTheme requires the host context's theme" +
+            "createMdcTheme requires the host context's theme" +
                 " to extend Theme.MaterialComponents"
         }
 
