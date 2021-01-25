@@ -40,7 +40,7 @@ import java.lang.reflect.Method
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.compose.material.Emphasis] through [androidx.compose.material.ProvideEmphasis].
+ * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
  * @param context The context to read the theme from.
@@ -105,7 +105,7 @@ data class ThemeParameters(
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.compose.material.Emphasis] through [androidx.compose.material.ProvideEmphasis].
+ * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
  * The individual components of the returned [ThemeParameters] may be `null`, depending on the
