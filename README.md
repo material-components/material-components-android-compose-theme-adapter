@@ -43,6 +43,11 @@ MdcTheme {
 
 This is especially handy when you're migrating an existing app, a fragment (or other UI container) at a time.
 
+!!! caution
+    If you are using an AppCompat (i.e. non-MDC) theme in your app, you should use the
+    [AppCompat Compose Theme Adapter](https://github.com/chrisbanes/accompanist/tree/main/appcompat-theme)
+    instead, as it attempts to bridge the gap between [AppCompat][appcompat] XML themes, and themes in [Jetpack Compose][compose].
+
 ### Customizing the theme
 
 The `MdcTheme()` function will automatically read the host context's MDC theme and pass them to [`MaterialTheme`][materialtheme] on your behalf, but if you want to customize the generated values, you can do so via the `createMdcTheme()` function:
@@ -104,7 +109,7 @@ Make sure to read the [Contributing](CONTRIBUTING.md) page first though.
 
 ```
 Copyright 2020 The Android Open Source Project
- 
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -120,6 +125,7 @@ limitations under the License.
 
  [compose]: https://developer.android.com/jetpack/compose
  [mdc]: https://material.io/develop/android/
+ [appcompat]: https://developer.android.com/jetpack/androidx/releases/appcompat
  [materialtheme]: https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme
  [shapes]: https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes
  [colors]: https://developer.android.com/reference/kotlin/androidx/compose/material/Colors
