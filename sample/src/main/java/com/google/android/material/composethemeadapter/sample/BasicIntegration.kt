@@ -18,11 +18,12 @@ package com.google.android.material.composethemeadapter.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExtendedFloatingActionButton
@@ -67,7 +68,8 @@ fun ComponentsSample() {
             )
         }
     ) {
-        ScrollableColumn {
+        val state = rememberScrollState()
+        Column(modifier = Modifier.verticalScroll(state)) {
             Column(Modifier.padding(16.dp)) {
                 CircularProgressIndicator()
                 VerticalSpacer()
@@ -89,14 +91,14 @@ fun ComponentsSample() {
 
                 FloatingActionButton(
                     onClick = {},
-                    content = { Icon(Icons.Default.Favorite) }
+                    content = { Icon(Icons.Default.Favorite, null) }
                 )
                 VerticalSpacer()
 
                 ExtendedFloatingActionButton(
                     onClick = {},
                     text = { Text(text = "Extended FAB") },
-                    icon = { Icon(Icons.Default.Favorite) }
+                    icon = { Icon(Icons.Default.Favorite, null) }
                 )
                 VerticalSpacer()
 
