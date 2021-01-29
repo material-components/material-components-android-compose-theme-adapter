@@ -21,7 +21,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha04"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha05"
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.12.0"
 
@@ -41,7 +41,7 @@ object Libs {
 
     object AndroidX {
         object Compose {
-            const val snapshot = "7094152"
+            const val snapshot = ""
 
             @JvmStatic
             val snapshotUrl: String
@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            private const val version = "1.0.0-SNAPSHOT"
+            private const val version = "1.0.0-alpha11"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
