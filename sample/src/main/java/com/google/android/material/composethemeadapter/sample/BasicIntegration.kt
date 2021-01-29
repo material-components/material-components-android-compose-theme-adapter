@@ -68,9 +68,10 @@ fun ComponentsSample() {
             )
         }
     ) {
-        Column(modifier = Modifier
-          .verticalScroll(rememberScrollState())
-          .padding(16.dp)
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
         ) {
             CircularProgressIndicator()
             VerticalSpacer()
