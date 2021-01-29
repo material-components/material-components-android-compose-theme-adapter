@@ -18,11 +18,12 @@ package com.google.android.material.composethemeadapter.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExtendedFloatingActionButton
@@ -67,88 +68,90 @@ fun ComponentsSample() {
             )
         }
     ) {
-        ScrollableColumn {
-            Column(Modifier.padding(16.dp)) {
-                CircularProgressIndicator()
-                VerticalSpacer()
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+        ) {
+            CircularProgressIndicator()
+            VerticalSpacer()
 
-                Button(onClick = {}) {
-                    Text(text = "Button")
-                }
-                VerticalSpacer()
-
-                OutlinedButton(onClick = {}) {
-                    Text(text = "Outlined Button")
-                }
-                VerticalSpacer()
-
-                TextButton(onClick = {}) {
-                    Text(text = "Text Button")
-                }
-                VerticalSpacer()
-
-                FloatingActionButton(
-                    onClick = {},
-                    content = { Icon(Icons.Default.Favorite) }
-                )
-                VerticalSpacer()
-
-                ExtendedFloatingActionButton(
-                    onClick = {},
-                    text = { Text(text = "Extended FAB") },
-                    icon = { Icon(Icons.Default.Favorite) }
-                )
-                VerticalSpacer()
-
-                Text(
-                    text = "H1",
-                    style = MaterialTheme.typography.h1
-                )
-                Text(
-                    text = "Headline 2",
-                    style = MaterialTheme.typography.h2
-                )
-                Text(
-                    text = "Headline 3",
-                    style = MaterialTheme.typography.h3
-                )
-                Text(
-                    text = "Headline 4",
-                    style = MaterialTheme.typography.h4
-                )
-                Text(
-                    text = "Headline 5",
-                    style = MaterialTheme.typography.h5
-                )
-                Text(
-                    text = "Headline 6",
-                    style = MaterialTheme.typography.h6
-                )
-                Text(
-                    text = "Subtitle 1",
-                    style = MaterialTheme.typography.subtitle1
-                )
-                Text(
-                    text = "Subtitle 2",
-                    style = MaterialTheme.typography.subtitle2
-                )
-                Text(
-                    text = "Body 1",
-                    style = MaterialTheme.typography.body1
-                )
-                Text(
-                    text = "Body 2",
-                    style = MaterialTheme.typography.body2
-                )
-                Text(
-                    text = "Caption",
-                    style = MaterialTheme.typography.caption
-                )
-                Text(
-                    text = "Overline",
-                    style = MaterialTheme.typography.overline
-                )
+            Button(onClick = {}) {
+                Text(text = "Button")
             }
+            VerticalSpacer()
+
+            OutlinedButton(onClick = {}) {
+                Text(text = "Outlined Button")
+            }
+            VerticalSpacer()
+
+            TextButton(onClick = {}) {
+                Text(text = "Text Button")
+            }
+            VerticalSpacer()
+
+            FloatingActionButton(
+                onClick = {},
+                content = { Icon(Icons.Default.Favorite, null) }
+            )
+            VerticalSpacer()
+
+            ExtendedFloatingActionButton(
+                onClick = {},
+                text = { Text(text = "Extended FAB") },
+                icon = { Icon(Icons.Default.Favorite, null) }
+            )
+            VerticalSpacer()
+
+            Text(
+                text = "H1",
+                style = MaterialTheme.typography.h1
+            )
+            Text(
+                text = "Headline 2",
+                style = MaterialTheme.typography.h2
+            )
+            Text(
+                text = "Headline 3",
+                style = MaterialTheme.typography.h3
+            )
+            Text(
+                text = "Headline 4",
+                style = MaterialTheme.typography.h4
+            )
+            Text(
+                text = "Headline 5",
+                style = MaterialTheme.typography.h5
+            )
+            Text(
+                text = "Headline 6",
+                style = MaterialTheme.typography.h6
+            )
+            Text(
+                text = "Subtitle 1",
+                style = MaterialTheme.typography.subtitle1
+            )
+            Text(
+                text = "Subtitle 2",
+                style = MaterialTheme.typography.subtitle2
+            )
+            Text(
+                text = "Body 1",
+                style = MaterialTheme.typography.body1
+            )
+            Text(
+                text = "Body 2",
+                style = MaterialTheme.typography.body2
+            )
+            Text(
+                text = "Caption",
+                style = MaterialTheme.typography.caption
+            )
+            Text(
+                text = "Overline",
+                style = MaterialTheme.typography.overline
+            )
         }
     }
 }

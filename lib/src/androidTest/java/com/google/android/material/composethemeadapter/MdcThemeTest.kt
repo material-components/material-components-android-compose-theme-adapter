@@ -26,10 +26,10 @@ import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.platform.AmbientDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.asFontFamily
-import androidx.compose.ui.text.font.font
+import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -127,9 +127,9 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
             val typography = MaterialTheme.typography
             val density = AmbientDensity.current
 
-            val rubik300 = font(R.font.rubik_300).asFontFamily()
-            val rubik400 = font(R.font.rubik_400).asFontFamily()
-            val rubik500 = font(R.font.rubik_500).asFontFamily()
+            val rubik300 = Font(R.font.rubik_300).toFontFamily()
+            val rubik400 = Font(R.font.rubik_400).toFontFamily()
+            val rubik500 = Font(R.font.rubik_500).toFontFamily()
             val sansSerif = FontFamilyWithWeight(FontFamily.SansSerif)
             val sansSerifLight = FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Light)
             val sansSerifBlack = FontFamilyWithWeight(FontFamily.SansSerif, FontWeight.Black)
