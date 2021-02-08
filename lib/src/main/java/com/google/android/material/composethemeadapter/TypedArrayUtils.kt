@@ -157,18 +157,18 @@ internal fun parseShapeAppearance(
         when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
             0 -> {
                 RoundedCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
-                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
+                    topStart = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             1 -> {
                 CutCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
-                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
+                    topStart = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
