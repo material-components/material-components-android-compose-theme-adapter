@@ -23,6 +23,7 @@ import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.os.Build
 import android.util.TypedValue
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.compose.foundation.shape.CornerBasedShape
@@ -32,6 +33,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -137,18 +139,23 @@ internal fun parseShapeAppearance(
         val defaultCornerSize = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
         )
-        val cornerSizeTS = a.getCornerSizeOrNull(
+        val cornerSizeTL = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
         )
-        val cornerSizeTE = a.getCornerSizeOrNull(
+        val cornerSizeTR = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopRight
         )
-        val cornerSizeBS = a.getCornerSizeOrNull(
+        val cornerSizeBL = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomLeft
         )
-        val cornerSizeBE = a.getCornerSizeOrNull(
+        val cornerSizeBR = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
         )
+        val isRtl = LocalConfiguration.current.layoutDirection == View.LAYOUT_DIRECTION_RTL
+        val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
+        val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
+        val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
+        val cornerSizeBE = if (isRtl) cornerSizeBL else cornerSizeBR
 
         /**
          * We do not support the individual `cornerFamilyTopLeft`, etc, since Compose only supports
