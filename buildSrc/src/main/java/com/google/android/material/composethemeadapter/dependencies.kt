@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            private const val version = "1.0.0-SNAPSHOT"
+            const val version = "1.0.0-SNAPSHOT"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
