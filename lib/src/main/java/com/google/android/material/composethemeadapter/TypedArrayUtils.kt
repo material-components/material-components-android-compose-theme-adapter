@@ -137,16 +137,16 @@ internal fun parseShapeAppearance(
         val defaultCornerSize = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
         )
-        val cornerSizeTL = a.getCornerSizeOrNull(
+        val cornerSizeTS = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
         )
-        val cornerSizeTR = a.getCornerSizeOrNull(
+        val cornerSizeTE = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopRight
         )
-        val cornerSizeBL = a.getCornerSizeOrNull(
+        val cornerSizeBS = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomLeft
         )
-        val cornerSizeBR = a.getCornerSizeOrNull(
+        val cornerSizeBE = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
         )
 
@@ -157,18 +157,18 @@ internal fun parseShapeAppearance(
         when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
             0 -> {
                 RoundedCornerShape(
-                    topStart = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topStart,
-                    topEnd = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topEnd,
-                    bottomEnd = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomEnd,
-                    bottomStart = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomStart
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             1 -> {
                 CutCornerShape(
-                    topStart = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topStart,
-                    topEnd = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topEnd,
-                    bottomEnd = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomEnd,
-                    bottomStart = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomStart
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
