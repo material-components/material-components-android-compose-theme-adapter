@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
 import java.lang.reflect.Method
@@ -73,9 +74,15 @@ fun MdcTheme(
     // (via `applyStyle()`, `rebase()`, `setTo()`), but the majority of apps do not use those.
     val key = context.theme.key ?: context.theme
 
+    val layoutDirection = when (LocalConfiguration.current.layoutDirection) {
+        View.LAYOUT_DIRECTION_RTL -> LayoutDirection.Rtl
+        else -> LayoutDirection.Ltr
+    }
+
     val themeParams = remember(key) {
         createMdcTheme(
             context = context,
+            layoutDirection = layoutDirection,
             readColors = readColors,
             readTypography = readTypography,
             readShapes = readShapes,
@@ -126,6 +133,7 @@ data class ThemeParameters(
  */
 fun createMdcTheme(
     context: Context,
+    layoutDirection: LayoutDirection,
     density: Density = Density(context),
     readColors: Boolean = true,
     readTypography: Boolean = true,
@@ -281,26 +289,25 @@ fun createMdcTheme(
         /**
          * Now read the shape appearances
          */
-        val isRtl = LocalConfiguration.current.layoutDirection == View.LAYOUT_DIRECTION_RTL
         val shapes = if (readShapes) {
             Shapes(
                 small = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
                     fallbackShape = emptyShapes.small,
-                    isRtl = isRtl
+                    layoutDirection = layoutDirection
                 ),
                 medium = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
                     fallbackShape = emptyShapes.medium,
-                    isRtl = isRtl
+                    layoutDirection = layoutDirection
                 ),
                 large = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
                     fallbackShape = emptyShapes.large,
-                    isRtl = isRtl
+                    layoutDirection = layoutDirection
                 )
             )
         } else null

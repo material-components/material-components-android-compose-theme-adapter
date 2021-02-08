@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -132,7 +133,7 @@ internal fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
     fallbackShape: CornerBasedShape,
-    isRtl: Boolean
+    layoutDirection: LayoutDirection
 ): CornerBasedShape {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
         val defaultCornerSize = a.getCornerSizeOrNull(
@@ -150,6 +151,7 @@ internal fun parseShapeAppearance(
         val cornerSizeBR = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
         )
+        val isRtl = layoutDirection == LayoutDirection.Rtl
         val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
         val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
         val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
