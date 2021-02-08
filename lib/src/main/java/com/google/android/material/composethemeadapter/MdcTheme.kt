@@ -46,12 +46,17 @@ import java.lang.reflect.Method
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
+ * For [Shapes], the configuration layout direction is taken into account when reading corner sizes
+ * of `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
+ * `cornerSizeTopLeft` for [View.LAYOUT_DIRECTION_LTR] and `cornerSizeTopRight` for
+ * [View.LAYOUT_DIRECTION_RTL].
+ *
  * @param context The context to read the theme from.
- * @param readColors whether the read the MDC color palette from the context's theme.
+ * @param readColors whether the read the MDC color palette from the [context]'s theme.
  * If `false`, the current value of [MaterialTheme.colors] is preserved.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * If `false`, the current value of [MaterialTheme.typography] is preserved.
- * @param readShapes whether the read the MDC shape appearances from the context's theme.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
@@ -117,15 +122,20 @@ data class ThemeParameters(
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
+ * For [Shapes], the [layoutDirection] is taken into account when reading corner sizes of
+ * `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
+ * `cornerSizeTopLeft` for [LayoutDirection.Ltr] and `cornerSizeTopRight` for [LayoutDirection.Rtl].
+ *
  * The individual components of the returned [ThemeParameters] may be `null`, depending on the
  * matching 'read' parameter. For example, if you set [readColors] to `false`,
  * [ThemeParameters.colors] will be null.
  *
  * @param context The context to read the theme from.
+ * @param layoutDirection The layout direction to be used when reading shapes.
  * @param density The current density.
- * @param readColors whether the read the MDC color palette from the context's theme.
+ * @param readColors whether the read the MDC color palette from the [context]'s theme.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
- * @param readShapes whether the read the MDC shape appearances from the context's theme.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
@@ -287,7 +297,7 @@ fun createMdcTheme(
         } else null
 
         /**
-         * Now read the shape appearances
+         * Now read the shape appearances, taking into account the layout direction.
          */
         val shapes = if (readShapes) {
             Shapes(
