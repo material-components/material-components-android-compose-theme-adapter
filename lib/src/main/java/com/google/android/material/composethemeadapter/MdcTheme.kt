@@ -122,6 +122,7 @@ data class ThemeParameters(
  * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
  * and [Shapes].
  */
+@Composable
 fun createMdcTheme(
     context: Context,
     density: Density = Density(context),

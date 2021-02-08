@@ -30,6 +30,7 @@ import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
@@ -130,6 +131,7 @@ internal fun textStyleFromTextAppearance(
     }
 }
 
+@Composable
 internal fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
