@@ -19,6 +19,7 @@ package com.google.android.material.composethemeadapter
 
 import android.content.Context
 import android.content.res.Resources
+import android.view.View
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
@@ -27,6 +28,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
@@ -280,22 +282,26 @@ fun createMdcTheme(
         /**
          * Now read the shape appearances
          */
+        val isRtl = LocalConfiguration.current.layoutDirection == View.LAYOUT_DIRECTION_RTL
         val shapes = if (readShapes) {
             Shapes(
                 small = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
-                    fallbackShape = emptyShapes.small
+                    fallbackShape = emptyShapes.small,
+                    isRtl = isRtl
                 ),
                 medium = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
-                    fallbackShape = emptyShapes.medium
+                    fallbackShape = emptyShapes.medium,
+                    isRtl = isRtl
                 ),
                 large = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
-                    fallbackShape = emptyShapes.large
+                    fallbackShape = emptyShapes.large,
+                    isRtl = isRtl
                 )
             )
         } else null

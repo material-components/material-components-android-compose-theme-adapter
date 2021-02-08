@@ -23,18 +23,15 @@ import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.os.Build
 import android.util.TypedValue
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -131,11 +128,11 @@ internal fun textStyleFromTextAppearance(
     }
 }
 
-@Composable
 internal fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
-    fallbackShape: CornerBasedShape
+    fallbackShape: CornerBasedShape,
+    isRtl: Boolean
 ): CornerBasedShape {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
         val defaultCornerSize = a.getCornerSizeOrNull(
@@ -153,7 +150,6 @@ internal fun parseShapeAppearance(
         val cornerSizeBR = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
         )
-        val isRtl = LocalConfiguration.current.layoutDirection == View.LAYOUT_DIRECTION_RTL
         val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
         val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
         val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
