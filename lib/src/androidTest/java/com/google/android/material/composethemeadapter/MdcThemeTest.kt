@@ -22,8 +22,8 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.AmbientContext
-import androidx.compose.ui.platform.AmbientDensity
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.text.font.Font
@@ -73,7 +73,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
 
             // We don't check isSystemInDarkTheme() here since that only checks the system
             // dark theme setting: https://issuetracker.google.com/163103826
-            if (AmbientContext.current.isInDarkTheme()) {
+            if (LocalContext.current.isInDarkTheme()) {
                 // In dark theme secondaryVariant is ignored and always return secondary
                 assertEquals(colorResource(R.color.dark_golden_rod), color.secondaryVariant)
             } else {
@@ -95,28 +95,28 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
     fun shapes() = composeTestRule.setContent {
         MdcTheme {
             val shapes = MaterialTheme.shapes
-            val density = AmbientDensity.current
+            val density = LocalDensity.current
 
             shapes.small.run {
                 assertTrue(this is CutCornerShape)
-                assertEquals(4f, topLeft.toPx(density))
-                assertEquals(9.dp.scaleToPx(density), topRight.toPx(density))
-                assertEquals(5f, bottomRight.toPx(density))
-                assertEquals(3.dp.scaleToPx(density), bottomLeft.toPx(density))
+                assertEquals(4f, topStart.toPx(density))
+                assertEquals(9.dp.scaleToPx(density), topEnd.toPx(density))
+                assertEquals(5f, bottomEnd.toPx(density))
+                assertEquals(3.dp.scaleToPx(density), bottomStart.toPx(density))
             }
             shapes.medium.run {
                 assertTrue(this is RoundedCornerShape)
-                assertEquals(12.dp.scaleToPx(density), topLeft.toPx(density))
-                assertEquals(12.dp.scaleToPx(density), topRight.toPx(density))
-                assertEquals(12.dp.scaleToPx(density), bottomRight.toPx(density))
-                assertEquals(12.dp.scaleToPx(density), bottomLeft.toPx(density))
+                assertEquals(12.dp.scaleToPx(density), topStart.toPx(density))
+                assertEquals(12.dp.scaleToPx(density), topEnd.toPx(density))
+                assertEquals(12.dp.scaleToPx(density), bottomEnd.toPx(density))
+                assertEquals(12.dp.scaleToPx(density), bottomStart.toPx(density))
             }
             shapes.large.run {
                 assertTrue(this is CutCornerShape)
-                assertEquals(0f, topLeft.toPx(density))
-                assertEquals(0f, topRight.toPx(density))
-                assertEquals(0f, bottomRight.toPx(density))
-                assertEquals(0f, bottomLeft.toPx(density))
+                assertEquals(0f, topStart.toPx(density))
+                assertEquals(0f, topEnd.toPx(density))
+                assertEquals(0f, bottomEnd.toPx(density))
+                assertEquals(0f, bottomStart.toPx(density))
             }
         }
     }
@@ -125,7 +125,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
     fun type() = composeTestRule.setContent {
         MdcTheme {
             val typography = MaterialTheme.typography
-            val density = AmbientDensity.current
+            val density = LocalDensity.current
 
             val rubik300 = Font(R.font.rubik_300).toFontFamily()
             val rubik400 = Font(R.font.rubik_400).toFontFamily()

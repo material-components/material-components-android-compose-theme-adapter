@@ -41,7 +41,6 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion Libs.Kotlin.version
         kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
     }
 
@@ -75,6 +74,9 @@ dependencies {
     implementation Libs.mdc
 
     implementation Libs.Kotlin.stdlib
+
+    // FIXME: Only needed for alpha12
+    androidTestImplementation Libs.AndroidX.Activity.activityCompose
 
     androidTestImplementation Libs.junit
     androidTestImplementation Libs.AndroidX.Compose.test

@@ -19,6 +19,7 @@ package com.google.android.material.composethemeadapter
 
 import android.content.Context
 import android.content.res.Resources
+import android.view.View
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
@@ -27,9 +28,11 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
 import java.lang.reflect.Method
@@ -43,19 +46,24 @@ import java.lang.reflect.Method
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
+ * For [Shapes], the configuration layout direction is taken into account when reading corner sizes
+ * of `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
+ * `cornerSizeTopLeft` for [View.LAYOUT_DIRECTION_LTR] and `cornerSizeTopRight` for
+ * [View.LAYOUT_DIRECTION_RTL].
+ *
  * @param context The context to read the theme from.
- * @param readColors whether the read the MDC color palette from the context's theme.
+ * @param readColors whether the read the MDC color palette from the [context]'s theme.
  * If `false`, the current value of [MaterialTheme.colors] is preserved.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * If `false`, the current value of [MaterialTheme.typography] is preserved.
- * @param readShapes whether the read the MDC shape appearances from the context's theme.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  */
 @Composable
 fun MdcTheme(
-    context: Context = AmbientContext.current,
+    context: Context = LocalContext.current,
     readColors: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
@@ -71,9 +79,12 @@ fun MdcTheme(
     // (via `applyStyle()`, `rebase()`, `setTo()`), but the majority of apps do not use those.
     val key = context.theme.key ?: context.theme
 
+    val layoutDirection = LocalLayoutDirection.current
+
     val themeParams = remember(key) {
         createMdcTheme(
             context = context,
+            layoutDirection = layoutDirection,
             readColors = readColors,
             readTypography = readTypography,
             readShapes = readShapes,
@@ -108,15 +119,20 @@ data class ThemeParameters(
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
+ * For [Shapes], the [layoutDirection] is taken into account when reading corner sizes of
+ * `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
+ * `cornerSizeTopLeft` for [LayoutDirection.Ltr] and `cornerSizeTopRight` for [LayoutDirection.Rtl].
+ *
  * The individual components of the returned [ThemeParameters] may be `null`, depending on the
  * matching 'read' parameter. For example, if you set [readColors] to `false`,
  * [ThemeParameters.colors] will be null.
  *
  * @param context The context to read the theme from.
+ * @param layoutDirection The layout direction to be used when reading shapes.
  * @param density The current density.
- * @param readColors whether the read the MDC color palette from the context's theme.
+ * @param readColors whether the read the MDC color palette from the [context]'s theme.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
- * @param readShapes whether the read the MDC shape appearances from the context's theme.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
@@ -124,6 +140,7 @@ data class ThemeParameters(
  */
 fun createMdcTheme(
     context: Context,
+    layoutDirection: LayoutDirection,
     density: Density = Density(context),
     readColors: Boolean = true,
     readTypography: Boolean = true,
@@ -277,24 +294,27 @@ fun createMdcTheme(
         } else null
 
         /**
-         * Now read the shape appearances
+         * Now read the shape appearances, taking into account the layout direction.
          */
         val shapes = if (readShapes) {
             Shapes(
                 small = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
-                    fallbackShape = emptyShapes.small
+                    fallbackShape = emptyShapes.small,
+                    layoutDirection = layoutDirection
                 ),
                 medium = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
-                    fallbackShape = emptyShapes.medium
+                    fallbackShape = emptyShapes.medium,
+                    layoutDirection = layoutDirection
                 ),
                 large = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
-                    fallbackShape = emptyShapes.large
+                    fallbackShape = emptyShapes.large,
+                    layoutDirection = layoutDirection
                 )
             )
         } else null

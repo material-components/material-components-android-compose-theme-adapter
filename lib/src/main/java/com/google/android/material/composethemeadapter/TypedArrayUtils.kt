@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -131,7 +132,8 @@ internal fun textStyleFromTextAppearance(
 internal fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
-    fallbackShape: CornerBasedShape
+    fallbackShape: CornerBasedShape,
+    layoutDirection: LayoutDirection
 ): CornerBasedShape {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
         val defaultCornerSize = a.getCornerSizeOrNull(
@@ -149,6 +151,11 @@ internal fun parseShapeAppearance(
         val cornerSizeBR = a.getCornerSizeOrNull(
             R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
         )
+        val isRtl = layoutDirection == LayoutDirection.Rtl
+        val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
+        val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
+        val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
+        val cornerSizeBE = if (isRtl) cornerSizeBL else cornerSizeBR
 
         /**
          * We do not support the individual `cornerFamilyTopLeft`, etc, since Compose only supports
@@ -157,18 +164,18 @@ internal fun parseShapeAppearance(
         when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
             0 -> {
                 RoundedCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
-                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             1 -> {
                 CutCornerShape(
-                    topLeft = cornerSizeTL ?: defaultCornerSize ?: fallbackShape.topLeft,
-                    topRight = cornerSizeTR ?: defaultCornerSize ?: fallbackShape.topRight,
-                    bottomRight = cornerSizeBR ?: defaultCornerSize ?: fallbackShape.bottomRight,
-                    bottomLeft = cornerSizeBL ?: defaultCornerSize ?: fallbackShape.bottomLeft
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
                 )
             }
             else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
