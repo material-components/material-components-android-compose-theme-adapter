@@ -41,7 +41,7 @@ object Libs {
 
     object AndroidX {
         object Compose {
-            const val snapshot = "7123292"
+            const val snapshot = ""
 
             @JvmStatic
             val snapshotUrl: String
@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.0.0-SNAPSHOT"
+            const val version = "1.0.0-alpha12"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
