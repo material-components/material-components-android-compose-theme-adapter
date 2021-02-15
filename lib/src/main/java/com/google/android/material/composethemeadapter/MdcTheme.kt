@@ -43,7 +43,7 @@ import java.lang.reflect.Method
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
+ * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.LocalContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
  * For [Shapes], the configuration layout direction is taken into account when reading corner sizes
@@ -116,7 +116,7 @@ data class ThemeParameters(
  *
  * By default the text colors from any associated `TextAppearance`s from the theme are *not* read.
  * This is because setting a fixed color in the resulting [TextStyle] breaks the usage of
- * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.AmbientContentAlpha].
+ * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.LocalContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
  * For [Shapes], the [layoutDirection] is taken into account when reading corner sizes of
