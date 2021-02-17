@@ -53,8 +53,12 @@ This is especially handy when you're migrating an existing app, a fragment (or o
 The `MdcTheme()` function will automatically read the host context's MDC theme and pass them to [`MaterialTheme`][materialtheme] on your behalf, but if you want to customize the generated values, you can do so via the `createMdcTheme()` function:
 
 ``` kotlin
-val context = ContextAmbient.current
-var (colors, type, shapes) = createMdcTheme(context)
+val context = LocalContext.current
+val layoutDirection = LocalLayoutDirection.current
+var (colors, type, shapes) = createMdcTheme(
+    context = context,
+    layoutDirection = layoutDirection
+)
 
 // Modify colors, type or shapes as required. Then pass them
 // through to MaterialTheme...
@@ -93,6 +97,8 @@ dependencies {
     implementation "com.google.android.material:compose-theme-adapter:<version>"
 }
 ```
+
+The latest release is: ![latest release badge](https://img.shields.io/github/v/release/material-components/material-components-android-compose-theme-adapter)
 
 ### Library Snapshots
 
