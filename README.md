@@ -2,6 +2,8 @@
 
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
+![MDC-Android Compose Theme Adapter header](docs/header.png)
+
 The basis of theming in [Jetpack Compose][compose] is the [`MaterialTheme`][materialtheme] composable, where you provide [`Colors`][colors], [`Shapes`][shapes] and [`Typography`][typography] instances containing your styling parameters:
 
 ``` kotlin
