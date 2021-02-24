@@ -20,8 +20,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
@@ -158,5 +158,5 @@ fun ComponentsSample() {
 
 @Composable
 private fun VerticalSpacer() {
-    Spacer(Modifier.preferredHeight(8.dp))
+    Spacer(Modifier.height(8.dp))
 }
