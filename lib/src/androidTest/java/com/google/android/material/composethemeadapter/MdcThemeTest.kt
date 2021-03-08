@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalContext
@@ -88,6 +89,9 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
 
             assertEquals(colorResource(R.color.light_coral), color.background)
             assertEquals(colorResource(R.color.orchid), color.onBackground)
+
+            // MdcTheme updates the LocalContentColor to match the calculated onBackground
+            assertEquals(colorResource(R.color.orchid), LocalContentColor.current)
         }
     }
 
