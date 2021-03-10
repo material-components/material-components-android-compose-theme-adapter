@@ -340,16 +340,6 @@ internal fun TypedArray.getCornerSizeOrNull(index: Int): CornerSize? {
 }
 
 /**
- * Returns the given index as a [CornerSize], or [fallback] if the value can not be coerced to a [CornerSize].
- *
- * @param index index of attribute to retrieve.
- * @param fallback Value to return if the attribute is not defined or cannot be coerced to an [CornerSize].
- */
-internal fun TypedArray.getCornerSize(index: Int, fallback: CornerSize): CornerSize {
-    return getCornerSizeOrNull(index) ?: fallback
-}
-
-/**
  * A workaround since [TypedValue.getComplexUnit] is API 22+
  */
 private inline val TypedValue.complexUnitCompat
