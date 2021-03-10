@@ -27,9 +27,7 @@ buildscript {
     dependencies {
         classpath Libs.androidGradlePlugin
         classpath Libs.Kotlin.gradlePlugin
-
         classpath Libs.gradleMavenPublishPlugin
-
         classpath Libs.Dokka.gradlePlugin
         classpath Libs.Kotlin.binaryCompatibility
     }
