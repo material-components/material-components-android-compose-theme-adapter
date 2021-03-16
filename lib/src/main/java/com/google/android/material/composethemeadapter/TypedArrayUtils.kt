@@ -123,7 +123,7 @@ internal fun textStyleFromTextAppearance(
                 a.hasValue(R.styleable.ComposeThemeAdapterTextAppearance_android_letterSpacing) -> {
                     a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_letterSpacing, 0f).em
                 }
-                // Normally we'd use TextUnit.Unspecified,
+                // FIXME: Normally we'd use TextUnit.Unspecified,
                 // but this can cause a crash due to mismatched Sp and Em TextUnits
                 // https://issuetracker.google.com/issues/182881244
                 else -> 0.em
