@@ -34,6 +34,7 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.TextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -101,6 +102,13 @@ fun ComponentsSample() {
                 onClick = {},
                 text = { Text(text = "Extended FAB") },
                 icon = { Icon(Icons.Default.Favorite, null) }
+            )
+            VerticalSpacer()
+
+            TextField(
+                value = "",
+                onValueChange = {},
+                label = { Text(text = "Text field") }
             )
             VerticalSpacer()
 
