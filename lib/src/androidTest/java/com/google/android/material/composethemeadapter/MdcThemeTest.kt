@@ -190,6 +190,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
             typography.subtitle1.run {
                 assertEquals(monospace.fontFamily, fontFamily)
                 assertEquals(monospace.weight, fontWeight)
+                assertTextUnitEquals(0.em, letterSpacing, density)
             }
 
             typography.subtitle2.run {
@@ -202,6 +203,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
 
             typography.caption.run {
                 assertEquals(FontFamily.SansSerif, fontFamily)
+                assertTextUnitEquals(0.04.em, letterSpacing, density)
             }
 
             typography.overline.run {
