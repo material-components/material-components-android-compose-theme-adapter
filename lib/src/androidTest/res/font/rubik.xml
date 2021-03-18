@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:font="@font/rubik_300"
+        app:fontWeight="300" />
+    <font
+        app:font="@font/rubik_400"
+        app:fontWeight="400" />
+    <font
+        app:font="@font/rubik_500"
+        app:fontWeight="500" />
+    <font
+        app:font="@font/rubik_700"
+        app:fontWeight="700" />
+</font-family>

@@ -66,7 +66,7 @@
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/rubik_500</item>
+        <item name="fontFamily">@font/rubik</item>
     </style>
 
     <style name="TextAppearance.MdcThemeTest.Caption" parent="TextAppearance.MaterialComponents.Caption">
