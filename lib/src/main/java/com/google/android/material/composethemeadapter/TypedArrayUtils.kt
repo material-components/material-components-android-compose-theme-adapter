@@ -213,9 +213,9 @@ internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
             "monospace" -> FontFamilyWithWeight(FontFamily.Monospace)
             // TODO: Compose does not expose a FontFamily for all strings yet
             else -> {
-                // If there's a resource ID and the string starts with res/font,
+                // If there's a resource ID and the string starts with res/,
                 // it's probably a @font resource
-                if (tv.resourceId != 0 && tv.string.startsWith("res/font")) {
+                if (tv.resourceId != 0 && tv.string.startsWith("res/")) {
                     // If we're running on API 23+ and the resource is an XML, we can parse
                     // the fonts into a full FontFamily.
                     if (Build.VERSION.SDK_INT >= 23 && tv.string.endsWith(".xml")) {

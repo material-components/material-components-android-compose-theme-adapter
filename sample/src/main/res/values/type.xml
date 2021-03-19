@@ -15,6 +15,12 @@
   -->
 
 <resources>
+
+    <style name="TextAppearance.Sample.Headline3"
+        parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/dancingscript</item>
+    </style>
+
     <!-- Use TextAppearance.AppCompat.Subhead as parent to avoid inheriting letterSpacing -->
     <style name="TextAppearance.Sample.Subtitle1"
         parent="TextAppearance.AppCompat.Subhead">
