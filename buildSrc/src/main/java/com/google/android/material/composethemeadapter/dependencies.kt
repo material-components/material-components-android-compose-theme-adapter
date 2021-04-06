@@ -36,7 +36,7 @@ object Libs {
     }
 
     object Dokka {
-        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
     }
 
     object AndroidX {
