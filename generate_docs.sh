@@ -7,4 +7,4 @@ sed -i 's/CONTRIBUTING.md/\/contributing/' docs/index.md
 sed -i 's/docs\/using-snapshot-version.md/using-snapshot-version/' docs/index.md
 
 # Build the docs
-./gradlew clean dokkaHtmlMultiModule
+./gradlew clean dokkaGfm
