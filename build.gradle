@@ -52,7 +52,7 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
     failOnWarning = true
 }
 
-subprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -62,7 +62,9 @@ subprojects {
             maven { url Libs.AndroidX.Compose.snapshotUrl }
         }
     }
+}
 
+subprojects {
     apply plugin: 'com.diffplug.spotless'
     spotless {
         kotlin {
@@ -88,38 +90,40 @@ subprojects {
     // Must be afterEvaluate or else com.vanniktech.maven.publish will overwrite our
     // dokka configuration.
     afterEvaluate {
+        if (tasks.findByName('dokkaGfm') == null) {
+            // If dokka isn't enabled on this module, skip
+            return
+        }
         tasks.withType(org.jetbrains.dokka.gradle.DokkaTask) {
             dokkaSourceSets.named("main") {
-                configureEach {
-                    configuration {
-                        reportUndocumented.set(true)
-                        skipEmptyPackages.set(true)
-                        skipDeprecated.set(true)
-                        jdkVersion.set(8)
+                configuration {
+                    jdkVersion.set(8)
+                    reportUndocumented.set(true)
+                    skipEmptyPackages.set(true)
+                    skipDeprecated.set(true)
 
-                        // Add Android SDK packages
-                        noAndroidSdkLink.set(false)
+                    // Add Android SDK packages
+                    noAndroidSdkLink.set(false)
 
-                        // Add samples from :sample module
-                        samples.from(rootProject.file("sample/src/main/java/"))
+                    // Add samples from :sample module
+                    samples.from(rootProject.file("sample/src/main/java/"))
 
-                        // AndroidX + Compose docs
-                        externalDocumentationLink {
-                            url.set(new URL("https://developer.android.com/reference/"))
-                            packageListUrl.set(new URL("https://developer.android.com/reference/androidx/package-list"))
-                        }
-                        externalDocumentationLink {
-                            url.set(new URL("https://developer.android.com/reference/kotlin/"))
-                            packageListUrl.set(new URL("https://developer.android.com/reference/kotlin/androidx/package-list"))
-                        }
+                    // AndroidX + Compose docs
+                    externalDocumentationLink {
+                        url.set(new URL("https://developer.android.com/reference/"))
+                        packageListUrl.set(new URL("https://developer.android.com/reference/androidx/package-list"))
+                    }
+                    externalDocumentationLink {
+                        url.set(new URL("https://developer.android.com/reference/kotlin/"))
+                        packageListUrl.set(new URL("https://developer.android.com/reference/kotlin/androidx/package-list"))
+                    }
 
-                        sourceLink {
-                            localDirectory.set(project.file("src/main/java"))
-                            // URL showing where the source code can be accessed through the web browser
-                            remoteUrl.set(new URL("https://github.com/material-components/material-components-android-compose-theme-adapter/blob/develop/${project.name}/src/main/java"))
-                            // Suffix which is used to append the line number to the URL. Use #L for GitHub
-                            remoteLineSuffix.set("#L")
-                        }
+                    sourceLink {
+                        localDirectory.set(project.file("src/main/java"))
+                        // URL showing where the source code can be accessed through the web browser
+                        remoteUrl.set(new URL("https://github.com/material-components/material-components-android-compose-theme-adapter/blob/develop/${project.name}/src/main/java"))
+                        // Suffix which is used to append the line number to the URL. Use #L for GitHub
+                        remoteLineSuffix.set("#L")
                     }
                 }
             }
