@@ -39,10 +39,17 @@ plugins {
     id "com.diffplug.spotless" version "5.9.0"
 }
 
+apply plugin: 'org.jetbrains.dokka'
+
 apply plugin: 'binary-compatibility-validator'
 apiValidation {
     // Ignore the sample from API tracking/checking
     ignoredProjects += ["sample"]
+}
+
+tasks.withType(org.jetbrains.dokka.gradle.DokkaMultiModuleTask).configureEach {
+    outputDirectory = rootProject.file('docs/api')
+    failOnWarning = true
 }
 
 subprojects {
@@ -81,24 +88,41 @@ subprojects {
     // Must be afterEvaluate or else com.vanniktech.maven.publish will overwrite our
     // dokka configuration.
     afterEvaluate {
-        tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
-            configuration {
-                jdkVersion = 8
-                reportUndocumented = false
-                skipDeprecated = true
-                skipEmptyPackages = true
+        if (tasks.findByName('dokkaHtmlPartial') == null) {
+            // If dokka isn't enabled on this module, skip
+            return
+        }
+        tasks.named('dokkaHtmlPartial') {
+            dokkaSourceSets.configureEach {
+                configuration {
+                    reportUndocumented.set(true)
+                    skipEmptyPackages.set(true)
+                    skipDeprecated.set(true)
+                    jdkVersion.set(8)
 
-                externalDocumentationLink {
-                    url = new URL("https://developer.android.com/reference/")
-                    packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
-                }
-                externalDocumentationLink {
-                    url = new URL("https://developer.android.com/reference/kotlin/")
-                    packageListUrl = new URL("https://developer.android.com/reference/kotlin/androidx/package-list")
-                }
-                externalDocumentationLink {
-                    url = new URL("https://developer.android.com/reference/")
-                    packageListUrl = new URL("https://developer.android.com/reference/com/google/android/material/package-list")
+                    // Add Android SDK packages
+                    noAndroidSdkLink.set(false)
+
+                    // Add samples from :sample module
+                    samples.from(rootProject.file("sample/src/main/java/"))
+
+                    // AndroidX + Compose docs
+                    externalDocumentationLink {
+                        url.set(new URL("https://developer.android.com/reference/"))
+                        packageListUrl.set(new URL("https://developer.android.com/reference/androidx/package-list"))
+                    }
+                    externalDocumentationLink {
+                        url.set(new URL("https://developer.android.com/reference/kotlin/"))
+                        packageListUrl.set(new URL("https://developer.android.com/reference/kotlin/androidx/package-list"))
+                    }
+
+                    sourceLink {
+                        localDirectory.set(project.file("src/main/java"))
+                        // URL showing where the source code can be accessed through the web browser
+                        remoteUrl.set(new URL("https://github.com/material-components/material-components-android-compose-theme-adapter/blob/develop/${project.name}/src/main/java"))
+                        // Suffix which is used to append the line number to the URL. Use #L for GitHub
+                        remoteLineSuffix.set("#L")
+                    }
                 }
             }
         }

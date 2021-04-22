@@ -23,7 +23,7 @@ object Versions {
 object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha14"
 
-    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.12.0"
+    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
     const val mdc = "com.google.android.material:material:1.1.0"
 
@@ -36,7 +36,7 @@ object Libs {
     }
 
     object Dokka {
-        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
     }
 
     object AndroidX {
