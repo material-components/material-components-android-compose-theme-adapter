@@ -59,13 +59,6 @@ android {
     }
 }
 
-afterEvaluate {
-    tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
-        outputDirectory = "$rootDir/docs/api"
-        outputFormat = "gfm"
-    }
-}
-
 dependencies {
     api Libs.AndroidX.appcompat
     implementation Libs.AndroidX.coreKtx
