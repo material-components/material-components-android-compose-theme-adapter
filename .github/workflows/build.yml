@@ -131,7 +131,7 @@ jobs:
         # the assemble and dokka tasks are run interleaved on each module, which can cause
         # connection timeouts while uploading (since we need to wait for assemble+dokka to finish).
         # By front-loading the assemble+dokka tasks, the upload below is much quicker.
-        run: ./gradlew assembleRelease dokka
+        run: ./gradlew assembleRelease dokkaGfm
 
       - name: Install to local Maven repo
         run: ./gradlew installArchives
