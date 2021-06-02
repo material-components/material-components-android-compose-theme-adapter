@@ -1,3 +1,17 @@
+public final class com/google/android/material/composethemeadapter/FontFamilyWithWeight {
+	public fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;)V
+	public synthetic fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Landroidx/compose/ui/text/font/FontFamily;
+	public final fun component2 ()Landroidx/compose/ui/text/font/FontWeight;
+	public final fun copy (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;)Lcom/google/android/material/composethemeadapter/FontFamilyWithWeight;
+	public static synthetic fun copy$default (Lcom/google/android/material/composethemeadapter/FontFamilyWithWeight;Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;ILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/FontFamilyWithWeight;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public final fun getWeight ()Landroidx/compose/ui/text/font/FontWeight;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/google/android/material/composethemeadapter/MdcTheme {
 	public static final fun MdcTheme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
@@ -18,5 +32,22 @@ public final class com/google/android/material/composethemeadapter/ThemeParamete
 	public final fun getTypography ()Landroidx/compose/material/Typography;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/google/android/material/composethemeadapter/TypedArrayUtilsKt {
+	public static final fun getComposeColor-mxwnekA (Landroid/content/res/TypedArray;IJ)J
+	public static synthetic fun getComposeColor-mxwnekA$default (Landroid/content/res/TypedArray;IJILjava/lang/Object;)J
+	public static final fun getCornerSizeOrNull (Landroid/content/res/TypedArray;I)Landroidx/compose/foundation/shape/CornerSize;
+	public static final fun getFontFamilyOrNull (Landroid/content/res/TypedArray;I)Lcom/google/android/material/composethemeadapter/FontFamilyWithWeight;
+	public static final fun getTextUnit-lGoEivg (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;J)J
+	public static synthetic fun getTextUnit-lGoEivg$default (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;JILjava/lang/Object;)J
+	public static final fun getTextUnitOrNull (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;)Landroidx/compose/ui/unit/TextUnit;
+	public static final fun parseShapeAppearance (Landroid/content/Context;ILandroidx/compose/foundation/shape/CornerBasedShape;Landroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/foundation/shape/CornerBasedShape;
+	public static final fun textStyleFromTextAppearance (Landroid/content/Context;Landroidx/compose/ui/unit/Density;IZ)Landroidx/compose/ui/text/TextStyle;
+}
+
+public final class com/google/android/material/composethemeadapter/TypographyKt {
+	public static final fun merge (Landroidx/compose/material/Typography;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;)Landroidx/compose/material/Typography;
+	public static synthetic fun merge$default (Landroidx/compose/material/Typography;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;ILjava/lang/Object;)Landroidx/compose/material/Typography;
 }
 
