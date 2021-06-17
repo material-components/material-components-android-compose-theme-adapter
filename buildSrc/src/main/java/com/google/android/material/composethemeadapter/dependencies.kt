@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.0.0-beta08"
+            const val version = "1.0.0-beta09"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
@@ -65,12 +65,12 @@ object Libs {
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
         }
 
-        const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
+        const val appcompat = "androidx.appcompat:appcompat:1.3.0"
 
         const val coreKtx = "androidx.core:core-ktx:1.3.1"
 
         object Activity {
-            const val activityCompose = "androidx.activity:activity-compose:1.3.0-beta01"
+            const val activityCompose = "androidx.activity:activity-compose:1.3.0-beta02"
         }
 
         object Test {
