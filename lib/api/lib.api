@@ -13,9 +13,9 @@ public final class com/google/android/material/composethemeadapter/FontFamilyWit
 }
 
 public final class com/google/android/material/composethemeadapter/MdcTheme {
-	public static final fun MdcTheme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
-	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
-	public static synthetic fun createMdcTheme$default (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public static final fun MdcTheme (Landroid/content/Context;ZZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public static synthetic fun createMdcTheme$default (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
 }
 
 public final class com/google/android/material/composethemeadapter/ThemeParameters {
@@ -43,7 +43,7 @@ public final class com/google/android/material/composethemeadapter/TypedArrayUti
 	public static synthetic fun getTextUnit-lGoEivg$default (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;JILjava/lang/Object;)J
 	public static final fun getTextUnitOrNull (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;)Landroidx/compose/ui/unit/TextUnit;
 	public static final fun parseShapeAppearance (Landroid/content/Context;ILandroidx/compose/foundation/shape/CornerBasedShape;Landroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/foundation/shape/CornerBasedShape;
-	public static final fun textStyleFromTextAppearance (Landroid/content/Context;Landroidx/compose/ui/unit/Density;IZ)Landroidx/compose/ui/text/TextStyle;
+	public static final fun textStyleFromTextAppearance (Landroid/content/Context;Landroidx/compose/ui/unit/Density;IZLandroidx/compose/ui/text/font/FontFamily;)Landroidx/compose/ui/text/TextStyle;
 }
 
 public final class com/google/android/material/composethemeadapter/TypographyKt {
