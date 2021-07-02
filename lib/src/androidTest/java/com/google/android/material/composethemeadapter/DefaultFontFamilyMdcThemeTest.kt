@@ -1,3 +1,19 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.android.material.composethemeadapter
 
 import android.view.ContextThemeWrapper
@@ -25,105 +41,105 @@ import org.junit.runners.JUnit4
 @MediumTest
 @RunWith(JUnit4::class)
 class DefaultFontFamilyMdcThemeTest {
-  @get:Rule
-  val composeTestRule = createAndroidComposeRule<DefaultFontFamilyMdcActivity>()
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<DefaultFontFamilyMdcActivity>()
 
-  @Test
-  @SdkSuppress(maxSdkVersion = 22) // On API 21-22, the family is loaded with only the 400 font
-  fun rubik_family_api21() = composeTestRule.setContent {
-    val rubik = Font(R.font.rubik, FontWeight.W400).toFontFamily()
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik)
-      }
+    @Test
+    @SdkSuppress(maxSdkVersion = 22) // On API 21-22, the family is loaded with only the 400 font
+    fun rubik_family_api21() = composeTestRule.setContent {
+        val rubik = Font(R.font.rubik, FontWeight.W400).toFontFamily()
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik)
+            }
+        }
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik)
+            }
+        }
     }
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik)
-      }
-    }
-  }
 
-  @Test
-  @SdkSuppress(minSdkVersion = 23) // XML font families with >1 fonts are only supported on API 23+
-  fun rubik_family_api23() = composeTestRule.setContent {
-    val rubik = FontFamily(
-      Font(R.font.rubik_300, FontWeight.W300),
-      Font(R.font.rubik_400, FontWeight.W400),
-      Font(R.font.rubik_500, FontWeight.W500),
-      Font(R.font.rubik_700, FontWeight.W700),
-    )
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik)
-      }
-    }
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik)
-      }
-    }
-  }
-
-  @Test
-  fun rubik_fixed400() = composeTestRule.setContent {
-    val rubik400 = Font(R.font.rubik_400, FontWeight.W400).toFontFamily()
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik400) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik400)
-      }
-    }
-    WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik400) {
-      MdcTheme(setDefaultFontFamily = true) {
-        MaterialTheme.typography.assertFontFamilies(expected = rubik400)
-      }
-    }
-  }
-
-  @Test
-  fun rubik_fixed700_withTextAppearances() = composeTestRule.setContent {
-    val rubik700 = Font(R.font.rubik_700, FontWeight.W700).toFontFamily()
-    WithThemeOverlay(
-      R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamilies_Rubik700_WithTextAppearances
-    ) {
-      MdcTheme {
-        MaterialTheme.typography.assertFontFamilies(
-          expected = rubik700,
-          notEquals = true
+    @Test
+    @SdkSuppress(minSdkVersion = 23) // XML font families with >1 fonts are only supported on API 23+
+    fun rubik_family_api23() = composeTestRule.setContent {
+        val rubik = FontFamily(
+            Font(R.font.rubik_300, FontWeight.W300),
+            Font(R.font.rubik_400, FontWeight.W400),
+            Font(R.font.rubik_500, FontWeight.W500),
+            Font(R.font.rubik_700, FontWeight.W700),
         )
-      }
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik)
+            }
+        }
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik)
+            }
+        }
     }
-  }
+
+    @Test
+    fun rubik_fixed400() = composeTestRule.setContent {
+        val rubik400 = Font(R.font.rubik_400, FontWeight.W400).toFontFamily()
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamily_Rubik400) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik400)
+            }
+        }
+        WithThemeOverlay(R.style.ThemeOverlay_MdcThemeTest_DefaultAndroidFontFamily_Rubik400) {
+            MdcTheme(setDefaultFontFamily = true) {
+                MaterialTheme.typography.assertFontFamilies(expected = rubik400)
+            }
+        }
+    }
+
+    @Test
+    fun rubik_fixed700_withTextAppearances() = composeTestRule.setContent {
+        val rubik700 = Font(R.font.rubik_700, FontWeight.W700).toFontFamily()
+        WithThemeOverlay(
+            R.style.ThemeOverlay_MdcThemeTest_DefaultFontFamilies_Rubik700_WithTextAppearances
+        ) {
+            MdcTheme {
+                MaterialTheme.typography.assertFontFamilies(
+                    expected = rubik700,
+                    notEquals = true
+                )
+            }
+        }
+    }
 }
 
 private fun Typography.assertFontFamilies(
-  expected: FontFamily,
-  notEquals: Boolean = false
+    expected: FontFamily,
+    notEquals: Boolean = false
 ) {
-  h1.fontFamily.assertFontFamily(expected, notEquals)
-  h2.fontFamily.assertFontFamily(expected, notEquals)
-  h3.fontFamily.assertFontFamily(expected, notEquals)
-  h4.fontFamily.assertFontFamily(expected, notEquals)
-  h5.fontFamily.assertFontFamily(expected, notEquals)
-  h6.fontFamily.assertFontFamily(expected, notEquals)
-  subtitle1.fontFamily.assertFontFamily(expected, notEquals)
-  subtitle2.fontFamily.assertFontFamily(expected, notEquals)
-  body1.fontFamily.assertFontFamily(expected, notEquals)
-  body2.fontFamily.assertFontFamily(expected, notEquals)
-  button.fontFamily.assertFontFamily(expected, notEquals)
-  caption.fontFamily.assertFontFamily(expected, notEquals)
-  overline.fontFamily.assertFontFamily(expected, notEquals)
+    h1.fontFamily.assertFontFamily(expected, notEquals)
+    h2.fontFamily.assertFontFamily(expected, notEquals)
+    h3.fontFamily.assertFontFamily(expected, notEquals)
+    h4.fontFamily.assertFontFamily(expected, notEquals)
+    h5.fontFamily.assertFontFamily(expected, notEquals)
+    h6.fontFamily.assertFontFamily(expected, notEquals)
+    subtitle1.fontFamily.assertFontFamily(expected, notEquals)
+    subtitle2.fontFamily.assertFontFamily(expected, notEquals)
+    body1.fontFamily.assertFontFamily(expected, notEquals)
+    body2.fontFamily.assertFontFamily(expected, notEquals)
+    button.fontFamily.assertFontFamily(expected, notEquals)
+    caption.fontFamily.assertFontFamily(expected, notEquals)
+    overline.fontFamily.assertFontFamily(expected, notEquals)
 }
 
 private fun FontFamily?.assertFontFamily(
-  expected: FontFamily,
-  notEquals: Boolean = false
+    expected: FontFamily,
+    notEquals: Boolean = false
 ) {
-  if (notEquals) {
-    assertNotEquals(expected, this)
-  } else {
-    assertEquals(expected, this)
-  }
+    if (notEquals) {
+        assertNotEquals(expected, this)
+    } else {
+        assertEquals(expected, this)
+    }
 }
 
 /**
@@ -131,9 +147,9 @@ private fun FontFamily?.assertFontFamily(
  */
 @Composable
 fun WithThemeOverlay(
-  @StyleRes themeOverlayId: Int,
-  content: @Composable () -> Unit,
+    @StyleRes themeOverlayId: Int,
+    content: @Composable () -> Unit,
 ) {
-  val themedContext = ContextThemeWrapper(LocalContext.current, themeOverlayId)
-  CompositionLocalProvider(LocalContext provides themedContext, content = content)
+    val themedContext = ContextThemeWrapper(LocalContext.current, themeOverlayId)
+    CompositionLocalProvider(LocalContext provides themedContext, content = content)
 }
