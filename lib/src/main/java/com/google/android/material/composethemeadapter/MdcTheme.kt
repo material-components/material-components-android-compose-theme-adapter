@@ -33,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
@@ -62,6 +63,8 @@ import java.lang.reflect.Method
  * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
+ * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
+ * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
  */
 @Composable
 fun MdcTheme(
@@ -70,6 +73,7 @@ fun MdcTheme(
     readTypography: Boolean = true,
     readShapes: Boolean = true,
     setTextColors: Boolean = false,
+    setDefaultFontFamily: Boolean = false,
     content: @Composable () -> Unit
 ) {
     // We try and use the theme key value if available, which should be a perfect key for caching
@@ -90,7 +94,8 @@ fun MdcTheme(
             readColors = readColors,
             readTypography = readTypography,
             readShapes = readShapes,
-            setTextColors = setTextColors
+            setTextColors = setTextColors,
+            setDefaultFontFamily = setDefaultFontFamily
         )
     }
 
@@ -143,6 +148,8 @@ data class ThemeParameters(
  * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
+ * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
+ * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
  * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
  * and [Shapes].
  */
@@ -153,7 +160,8 @@ fun createMdcTheme(
     readColors: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
-    setTextColors: Boolean = false
+    setTextColors: Boolean = false,
+    setDefaultFontFamily: Boolean = false
 ): ThemeParameters {
     return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme).use { ta ->
         require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme_isMaterialTheme)) {
@@ -219,84 +227,105 @@ fun createMdcTheme(
          */
 
         val typography = if (readTypography) {
-            Typography().merge(
+            val defaultFontFamily = if (setDefaultFontFamily) {
+                val defaultFontFamilyWithWeight: FontFamilyWithWeight? = ta.getFontFamilyOrNull(
+                    R.styleable.ComposeThemeAdapterTheme_fontFamily
+                ) ?: ta.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTheme_android_fontFamily)
+                defaultFontFamilyWithWeight?.fontFamily
+            } else {
+                null
+            }
+            Typography(defaultFontFamily = defaultFontFamily ?: FontFamily.Default).merge(
                 h1 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline1),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 h2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline2),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 h3 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline3),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 h4 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline4),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 h5 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline5),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 h6 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline6),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 subtitle1 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle1),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 subtitle2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle2),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 body1 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody1),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 body2 = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody2),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 button = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceButton),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 caption = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceCaption),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 ),
                 overline = textStyleFromTextAppearance(
                     context,
                     density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceOverline),
-                    setTextColors
+                    setTextColors,
+                    defaultFontFamily
                 )
             )
         } else null
