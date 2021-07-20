@@ -53,7 +53,8 @@ internal fun textStyleFromTextAppearance(
     context: Context,
     density: Density,
     @StyleRes id: Int,
-    setTextColors: Boolean
+    setTextColors: Boolean,
+    defaultFontFamily: FontFamily?
 ): TextStyle {
     return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterTextAppearance).use { a ->
         val textStyle = a.getInt(R.styleable.ComposeThemeAdapterTextAppearance_android_textStyle, -1)
@@ -82,6 +83,7 @@ internal fun textStyleFromTextAppearance(
                     ?: TextUnit.Unspecified
             },
             fontFamily = when {
+                defaultFontFamily != null -> defaultFontFamily
                 fontFamily != null -> fontFamily.fontFamily
                 // Values below are from frameworks/base attrs.xml
                 typeface == 1 -> FontFamily.SansSerif

@@ -30,6 +30,10 @@
             android:theme="@style/Theme.MdcThemeTest" />
 
         <activity
+            android:name=".DefaultFontFamilyMdcActivity"
+            android:theme="@style/Theme.MdcThemeTest.DefaultFontFamily" />
+
+        <activity
             android:name=".NotMdcActivity"
             android:theme="@style/Theme.MdcThemeTest.NotMdc" />
 
