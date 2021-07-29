@@ -21,7 +21,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-rc01"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0"
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
@@ -36,7 +36,7 @@ object Libs {
     }
 
     object Dokka {
-        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
     }
 
     object AndroidX {
