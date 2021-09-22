@@ -12,10 +12,33 @@ public final class com/google/android/material/composethemeadapter/FontFamilyWit
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/google/android/material/composethemeadapter/Mdc3Theme {
+	public static final fun Mdc3Theme (Landroid/content/Context;ZZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun createMdc3Theme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZ)Lcom/google/android/material/composethemeadapter/Theme3Parameters;
+	public static synthetic fun createMdc3Theme$default (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/Theme3Parameters;
+}
+
 public final class com/google/android/material/composethemeadapter/MdcTheme {
 	public static final fun MdcTheme (Landroid/content/Context;ZZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun createMdcTheme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZ)Lcom/google/android/material/composethemeadapter/ThemeParameters;
 	public static synthetic fun createMdcTheme$default (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/ThemeParameters;
+	public static final fun getKey (Landroid/content/res/Resources$Theme;)Ljava/lang/Object;
+}
+
+public final class com/google/android/material/composethemeadapter/Theme3Parameters {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;)V
+	public final fun component1 ()Landroidx/compose/material3/ColorScheme;
+	public final fun component2 ()Landroidx/compose/material3/Typography;
+	public final fun component3 ()Landroidx/compose/material3/Shapes;
+	public final fun copy (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;)Lcom/google/android/material/composethemeadapter/Theme3Parameters;
+	public static synthetic fun copy$default (Lcom/google/android/material/composethemeadapter/Theme3Parameters;Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;ILjava/lang/Object;)Lcom/google/android/material/composethemeadapter/Theme3Parameters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColorScheme ()Landroidx/compose/material3/ColorScheme;
+	public final fun getShapes ()Landroidx/compose/material3/Shapes;
+	public final fun getTypography ()Landroidx/compose/material3/Typography;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/google/android/material/composethemeadapter/ThemeParameters {
