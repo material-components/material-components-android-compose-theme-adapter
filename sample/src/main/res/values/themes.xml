@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <style name="Theme.Sample" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Sample.Material" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <item name="colorPrimary">@color/deep_orange_300</item>
@@ -30,5 +30,8 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Sample.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Sample.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Sample.LargeComponent</item>
+    </style>
+    <style name="Theme.Sample.Material3" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- TODO: Add custom Material 3 theme attrs -->
     </style>
 </resources>

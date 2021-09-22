@@ -16,5 +16,6 @@
 
 <resources>
     <string name="app_name">Compose Theme Adapter Sample</string>
-    <string name="basic_integration">Basic integration sample</string>
+    <string name="material_integration">Material integration sample</string>
+    <string name="material_3_integration">Material 3 integration sample</string>
 </resources>

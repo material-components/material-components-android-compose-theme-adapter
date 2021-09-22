@@ -14,31 +14,28 @@
  * limitations under the License.
  */
 
-@file:JvmName("MdcTheme")
+@file:JvmName("Mdc3Theme")
 package com.google.android.material.composethemeadapter
 
 import android.content.Context
-import android.content.res.Resources
 import android.view.View
-import androidx.compose.material.Colors
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
-import androidx.compose.material.Typography
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
-import java.lang.reflect.Method
 
 /**
  * A [MaterialTheme] which reads the corresponding values from a Material Components for Android
@@ -55,8 +52,8 @@ import java.lang.reflect.Method
  * [View.LAYOUT_DIRECTION_RTL].
  *
  * @param context The context to read the theme from.
- * @param readColors whether the read the MDC color palette from the [context]'s theme.
- * If `false`, the current value of [MaterialTheme.colors] is preserved.
+ * @param readColorScheme whether the read the MDC color palette from the [context]'s theme.
+ * If `false`, the current value of [MaterialTheme.colorScheme] is preserved.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * If `false`, the current value of [MaterialTheme.typography] is preserved.
  * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
@@ -67,9 +64,9 @@ import java.lang.reflect.Method
  * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
  */
 @Composable
-fun MdcTheme(
+fun Mdc3Theme(
     context: Context = LocalContext.current,
-    readColors: Boolean = true,
+    readColorScheme: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
     setTextColors: Boolean = false,
@@ -88,10 +85,10 @@ fun MdcTheme(
     val layoutDirection = LocalLayoutDirection.current
 
     val themeParams = remember(key) {
-        createMdcTheme(
+        createMdc3Theme(
             context = context,
             layoutDirection = layoutDirection,
-            readColors = readColors,
+            readColorScheme = readColorScheme,
             readTypography = readTypography,
             readShapes = readShapes,
             setTextColors = setTextColors,
@@ -100,14 +97,14 @@ fun MdcTheme(
     }
 
     MaterialTheme(
-        colors = themeParams.colors ?: MaterialTheme.colors,
+        colorScheme = themeParams.colorScheme ?: MaterialTheme.colorScheme,
         typography = themeParams.typography ?: MaterialTheme.typography,
         shapes = themeParams.shapes ?: MaterialTheme.shapes,
     ) {
         // We update the LocalContentColor to match our onBackground. This allows the default
         // content color to be more appropriate to the theme background
         CompositionLocalProvider(
-            LocalContentColor provides MaterialTheme.colors.onBackground,
+            LocalContentColor provides MaterialTheme.colorScheme.onBackground,
             content = content
         )
     }
@@ -117,8 +114,8 @@ fun MdcTheme(
  * This class contains the individual components of a [MaterialTheme]: [Colors], [Typography]
  * and [Shapes].
  */
-data class ThemeParameters(
-    val colors: Colors?,
+data class Theme3Parameters(
+    val colorScheme: ColorScheme?,
     val typography: Typography?,
     val shapes: Shapes?
 )
@@ -136,84 +133,130 @@ data class ThemeParameters(
  * `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
  * `cornerSizeTopLeft` for [LayoutDirection.Ltr] and `cornerSizeTopRight` for [LayoutDirection.Rtl].
  *
- * The individual components of the returned [ThemeParameters] may be `null`, depending on the
- * matching 'read' parameter. For example, if you set [readColors] to `false`,
- * [ThemeParameters.colors] will be null.
+ * The individual components of the returned [Theme3Parameters] may be `null`, depending on the
+ * matching 'read' parameter. For example, if you set [readColorScheme] to `false`,
+ * [Theme3Parameters.colors] will be null.
  *
  * @param context The context to read the theme from.
  * @param layoutDirection The layout direction to be used when reading shapes.
  * @param density The current density.
- * @param readColors whether the read the MDC color palette from the [context]'s theme.
+ * @param readColorScheme whether the read the MDC color palette from the [context]'s theme.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
  * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
- * @return [ThemeParameters] instance containing the resulting [Colors], [Typography]
+ * @return [Theme3Parameters] instance containing the resulting [Colors], [Typography]
  * and [Shapes].
  */
-fun createMdcTheme(
+fun createMdc3Theme(
     context: Context,
     layoutDirection: LayoutDirection,
     density: Density = Density(context),
-    readColors: Boolean = true,
+    readColorScheme: Boolean = true,
     readTypography: Boolean = true,
     readShapes: Boolean = true,
     setTextColors: Boolean = false,
     setDefaultFontFamily: Boolean = false
-): ThemeParameters {
-    return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme).use { ta ->
-        require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme_isMaterialTheme)) {
-            "createMdcTheme requires the host context's theme" +
-                " to extend Theme.MaterialComponents"
+): Theme3Parameters {
+    return context.obtainStyledAttributes(R.styleable.ComposeThemeAdapterTheme3).use { ta ->
+        require(ta.hasValue(R.styleable.ComposeThemeAdapterTheme3_isMaterial3Theme)) {
+            "createMdc3Theme requires the host context's theme to extend Theme.Material3"
         }
 
-        val colors: Colors? = if (readColors) {
-            /* First we'll read the Material color palette */
-            val primary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimary)
-            val primaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorPrimaryVariant)
-            val onPrimary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnPrimary)
-            val secondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorSecondary)
-            val secondaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorSecondaryVariant)
-            val onSecondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnSecondary)
-            val background = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_android_colorBackground)
-            val onBackground = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnBackground)
-            val surface = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorSurface)
-            val onSurface = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnSurface)
-            val error = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorError)
+        val colorScheme: ColorScheme? = if (readColorScheme) {
+            /* First we'll read the Material 3 color palette */
+            val primary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorPrimary)
+            val onPrimary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnPrimary)
+            val primaryInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorPrimaryInverse)
+            val primaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorPrimaryContainer)
+            val onPrimaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnPrimaryContainer)
+            val secondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorSecondary)
+            val onSecondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSecondary)
+            val secondaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorSecondaryContainer)
+            val onSecondaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSecondaryContainer)
+            val tertiary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorTertiary)
+            val onTertiary = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnTertiary)
+            val tertiaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorTertiaryContainer)
+            val onTertiaryContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnTertiaryContainer)
+            val background = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_android_colorBackground)
+            val onBackground = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnBackground)
+            val surface = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorSurface)
+            val onSurface = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSurface)
+            val surfaceVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorSurfaceVariant)
+            val onSurfaceVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSurfaceVariant)
+            val surfaceInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorSurfaceInverse)
+            val onSurfaceInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSurfaceInverse)
+            val outline = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOutline)
+            val error = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorError)
             val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnError)
+            val errorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorErrorContainer)
+            val onErrorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnErrorContainer)
 
-            val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterTheme_isLightTheme, true)
+            // NOTE: surface1..surface5 are derived from surface
+            // TODO: Missing disabled and onDisabled?
+            // TODO: Rename inverse ColorScheme params to align with attrs eg. inversePrimary -> primaryInverse
+
+            val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterTheme3_isLightTheme, true)
 
             if (isLightTheme) {
-                lightColors(
+                lightColorScheme(
                     primary = primary,
-                    primaryVariant = primaryVariant,
                     onPrimary = onPrimary,
+                    inversePrimary = primaryInverse,
+                    primaryContainer = primaryContainer,
+                    onPrimaryContainer = onPrimaryContainer,
                     secondary = secondary,
-                    secondaryVariant = secondaryVariant,
                     onSecondary = onSecondary,
+                    secondaryContainer = secondaryContainer,
+                    onSecondaryContainer = onSecondaryContainer,
+                    tertiary = tertiary,
+                    onTertiary = onTertiary,
+                    tertiaryContainer = tertiaryContainer,
+                    onTertiaryContainer = onTertiaryContainer,
                     background = background,
                     onBackground = onBackground,
                     surface = surface,
                     onSurface = onSurface,
+                    surfaceVariant = surfaceVariant,
+                    onSurfaceVariant = onSurfaceVariant,
+                    inverseSurface = surfaceInverse,
+                    inverseOnSurface = onSurfaceInverse,
+                    outline = outline,
                     error = error,
-                    onError = onError
+                    onError = onError,
+                    errorContainer = errorContainer,
+                    onErrorContainer = onErrorContainer
                 )
             } else {
-                darkColors(
+                darkColorScheme(
                     primary = primary,
-                    primaryVariant = primaryVariant,
                     onPrimary = onPrimary,
+                    inversePrimary = primaryInverse,
+                    primaryContainer = primaryContainer,
+                    onPrimaryContainer = onPrimaryContainer,
                     secondary = secondary,
                     onSecondary = onSecondary,
+                    secondaryContainer = secondaryContainer,
+                    onSecondaryContainer = onSecondaryContainer,
+                    tertiary = tertiary,
+                    onTertiary = onTertiary,
+                    tertiaryContainer = tertiaryContainer,
+                    onTertiaryContainer = onTertiaryContainer,
                     background = background,
                     onBackground = onBackground,
                     surface = surface,
                     onSurface = onSurface,
+                    surfaceVariant = surfaceVariant,
+                    onSurfaceVariant = onSurfaceVariant,
+                    inverseSurface = surfaceInverse,
+                    inverseOnSurface = onSurfaceInverse,
+                    outline = outline,
                     error = error,
-                    onError = onError
+                    onError = onError,
+                    errorContainer = errorContainer,
+                    onErrorContainer = onErrorContainer
                 )
             }
         } else null
@@ -229,106 +272,122 @@ fun createMdcTheme(
         val typography = if (readTypography) {
             val defaultFontFamily = if (setDefaultFontFamily) {
                 val defaultFontFamilyWithWeight: FontFamilyWithWeight? = ta.getFontFamilyOrNull(
-                    R.styleable.ComposeThemeAdapterTheme_fontFamily
-                ) ?: ta.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTheme_android_fontFamily)
+                    R.styleable.ComposeThemeAdapterTheme3_fontFamily
+                ) ?: ta.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTheme3_android_fontFamily)
                 defaultFontFamilyWithWeight?.fontFamily
             } else {
                 null
             }
-            Typography(defaultFontFamily = defaultFontFamily ?: FontFamily.Default).merge(
-                h1 = textStyleFromTextAppearance(
+            Typography(
+                displayLarge = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline1),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceDisplayLarge),
                     setTextColors,
                     defaultFontFamily
                 ),
-                h2 = textStyleFromTextAppearance(
+                displayMedium = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline2),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceDisplayMedium),
                     setTextColors,
                     defaultFontFamily
                 ),
-                h3 = textStyleFromTextAppearance(
+                displaySmall = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline3),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceDisplaySmall),
                     setTextColors,
                     defaultFontFamily
                 ),
-                h4 = textStyleFromTextAppearance(
+                headlineLarge = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline4),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceHeadlineLarge),
                     setTextColors,
                     defaultFontFamily
                 ),
-                h5 = textStyleFromTextAppearance(
+                headlineMedium = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline5),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceHeadlineMedium),
                     setTextColors,
                     defaultFontFamily
                 ),
-                h6 = textStyleFromTextAppearance(
+                headlineSmall = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceHeadline6),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceHeadlineSmall),
                     setTextColors,
                     defaultFontFamily
                 ),
-                subtitle1 = textStyleFromTextAppearance(
+                titleLarge = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle1),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceTitleLarge),
                     setTextColors,
                     defaultFontFamily
                 ),
-                subtitle2 = textStyleFromTextAppearance(
+                titleMedium = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceSubtitle2),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceTitleMedium),
                     setTextColors,
                     defaultFontFamily
                 ),
-                body1 = textStyleFromTextAppearance(
+                titleSmall = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody1),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceTitleSmall),
                     setTextColors,
                     defaultFontFamily
                 ),
-                body2 = textStyleFromTextAppearance(
+                bodyLarge = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceBody2),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceBodyLarge),
                     setTextColors,
                     defaultFontFamily
                 ),
-                button = textStyleFromTextAppearance(
+                bodyMedium = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceButton),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceBodyMedium),
                     setTextColors,
                     defaultFontFamily
                 ),
-                caption = textStyleFromTextAppearance(
+                bodySmall = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceCaption),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceBodySmall),
                     setTextColors,
                     defaultFontFamily
                 ),
-                overline = textStyleFromTextAppearance(
+                labelLarge = textStyleFromTextAppearance(
                     context,
                     density,
-                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_textAppearanceOverline),
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceLabelLarge),
                     setTextColors,
                     defaultFontFamily
-                )
+                ),
+                labelMedium = textStyleFromTextAppearance(
+                    context,
+                    density,
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceLabelMedium),
+                    setTextColors,
+                    defaultFontFamily
+                ),
+                labelSmall = textStyleFromTextAppearance(
+                    context,
+                    density,
+                    ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_textAppearanceLabelSmall),
+                    setTextColors,
+                    defaultFontFamily
+                ),
             )
         } else null
+
+        // TODO: Missing defaultFontFamily?
 
         /**
          * Now read the shape appearances, taking into account the layout direction.
@@ -337,59 +396,27 @@ fun createMdcTheme(
             Shapes(
                 small = parseShapeAppearance(
                     context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceSmallComponent),
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceSmallComponent),
                     fallbackShape = emptyShapes.small,
                     layoutDirection = layoutDirection
                 ),
                 medium = parseShapeAppearance(
                     context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceMediumComponent),
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceMediumComponent),
                     fallbackShape = emptyShapes.medium,
                     layoutDirection = layoutDirection
                 ),
                 large = parseShapeAppearance(
                     context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceLargeComponent),
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceLargeComponent),
                     fallbackShape = emptyShapes.large,
                     layoutDirection = layoutDirection
                 )
             )
         } else null
 
-        ThemeParameters(colors, typography, shapes)
+        Theme3Parameters(colorScheme, typography, shapes)
     }
 }
 
 private val emptyShapes = Shapes()
-
-/**
- * This is gross, but we need a way to check for theme equality. Theme does not implement
- * `equals()` or `hashCode()`, but it does have a hidden method called `getKey()`.
- *
- * The cost of this reflective invoke is a lot cheaper than the full theme read which can
- * happen on each re-composition.
- */
-internal inline val Resources.Theme.key: Any?
-    get() {
-        if (!sThemeGetKeyMethodFetched) {
-            try {
-                @Suppress("PrivateApi")
-                sThemeGetKeyMethod = Resources.Theme::class.java.getDeclaredMethod("getKey")
-                    .apply { isAccessible = true }
-            } catch (e: ReflectiveOperationException) {
-                // Failed to retrieve Theme.getKey method
-            }
-            sThemeGetKeyMethodFetched = true
-        }
-        if (sThemeGetKeyMethod != null) {
-            return try {
-                sThemeGetKeyMethod?.invoke(this)
-            } catch (e: ReflectiveOperationException) {
-                // Failed to invoke Theme.getKey()
-            }
-        }
-        return null
-    }
-
-private var sThemeGetKeyMethodFetched = false
-private var sThemeGetKeyMethod: Method? = null

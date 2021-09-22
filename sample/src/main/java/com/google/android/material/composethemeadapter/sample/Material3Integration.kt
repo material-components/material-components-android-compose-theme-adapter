@@ -28,25 +28,25 @@ import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.material.composethemeadapter.MdcTheme
+import com.google.android.material.composethemeadapter.Mdc3Theme
 
-class BasicIntegrationActivity : AppCompatActivity() {
+class Material3IntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,8 +54,8 @@ class BasicIntegrationActivity : AppCompatActivity() {
         setContentView(contentView)
 
         contentView.setContent {
-            MdcTheme {
-                ComponentsSample()
+            Mdc3Theme {
+                Material3ComponentsSample()
             }
         }
     }
@@ -63,18 +63,19 @@ class BasicIntegrationActivity : AppCompatActivity() {
 
 @Preview
 @Composable
-fun ComponentSamplePreview() {
-    MdcTheme {
-        ComponentsSample()
+fun Material3ComponentsSamplePreview() {
+    Mdc3Theme {
+        Material3ComponentsSample()
     }
 }
 
+// TODO: Use Material 3 components when available
 @Composable
-fun ComponentsSample() {
+fun Material3ComponentsSample() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.basic_integration)) }
+                title = { Text(text = stringResource(R.string.material_integration)) }
             )
         }
     ) {
@@ -122,52 +123,64 @@ fun ComponentsSample() {
             VerticalSpacer()
 
             Text(
-                text = "H1",
-                style = MaterialTheme.typography.h1
+                text = "Display Large",
+                style = MaterialTheme.typography.displayLarge
             )
             Text(
-                text = "Headline 2",
-                style = MaterialTheme.typography.h2
+                text = "Display Medium",
+                style = MaterialTheme.typography.displayMedium
             )
             Text(
-                text = "Headline 3",
-                style = MaterialTheme.typography.h3
+                text = "Display Small",
+                style = MaterialTheme.typography.displaySmall
             )
             Text(
-                text = "Headline 4",
-                style = MaterialTheme.typography.h4
+                text = "Headline Large",
+                style = MaterialTheme.typography.headlineLarge
             )
             Text(
-                text = "Headline 5",
-                style = MaterialTheme.typography.h5
+                text = "Headline Medium",
+                style = MaterialTheme.typography.headlineMedium
             )
             Text(
-                text = "Headline 6",
-                style = MaterialTheme.typography.h6
+                text = "Headline Small",
+                style = MaterialTheme.typography.headlineSmall
             )
             Text(
-                text = "Subtitle 1",
-                style = MaterialTheme.typography.subtitle1
+                text = "Title Large",
+                style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = "Subtitle 2",
-                style = MaterialTheme.typography.subtitle2
+                text = "Title Medium",
+                style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = "Body 1",
-                style = MaterialTheme.typography.body1
+                text = "Title Small",
+                style = MaterialTheme.typography.titleSmall
             )
             Text(
-                text = "Body 2",
-                style = MaterialTheme.typography.body2
+                text = "Body Large",
+                style = MaterialTheme.typography.bodyLarge
             )
             Text(
-                text = "Caption",
-                style = MaterialTheme.typography.caption
+                text = "Body Medium",
+                style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = "Overline",
-                style = MaterialTheme.typography.overline
+                text = "Body Small",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = "Label Large",
+                style = MaterialTheme.typography.labelLarge
+            )
+            Text(
+                text = "Label Medium",
+                style = MaterialTheme.typography.labelMedium
+            )
+            Text(
+                text = "Label Small",
+                style = MaterialTheme.typography.labelSmall
             )
         }
     }

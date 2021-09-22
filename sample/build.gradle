@@ -22,11 +22,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
 
         versionCode 1
         versionName "1.0"
@@ -57,6 +57,7 @@ dependencies {
 
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.material3
     implementation Libs.AndroidX.Compose.layout
     implementation Libs.AndroidX.Compose.tooling
 
