@@ -28,7 +28,7 @@ object Libs {
     const val mdc = "com.google.android.material:material:1.1.0"
 
     object Kotlin {
-        const val version = "1.5.21"
+        const val version = "1.5.30"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.0.2"
+            const val version = "1.0.3"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
