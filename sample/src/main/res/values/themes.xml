@@ -32,6 +32,6 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Sample.LargeComponent</item>
     </style>
     <style name="Theme.Sample.Material3" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- TODO: Add custom Material 3 theme attrs -->
+        <!-- Material 3 sample uses dynamic color on Android 12+, or falls back to baseline -->
     </style>
 </resources>

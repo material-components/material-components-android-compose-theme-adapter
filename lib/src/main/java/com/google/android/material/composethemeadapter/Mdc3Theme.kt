@@ -18,11 +18,9 @@
 package com.google.android.material.composethemeadapter
 
 import android.content.Context
-import android.view.View
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -30,10 +28,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
 
@@ -46,18 +42,11 @@ import androidx.core.content.res.use
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.LocalContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
- * For [Shapes], the configuration layout direction is taken into account when reading corner sizes
- * of `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
- * `cornerSizeTopLeft` for [View.LAYOUT_DIRECTION_LTR] and `cornerSizeTopRight` for
- * [View.LAYOUT_DIRECTION_RTL].
- *
  * @param context The context to read the theme from.
  * @param readColorScheme whether the read the MDC color palette from the [context]'s theme.
  * If `false`, the current value of [MaterialTheme.colorScheme] is preserved.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * If `false`, the current value of [MaterialTheme.typography] is preserved.
- * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
- * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
@@ -68,7 +57,6 @@ fun Mdc3Theme(
     context: Context = LocalContext.current,
     readColorScheme: Boolean = true,
     readTypography: Boolean = true,
-    readShapes: Boolean = true,
     setTextColors: Boolean = false,
     setDefaultFontFamily: Boolean = false,
     content: @Composable () -> Unit
@@ -82,15 +70,11 @@ fun Mdc3Theme(
     // (via `applyStyle()`, `rebase()`, `setTo()`), but the majority of apps do not use those.
     val key = context.theme.key ?: context.theme
 
-    val layoutDirection = LocalLayoutDirection.current
-
     val themeParams = remember(key) {
         createMdc3Theme(
             context = context,
-            layoutDirection = layoutDirection,
             readColorScheme = readColorScheme,
             readTypography = readTypography,
-            readShapes = readShapes,
             setTextColors = setTextColors,
             setDefaultFontFamily = setDefaultFontFamily
         )
@@ -99,7 +83,6 @@ fun Mdc3Theme(
     MaterialTheme(
         colorScheme = themeParams.colorScheme ?: MaterialTheme.colorScheme,
         typography = themeParams.typography ?: MaterialTheme.typography,
-        shapes = themeParams.shapes ?: MaterialTheme.shapes,
     ) {
         // We update the LocalContentColor to match our onBackground. This allows the default
         // content color to be more appropriate to the theme background
@@ -111,13 +94,12 @@ fun Mdc3Theme(
 }
 
 /**
- * This class contains the individual components of a [MaterialTheme]: [Colors], [Typography]
- * and [Shapes].
+ * This class contains the individual components of a [MaterialTheme]: [ColorScheme] and
+ * [Typography].
  */
 data class Theme3Parameters(
     val colorScheme: ColorScheme?,
-    val typography: Typography?,
-    val shapes: Shapes?
+    val typography: Typography?
 )
 
 /**
@@ -129,34 +111,25 @@ data class Theme3Parameters(
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.LocalContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
- * For [Shapes], the [layoutDirection] is taken into account when reading corner sizes of
- * `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
- * `cornerSizeTopLeft` for [LayoutDirection.Ltr] and `cornerSizeTopRight` for [LayoutDirection.Rtl].
- *
  * The individual components of the returned [Theme3Parameters] may be `null`, depending on the
  * matching 'read' parameter. For example, if you set [readColorScheme] to `false`,
  * [Theme3Parameters.colors] will be null.
  *
  * @param context The context to read the theme from.
- * @param layoutDirection The layout direction to be used when reading shapes.
  * @param density The current density.
  * @param readColorScheme whether the read the MDC color palette from the [context]'s theme.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
- * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
  * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
- * @return [Theme3Parameters] instance containing the resulting [Colors], [Typography]
- * and [Shapes].
+ * @return [Theme3Parameters] instance containing the resulting [ColorScheme] and [Typography].
  */
 fun createMdc3Theme(
     context: Context,
-    layoutDirection: LayoutDirection,
     density: Density = Density(context),
     readColorScheme: Boolean = true,
     readTypography: Boolean = true,
-    readShapes: Boolean = true,
     setTextColors: Boolean = false,
     setDefaultFontFamily: Boolean = false
 ): Theme3Parameters {
@@ -193,10 +166,6 @@ fun createMdc3Theme(
             val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnError)
             val errorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorErrorContainer)
             val onErrorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnErrorContainer)
-
-            // NOTE: surface1..surface5 are derived from surface
-            // TODO: Missing disabled and onDisabled?
-            // TODO: Rename inverse ColorScheme params to align with attrs eg. inversePrimary -> primaryInverse
 
             val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterTheme3_isLightTheme, true)
 
@@ -387,36 +356,6 @@ fun createMdc3Theme(
             )
         } else null
 
-        // TODO: Missing defaultFontFamily?
-
-        /**
-         * Now read the shape appearances, taking into account the layout direction.
-         */
-        val shapes = if (readShapes) {
-            Shapes(
-                small = parseShapeAppearance(
-                    context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceSmallComponent),
-                    fallbackShape = emptyShapes.small,
-                    layoutDirection = layoutDirection
-                ),
-                medium = parseShapeAppearance(
-                    context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceMediumComponent),
-                    fallbackShape = emptyShapes.medium,
-                    layoutDirection = layoutDirection
-                ),
-                large = parseShapeAppearance(
-                    context = context,
-                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme3_shapeAppearanceLargeComponent),
-                    fallbackShape = emptyShapes.large,
-                    layoutDirection = layoutDirection
-                )
-            )
-        } else null
-
-        Theme3Parameters(colorScheme, typography, shapes)
+        Theme3Parameters(colorScheme, typography)
     }
 }
-
-private val emptyShapes = Shapes()

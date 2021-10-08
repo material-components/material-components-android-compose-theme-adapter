@@ -29,26 +29,33 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallCenteredTopAppBar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.composethemeadapter.Mdc3Theme
 
 class Material3IntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DynamicColors.applyIfAvailable(this)
 
         val contentView = ComposeView(this)
         setContentView(contentView)
@@ -70,12 +77,16 @@ fun Material3ComponentsSamplePreview() {
 }
 
 // TODO: Use Material 3 components when available
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Material3ComponentsSample() {
+    val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(R.string.material_integration)) }
+            SmallCenteredTopAppBar(
+                title = { Text(text = stringResource(R.string.material_3_integration)) },
+                scrollBehavior = scrollBehavior
             )
         }
     ) {
