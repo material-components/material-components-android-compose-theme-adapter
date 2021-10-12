@@ -37,6 +37,14 @@
             android:name=".NotMdcActivity"
             android:theme="@style/Theme.MdcThemeTest.NotMdc" />
 
+        <activity
+            android:name=".Mdc3Activity"
+            android:theme="@style/Theme.Mdc3ThemeTest" />
+
+        <activity
+            android:name=".NotMdc3Activity"
+            android:theme="@style/Theme.Mdc3ThemeTest.NotMdc3" />
+
     </application>
 
 </manifest>

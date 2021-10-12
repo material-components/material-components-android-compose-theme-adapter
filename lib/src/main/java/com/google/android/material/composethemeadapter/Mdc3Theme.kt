@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 The Android Open Source Project
+ * Copyright 2021 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,7 +163,7 @@ fun createMdc3Theme(
             val onSurfaceInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnSurfaceInverse)
             val outline = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOutline)
             val error = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorError)
-            val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnError)
+            val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnError)
             val errorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorErrorContainer)
             val onErrorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme3_colorOnErrorContainer)
 

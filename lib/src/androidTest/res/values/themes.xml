@@ -92,4 +92,53 @@
 
     <style name="Theme.MdcThemeTest.NotMdc" parent="Theme.AppCompat.DayNight" />
 
+    <style name="Theme.Mdc3ThemeTest" parent="Theme.Material3.DayNight">
+        <!-- Colors -->
+        <item name="colorPrimary">@color/aquamarine</item>
+        <item name="colorOnPrimary">@color/pale_turquoise</item>
+        <item name="colorPrimaryInverse">@color/midnight_blue</item>
+        <item name="colorPrimaryContainer">@color/royal_blue</item>
+        <item name="colorOnPrimaryContainer">@color/steel_blue</item>
+        <item name="colorSecondary">@color/dodger_blue</item>
+        <item name="colorOnSecondary">@color/dark_golden_rod</item>
+        <item name="colorSecondaryContainer">@color/peru</item>
+        <item name="colorOnSecondaryContainer">@color/blue_violet</item>
+        <item name="colorTertiary">@color/dark_orchid</item>
+        <item name="colorOnTertiary">@color/slate_gray</item>
+        <item name="colorTertiaryContainer">@color/gray</item>
+        <item name="colorOnTertiaryContainer">@color/spring_green</item>
+        <item name="android:colorBackground">@color/medium_spring_green</item>
+        <item name="colorOnBackground">@color/navy</item>
+        <item name="colorSurface">@color/dark_blue</item>
+        <item name="colorOnSurface">@color/light_coral</item>
+        <item name="colorSurfaceVariant">@color/salmon</item>
+        <item name="colorOnSurfaceVariant">@color/dark_salmon</item>
+        <item name="colorSurfaceInverse">@color/light_salmon</item>
+        <item name="colorOnSurfaceInverse">@color/orchid</item>
+        <item name="colorOutline">@color/violet</item>
+        <item name="colorError">@color/beige</item>
+        <item name="colorOnError">@color/white_smoke</item>
+        <item name="colorErrorContainer">@color/olive</item>
+        <item name="colorOnErrorContainer">@color/olive_drab</item>
+
+        <!-- Text Appearances -->
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.Mdc3ThemeTest.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.Mdc3ThemeTest.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.Mdc3ThemeTest.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Mdc3ThemeTest.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Mdc3ThemeTest.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Mdc3ThemeTest.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Mdc3ThemeTest.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Mdc3ThemeTest.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Mdc3ThemeTest.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Mdc3ThemeTest.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Mdc3ThemeTest.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Mdc3ThemeTest.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Mdc3ThemeTest.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Mdc3ThemeTest.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Mdc3ThemeTest.LabelSmall</item>
+    </style>
+
+    <style name="Theme.Mdc3ThemeTest.NotMdc3" parent="Theme.MaterialComponents.DayNight" />
+
 </resources>
