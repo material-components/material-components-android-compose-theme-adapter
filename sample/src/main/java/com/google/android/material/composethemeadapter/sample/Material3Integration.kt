@@ -24,21 +24,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExtendedFloatingActionButton
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.TextButton
-import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Button
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SmallCenteredTopAppBar
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -76,7 +78,6 @@ fun Material3ComponentsSamplePreview() {
     }
 }
 
-// TODO: Use Material 3 components when available
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Material3ComponentsSample() {
@@ -84,7 +85,7 @@ fun Material3ComponentsSample() {
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            SmallCenteredTopAppBar(
+            CenterAlignedTopAppBar(
                 title = { Text(text = stringResource(R.string.material_3_integration)) },
                 scrollBehavior = scrollBehavior
             )
@@ -95,25 +96,44 @@ fun Material3ComponentsSample() {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
-            CircularProgressIndicator()
+            Button(onClick = {}) {
+                Text(text = "Filled button")
+            }
             VerticalSpacer()
 
-            Button(onClick = {}) {
-                Text(text = "Button")
+            ElevatedButton(onClick = {}) {
+                Text(text = "Elevated button")
+            }
+            VerticalSpacer()
+
+            FilledTonalButton(onClick = {}) {
+                Text(text = "Filled tonal button")
             }
             VerticalSpacer()
 
             OutlinedButton(onClick = {}) {
-                Text(text = "Outlined Button")
+                Text(text = "Outlined button")
             }
             VerticalSpacer()
 
             TextButton(onClick = {}) {
-                Text(text = "Text Button")
+                Text(text = "Text button")
             }
             VerticalSpacer()
 
+            SmallFloatingActionButton(
+                onClick = {},
+                content = { Icon(Icons.Default.Favorite, null) }
+            )
+            VerticalSpacer()
+
             FloatingActionButton(
+                onClick = {},
+                content = { Icon(Icons.Default.Favorite, null) }
+            )
+            VerticalSpacer()
+
+            LargeFloatingActionButton(
                 onClick = {},
                 content = { Icon(Icons.Default.Favorite, null) }
             )
@@ -123,13 +143,6 @@ fun Material3ComponentsSample() {
                 onClick = {},
                 text = { Text(text = "Extended FAB") },
                 icon = { Icon(Icons.Default.Favorite, null) }
-            )
-            VerticalSpacer()
-
-            TextField(
-                value = "",
-                onValueChange = {},
-                label = { Text(text = "Text field") }
             )
             VerticalSpacer()
 
