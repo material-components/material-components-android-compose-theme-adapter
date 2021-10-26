@@ -25,7 +25,7 @@ object Libs {
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
-    const val mdc = "com.google.android.material:material:1.5.0-alpha04"
+    const val mdc = "com.google.android.material:material:1.5.0-alpha05"
 
     object Kotlin {
         const val version = "1.5.31"
