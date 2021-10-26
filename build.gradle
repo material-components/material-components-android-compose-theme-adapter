@@ -61,6 +61,8 @@ allprojects {
         if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
             maven { url Libs.AndroidX.Compose.snapshotUrl }
         }
+        // TODO: Remove this when Compose 1.1.0-beta01 artifacts are released
+        maven { url 'https://androidx.dev/snapshots/builds/7838202/artifacts/repository/' }
     }
 }
 
