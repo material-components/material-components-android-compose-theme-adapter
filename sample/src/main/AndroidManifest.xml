@@ -40,7 +40,7 @@
             android:name=".MaterialIntegrationActivity"
             android:label="@string/material_integration"
             android:theme="@style/Theme.Sample.Material"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="${applicationId}.SAMPLE_CODE" />
@@ -51,7 +51,7 @@
             android:name=".Material3IntegrationActivity"
             android:label="@string/material_3_integration"
             android:theme="@style/Theme.Sample.Material3"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="${applicationId}.SAMPLE_CODE" />
