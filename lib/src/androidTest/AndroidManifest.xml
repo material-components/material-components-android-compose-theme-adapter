@@ -17,39 +17,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.google.android.material.composethemeadapter">
 
-    <uses-sdk android:targetSdkVersion="31" />
+    <uses-sdk android:targetSdkVersion="29" />
 
     <application>
 
         <activity
             android:name=".LightMdcActivity"
-            android:theme="@style/Theme.MdcThemeTest"
-            android:exported="true" />
+            android:theme="@style/Theme.MdcThemeTest" />
 
         <activity
             android:name=".DarkMdcActivity"
-            android:theme="@style/Theme.MdcThemeTest"
-            android:exported="true" />
+            android:theme="@style/Theme.MdcThemeTest" />
 
         <activity
             android:name=".DefaultFontFamilyMdcActivity"
-            android:theme="@style/Theme.MdcThemeTest.DefaultFontFamily"
-            android:exported="true" />
+            android:theme="@style/Theme.MdcThemeTest.DefaultFontFamily" />
 
         <activity
             android:name=".NotMdcActivity"
-            android:theme="@style/Theme.MdcThemeTest.NotMdc"
-            android:exported="true" />
+            android:theme="@style/Theme.MdcThemeTest.NotMdc" />
 
         <activity
             android:name=".Mdc3Activity"
-            android:theme="@style/Theme.Mdc3ThemeTest"
-            android:exported="true" />
+            android:theme="@style/Theme.Mdc3ThemeTest" />
 
         <activity
             android:name=".NotMdc3Activity"
-            android:theme="@style/Theme.Mdc3ThemeTest.NotMdc3"
-            android:exported="true" />
+            android:theme="@style/Theme.Mdc3ThemeTest.NotMdc3" />
 
     </application>
 
