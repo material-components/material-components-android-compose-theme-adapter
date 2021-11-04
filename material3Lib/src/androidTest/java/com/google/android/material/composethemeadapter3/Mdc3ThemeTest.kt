@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.filters.MediumTest
-import com.google.android.material3.composethemeadapter.test.R
+import com.google.android.material.composethemeadapter3.test.R
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
