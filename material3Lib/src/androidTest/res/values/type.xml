@@ -74,6 +74,10 @@
         <item name="android:letterSpacing">0.04</item>
     </style>
 
+    <!-- Having a string resource with a font family causes TypedValue to have a resource ID -->
+    <!-- eg. TextAppearance.AppCompat -->
+    <string name="sans_serif_condensed_light">sans-serif-condensed-light</string>
+
     <style name="TextAppearance.Mdc3ThemeTest.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
         <item name="fontFamily">@font/rubik</item>
     </style>
