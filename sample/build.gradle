@@ -53,7 +53,8 @@ android {
 }
 
 dependencies {
-    implementation project(':lib')
+    implementation project(':materialLib')
+    implementation project(':material3Lib')
 
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.material

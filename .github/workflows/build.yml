@@ -77,9 +77,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          # Workaround for ConnectedAndroidTest bug in AGP 7.0.0-alpha02+
-          # https://issuetracker.google.com/issues/174839536
-          script: ./gradlew :lib:connectedCheck
+          script: ./gradlew connectedCheck
 
       - name: Copy test results
         if: always()

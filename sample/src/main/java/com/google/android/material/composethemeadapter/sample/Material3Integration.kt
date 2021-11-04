@@ -51,7 +51,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.DynamicColors
-import com.google.android.material.composethemeadapter.Mdc3Theme
+import com.google.android.material.composethemeadapter3.Mdc3Theme
 
 class Material3IntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
