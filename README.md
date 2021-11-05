@@ -168,7 +168,10 @@ repositories {
 }
 
 dependencies {
+    // Artifact with MdcTheme, compatible with Compose Material
     implementation "com.google.android.material:compose-theme-adapter:<version>"
+    // Artifact with Mdc3Theme, compatible with Compose Material 3
+    implementation "com.google.android.material:compose-theme-adapter-3:<version>"
 }
 ```
 
