@@ -2,6 +2,34 @@
 
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
+## Usage
+
+There are two artifacts available:
+
+* [`com.google.android.material:compose-theme-adapter`](#compose-material)
+    * Compatible with Compose Material
+    * Includes `MdcTheme`
+* [`com.google.android.material:compose-theme-adapter-3`](#compose-material-3)
+    * Compatible with Compose Material 3
+    * Includes `Mdc3Theme`
+
+```groovy
+repositories {
+    google()
+}
+
+dependencies {
+    // Compatible with Compose Material, includes `MdcTheme`
+    implementation "com.google.android.material:compose-theme-adapter:<version>"
+    // Compatible with Compose Material 3, includes `Mdc3Theme`
+    implementation "com.google.android.material:compose-theme-adapter-3:<version>"
+}
+```
+
+See the [releases](https://github.com/material-components/material-components-android-compose-theme-adapter/releases) page for the latest versions.
+
+---
+
 ## Compose Material
 
 ![MDC-Android Compose Theme Adapter header](docs/header.png)
@@ -159,23 +187,6 @@ There are some known limitations with the implementation at the moment:
 * You can modify the resulting `MaterialTheme` in Compose as required, but this _only_ works in Compose. Any changes you make will not be reflected in the `Activity` theme.
 
 ---
-
-## Usage
-
-```groovy
-repositories {
-    google()
-}
-
-dependencies {
-    // Artifact with MdcTheme, compatible with Compose Material
-    implementation "com.google.android.material:compose-theme-adapter:<version>"
-    // Artifact with Mdc3Theme, compatible with Compose Material 3
-    implementation "com.google.android.material:compose-theme-adapter-3:<version>"
-}
-```
-
-The latest release is: ![latest release badge](https://img.shields.io/github/v/release/material-components/material-components-android-compose-theme-adapter)
 
 ### Library Snapshots
 
