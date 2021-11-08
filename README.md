@@ -19,9 +19,9 @@ repositories {
 }
 
 dependencies {
-    // Compatible with Compose Material, includes `MdcTheme`
+    // Compatible with Compose Material, includes MdcTheme
     implementation "com.google.android.material:compose-theme-adapter:<version>"
-    // Compatible with Compose Material 3, includes `Mdc3Theme`
+    // Compatible with Compose Material 3, includes Mdc3Theme
     implementation "com.google.android.material:compose-theme-adapter-3:<version>"
 }
 ```
