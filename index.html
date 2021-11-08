@@ -249,26 +249,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#customizing-the-theme" class="md-nav__link">
-    Customizing the theme
+  <a href="#usage" class="md-nav__link">
+    Usage
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#compose-material" class="md-nav__link">
+    Compose Material
+  </a>
+  
+    <nav class="md-nav" aria-label="Compose Material">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-m2-theme" class="md-nav__link">
+    Customizing the M2 theme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     Limitations
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#compose-material-3" class="md-nav__link">
+    Compose Material 3
   </a>
   
-    <nav class="md-nav" aria-label="Usage">
+    <nav class="md-nav" aria-label="Compose Material 3">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-m3-theme" class="md-nav__link">
+    Customizing the M3 theme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_1" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#library-snapshots" class="md-nav__link">
@@ -377,26 +411,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#customizing-the-theme" class="md-nav__link">
-    Customizing the theme
+  <a href="#usage" class="md-nav__link">
+    Usage
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#compose-material" class="md-nav__link">
+    Compose Material
+  </a>
+  
+    <nav class="md-nav" aria-label="Compose Material">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-m2-theme" class="md-nav__link">
+    Customizing the M2 theme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     Limitations
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#compose-material-3" class="md-nav__link">
+    Compose Material 3
   </a>
   
-    <nav class="md-nav" aria-label="Usage">
+    <nav class="md-nav" aria-label="Compose Material 3">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-m3-theme" class="md-nav__link">
+    Customizing the M3 theme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_1" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#library-snapshots" class="md-nav__link">
@@ -442,85 +510,156 @@
                 
                 
                 <h1 id="mdc-android-compose-theme-adapter">MDC-Android Compose Theme Adapter<a class="headerlink" href="#mdc-android-compose-theme-adapter" title="Permanent link">&para;</a></h1>
-<p>A library that enables reuse of <a href="https://material.io/develop/android/">Material Components for Android</a> XML themes for theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
+<p>A library that enables reuse of <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> XML themes for theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>There are two artifacts available:</p>
+<ul>
+<li><a href="#compose-material"><code>com.google.android.material:compose-theme-adapter</code></a><ul>
+<li>Compatible with Compose Material</li>
+<li>Includes <code>MdcTheme</code></li>
+</ul>
+</li>
+<li><a href="#compose-material-3"><code>com.google.android.material:compose-theme-adapter-3</code></a><ul>
+<li>Compatible with Compose Material 3</li>
+<li>Includes <code>Mdc3Theme</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">google</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="c1">// Compatible with Compose Material, includes MdcTheme</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span>
+    <span class="c1">// Compatible with Compose Material 3, includes Mdc3Theme</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter-3:&lt;version&gt;&quot;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>See the <a href="https://github.com/material-components/material-components-android-compose-theme-adapter/releases">releases</a> page for the latest versions.</p>
+<hr />
+<h2 id="compose-material">Compose Material<a class="headerlink" href="#compose-material" title="Permanent link">&para;</a></h2>
 <p><img alt="MDC-Android Compose Theme Adapter header" src="docs/header.png" /></p>
-<p>The basis of theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors"><code>Colors</code></a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes"><code>Shapes</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
+<p>The basis of Material Design 2 theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors"><code>Colors</code></a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes"><code>Shapes</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span>
-    <span class="n">typography</span> <span class="o">=</span> <span class="n">type</span><span class="p">,</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
+    <span class="n">typography</span> <span class="o">=</span> <span class="n">type</span><span class="p">,</span>
     <span class="n">shapes</span> <span class="o">=</span> <span class="n">shapes</span>
 <span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Surface, Scaffold, etc</span>
+    <span class="c1">// M2 Surface, Scaffold, etc.</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://material.io/develop/android/">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
+<p><a href="https://github.com/material-components/material-components-android">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight&quot;</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!-- Material color attributes --&gt;</span>
+    <span class="c">&lt;!-- Material 2 color attributes --&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorPrimary&quot;</span><span class="nt">&gt;</span>@color/purple_500<span class="nt">&lt;/item&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorSecondary&quot;</span><span class="nt">&gt;</span>@color/green_200<span class="nt">&lt;/item&gt;</span>
 
-    <span class="c">&lt;!-- Material type attributes--&gt;</span>
+    <span class="c">&lt;!-- Material 2 type attributes--&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBody1&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.Body1<span class="nt">&lt;/item&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBody2&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.Body2<span class="nt">&lt;/item&gt;</span>
 
-    <span class="c">&lt;!-- Material shape attributes--&gt;</span>
+    <span class="c">&lt;!-- Material 2 shape attributes--&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;shapeAppearanceSmallComponent&quot;</span><span class="nt">&gt;</span>@style/ShapeAppearance.MyApp.SmallComponent<span class="nt">&lt;/item&gt;</span>
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
-<p>This library attempts to bridge the gap between <a href="https://material.io/develop/android/">Material Components for Android</a> XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
+<p>This library attempts to bridge the gap between <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> M2 XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MdcTheme</span> <span class="p">{</span>
     <span class="c1">// MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography</span>
-    <span class="c1">// will now contain copies of the context&#39;s theme</span>
+    <span class="c1">// will now contain copies of the Context&#39;s theme</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This is especially handy when you're migrating an existing app, a fragment (or other UI container) at a time.</p>
+<p>This is especially handy when you're migrating an existing app, a <code>Fragment</code> (or other UI container) at a time.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>If you are using an AppCompat (i.e. non-MDC) theme in your app, you should use the
-<a href="https://github.com/chrisbanes/accompanist/tree/main/appcompat-theme">AppCompat Compose Theme Adapter</a>
-instead, as it attempts to bridge the gap between <a href="https://developer.android.com/jetpack/androidx/releases/appcompat">AppCompat</a> XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
+<a href="https://github.com/google/accompanist/tree/main/appcompat-theme">AppCompat Compose Theme Adapter</a>
+instead, as it attempts to bridge the gap between <a href="https://developer.android.com/jetpack/androidx/releases/appcompat">AppCompat</a> XML themes, and M2 themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
 </div>
-<h3 id="customizing-the-theme">Customizing the theme<a class="headerlink" href="#customizing-the-theme" title="Permanent link">&para;</a></h3>
-<p>The <code>MdcTheme()</code> function will automatically read the host context's MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdcTheme()</code> function:</p>
+<h3 id="customizing-the-m2-theme">Customizing the M2 theme<a class="headerlink" href="#customizing-the-m2-theme" title="Permanent link">&para;</a></h3>
+<p>The <code>MdcTheme()</code> function will automatically read the host <code>Context</code>'s MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdcTheme()</code> function:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span>
 <span class="kd">val</span> <span class="nv">layoutDirection</span> <span class="o">=</span> <span class="n">LocalLayoutDirection</span><span class="p">.</span><span class="na">current</span>
-<span class="kd">var</span> <span class="p">(</span><span class="nv">colors</span><span class="p">,</span> <span class="nv">type</span><span class="p">,</span> <span class="nv">shapes</span><span class="p">)</span> <span class="o">=</span> <span class="n">createMdcTheme</span><span class="p">(</span>
+<span class="kd">var</span> <span class="p">(</span><span class="nv">colors</span><span class="p">,</span> <span class="nv">typography</span><span class="p">,</span> <span class="nv">shapes</span><span class="p">)</span> <span class="o">=</span> <span class="n">createMdcTheme</span><span class="p">(</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="p">,</span>
     <span class="n">layoutDirection</span> <span class="o">=</span> <span class="n">layoutDirection</span>
 <span class="p">)</span>
 
-<span class="c1">// Modify colors, type or shapes as required. Then pass them</span>
-<span class="c1">// through to MaterialTheme...</span>
+<span class="c1">// Modify colors, typography or shapes as required.</span>
+<span class="c1">// Then pass them through to MaterialTheme...</span>
 
 <span class="n">MaterialTheme</span><span class="p">(</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
     <span class="n">typography</span> <span class="o">=</span> <span class="n">type</span><span class="p">,</span>
     <span class="n">shapes</span> <span class="o">=</span> <span class="n">shapes</span>
 <span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// rest of layout</span>
+    <span class="c1">// Rest of M2 layout</span>
 <span class="p">}</span>
 </code></pre></div>
-</details>
-<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>There are some known limitations with the implementation at the moment:</p>
 <ul>
 <li>This relies on your <code>Activity</code>/<code>Context</code> theme extending one of the <code>Theme.MaterialComponents</code> themes.</li>
 <li>Text colors are not read from the text appearances by default. You can enable it via the <code>setTextColors</code> function parameter.</li>
 <li>Variable fonts are not supported in Compose yet, meaning that the value of <code>android:fontVariationSettings</code> are currently ignored.</li>
 <li>MDC <code>ShapeAppearances</code> allow setting of different corner families (cut, rounded) on each corner, whereas Compose's <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes">Shapes</a> allows only a single corner family for the entire shape. Therefore only the <code>app:cornerFamily</code> attribute is read, others (<code>app:cornerFamilyTopLeft</code>, etc) are ignored.</li>
-<li>You can modify the resulting <code>MaterialTheme</code> in Compose as required, but this <em>only</em> works in Compose. Any changes you make will not be reflected in the Activity theme.</li>
+<li>You can modify the resulting <code>MaterialTheme</code> in Compose as required, but this <em>only</em> works in Compose. Any changes you make will not be reflected in the <code>Activity</code> theme.</li>
+</ul>
+<h2 id="compose-material-3">Compose Material 3<a class="headerlink" href="#compose-material-3" title="Permanent link">&para;</a></h2>
+<p><img alt="MDC-Android Compose Theme Adapter header" src="docs/m3header.png" /></p>
+<p>The basis of Material Design 3 theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme"><code>ColorScheme</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span>
+    <span class="n">colorScheme</span> <span class="o">=</span> <span class="n">colorScheme</span><span class="p">,</span>
+    <span class="n">typography</span> <span class="o">=</span> <span class="n">typography</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// M3 Surface, Scaffold, etc.</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a href="https://github.com/material-components/material-components-android">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Material 3 color attributes --&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorPrimary&quot;</span><span class="nt">&gt;</span>@color/purple_500<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorSecondary&quot;</span><span class="nt">&gt;</span>@color/purple_700<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;colorTertiary&quot;</span><span class="nt">&gt;</span>@color/green_200<span class="nt">&lt;/item&gt;</span>
+
+    <span class="c">&lt;!-- Material 3 type attributes--&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBodyLarge&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.BodyLarge<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;textAppearanceBodyMedium&quot;</span><span class="nt">&gt;</span>@style/TextAppearance.MyApp.BodyMedium<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<p>This library attempts to bridge the gap between <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> M3 XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Mdc3Theme</span> <span class="p">{</span>
+    <span class="c1">// MaterialTheme.colorScheme, MaterialTheme.typography</span>
+    <span class="c1">// will now contain copies of the Context&#39;s theme</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is especially handy when you're migrating an existing app, a <code>Fragment</code> (or other UI container) at a time.</p>
+<h3 id="customizing-the-m3-theme">Customizing the M3 theme<a class="headerlink" href="#customizing-the-m3-theme" title="Permanent link">&para;</a></h3>
+<p>The <code>Mdc3Theme()</code> function will automatically read the host <code>Context</code>'s MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdc3Theme()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span>
+<span class="kd">var</span> <span class="p">(</span><span class="nv">colorScheme</span><span class="p">,</span> <span class="nv">typography</span><span class="p">)</span> <span class="o">=</span> <span class="n">createMdc3Theme</span><span class="p">(</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">context</span>
+<span class="p">)</span>
+
+<span class="c1">// Modify colorScheme or typography as required.</span>
+<span class="c1">// Then pass them through to MaterialTheme...</span>
+
+<span class="n">MaterialTheme</span><span class="p">(</span>
+    <span class="n">colorScheme</span> <span class="o">=</span> <span class="n">colorScheme</span><span class="p">,</span>
+    <span class="n">typography</span> <span class="o">=</span> <span class="n">typography</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Rest of M3 layout</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="limitations_1">Limitations<a class="headerlink" href="#limitations_1" title="Permanent link">&para;</a></h3>
+<p>There are some known limitations with the implementation at the moment:</p>
+<ul>
+<li>This relies on your <code>Activity</code>/<code>Context</code> theme extending one of the <code>Theme.Material3</code> themes.</li>
+<li>Text colors are not read from the text appearances by default. You can enable it via the <code>setTextColors</code> function parameter.</li>
+<li>Variable fonts are not supported in Compose yet, meaning that the value of <code>android:fontVariationSettings</code> are currently ignored.</li>
+<li>You can modify the resulting <code>MaterialTheme</code> in Compose as required, but this <em>only</em> works in Compose. Any changes you make will not be reflected in the <code>Activity</code> theme.</li>
 </ul>
 <hr />
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">google</span><span class="o">()</span>
-<span class="o">}</span>
-
-<span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>The latest release is: <img alt="latest release badge" src="https://img.shields.io/github/v/release/material-components/material-components-android-compose-theme-adapter" /></p>
 <h3 id="library-snapshots">Library Snapshots<a class="headerlink" href="#library-snapshots" title="Permanent link">&para;</a></h3>
 <p>Snapshots of the current development version of this library are available, which track the latest commit. See <a href="./using-snapshot-version">here</a> for more information on how to use them.</p>
 <hr />
