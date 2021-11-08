@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2020 The Android Open Source Project
   ~
@@ -14,8 +15,17 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <string name="app_name">Compose Theme Adapter Sample</string>
-    <string name="material_integration">Material integration sample</string>
-    <string name="material_3_integration">Material 3 integration sample</string>
-</resources>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:font="@font/rubik_300"
+        app:fontWeight="300" />
+    <font
+        app:font="@font/rubik_400"
+        app:fontWeight="400" />
+    <font
+        app:font="@font/rubik_500"
+        app:fontWeight="500" />
+    <font
+        app:font="@font/rubik_700"
+        app:fontWeight="700" />
+</font-family>

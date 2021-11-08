@@ -46,7 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.material.composethemeadapter.MdcTheme
 
-class BasicIntegrationActivity : AppCompatActivity() {
+class MaterialIntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,7 +55,7 @@ class BasicIntegrationActivity : AppCompatActivity() {
 
         contentView.setContent {
             MdcTheme {
-                ComponentsSample()
+                MaterialComponentsSample()
             }
         }
     }
@@ -63,18 +63,18 @@ class BasicIntegrationActivity : AppCompatActivity() {
 
 @Preview
 @Composable
-fun ComponentSamplePreview() {
+fun MaterialComponentsSamplePreview() {
     MdcTheme {
-        ComponentsSample()
+        MaterialComponentsSample()
     }
 }
 
 @Composable
-fun ComponentsSample() {
+fun MaterialComponentsSample() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.basic_integration)) }
+                title = { Text(text = stringResource(R.string.material_integration)) }
             )
         }
     ) {

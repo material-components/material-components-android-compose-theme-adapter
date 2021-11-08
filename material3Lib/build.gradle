@@ -23,7 +23,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 21
@@ -63,7 +63,7 @@ dependencies {
     api Libs.AndroidX.appcompat
     implementation Libs.AndroidX.coreKtx
     implementation Libs.AndroidX.Compose.runtime
-    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.material3
 
     implementation Libs.mdc
 
@@ -80,8 +80,8 @@ apply plugin: 'com.vanniktech.maven.publish'
 mavenPublish {
     targets {
         uploadArchives {
-            snapshotRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter"
-            releaseRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter"
+            snapshotRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter-3"
+            releaseRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter-3"
         }
     }
 }
