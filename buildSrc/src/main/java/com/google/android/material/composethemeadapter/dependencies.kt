@@ -25,10 +25,10 @@ object Libs {
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
-    const val mdc = "com.google.android.material:material:1.5.0-alpha05"
+    const val mdc = "com.google.android.material:material:1.6.0-alpha01"
 
     object Kotlin {
-        const val version = "1.5.31"
+        const val version = "1.6.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.1.0-beta02"
+            const val version = "1.1.0-beta04"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
@@ -60,7 +60,7 @@ object Libs {
 
             const val ui = "androidx.compose.ui:ui:${version}"
             const val material = "androidx.compose.material:material:${version}"
-            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha01"
+            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha02"
 
             const val tooling = "androidx.compose.ui:ui-tooling:${version}"
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
