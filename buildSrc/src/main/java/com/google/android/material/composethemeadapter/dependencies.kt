@@ -17,26 +17,26 @@
 package com.google.android.material.composethemeadapter
 
 object Versions {
-    const val ktlint = "0.40.0"
+    const val ktlint = "0.43.2"
 }
 
 object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.4"
 
-    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
+    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
 
     const val mdc = "com.google.android.material:material:1.6.0-alpha01"
 
     object Kotlin {
-        const val version = "1.6.0"
+        const val version = "1.6.10"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
-        const val binaryCompatibility = "org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0"
+        const val binaryCompatibility = "org.jetbrains.kotlinx:binary-compatibility-validator:0.8.0"
     }
 
     object Dokka {
-        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.6.10"
     }
 
     object AndroidX {
@@ -66,26 +66,26 @@ object Libs {
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
         }
 
-        const val appcompat = "androidx.appcompat:appcompat:1.3.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.4.0"
 
-        const val coreKtx = "androidx.core:core-ktx:1.3.1"
+        const val coreKtx = "androidx.core:core-ktx:1.7.0"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.4.0"
         }
 
         object Test {
-            private const val version = "1.3.0"
+            private const val version = "1.4.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
-            const val ext = "androidx.test.ext:junit:1.1.1"
+            const val ext = "androidx.test.ext:junit:1.1.3"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         }
     }
 
-    const val junit = "junit:junit:4.13"
+    const val junit = "junit:junit:4.13.2"
 
-    const val truth = "com.google.truth:truth:1.0.1"
+    const val truth = "com.google.truth:truth:1.1.3"
 }
