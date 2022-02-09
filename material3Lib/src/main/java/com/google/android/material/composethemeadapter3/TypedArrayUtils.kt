@@ -63,6 +63,7 @@ internal fun textStyleFromTextAppearance(
             R.styleable.ComposeThemeAdapterTextAppearance_fontFamily
         ) ?: a.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
 
+        val fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density)
         TextStyle(
             color = when {
                 setTextColors -> {
@@ -70,10 +71,18 @@ internal fun textStyleFromTextAppearance(
                 }
                 else -> Color.Unspecified
             },
-            fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
+            fontSize = fontSize,
             lineHeight = run {
                 a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density)
                     ?: a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density)
+                    ?: a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_lineSpacingMultiplier, -1f)
+                        .let { lineSpacingMultiplier ->
+                            if (lineSpacingMultiplier != -1f) {
+                                (fontSize * lineSpacingMultiplier).takeIf { lineSpacingMultiplier != -1f }
+                            } else {
+                                null
+                            }
+                        }
                     ?: TextUnit.Unspecified
             },
             fontFamily = when {
