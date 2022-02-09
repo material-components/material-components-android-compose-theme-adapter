@@ -71,6 +71,7 @@
 
         <attr name="lineHeight" />
         <attr name="android:lineHeight" />
+        <attr name="android:lineSpacingMultiplier"/>
 
         <attr name="android:letterSpacing" />
 
