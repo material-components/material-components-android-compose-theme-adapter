@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.2.0-alpha01"
+            const val version = "1.1.0"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
@@ -60,7 +60,7 @@ object Libs {
 
             const val ui = "androidx.compose.ui:ui:${version}"
             const val material = "androidx.compose.material:material:${version}"
-            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha03"
+            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha05"
 
             const val tooling = "androidx.compose.ui:ui-tooling:${version}"
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
