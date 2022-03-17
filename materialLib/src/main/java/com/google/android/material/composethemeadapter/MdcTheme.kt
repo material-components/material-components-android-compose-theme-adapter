@@ -207,6 +207,7 @@ fun createMdcTheme(
                     primaryVariant = primaryVariant,
                     onPrimary = onPrimary,
                     secondary = secondary,
+                    secondaryVariant = secondaryVariant,
                     onSecondary = onSecondary,
                     background = background,
                     onBackground = onBackground,
