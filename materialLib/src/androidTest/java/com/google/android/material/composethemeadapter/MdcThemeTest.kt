@@ -23,7 +23,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -71,15 +70,7 @@ class MdcThemeTest<T : AppCompatActivity>(activityClass: Class<T>) {
 
             assertEquals(colorResource(R.color.dark_golden_rod), color.secondary)
             assertEquals(colorResource(R.color.slate_gray), color.onSecondary)
-
-            // We don't check isSystemInDarkTheme() here since that only checks the system
-            // dark theme setting: https://issuetracker.google.com/163103826
-            if (LocalContext.current.isInDarkTheme()) {
-                // In dark theme secondaryVariant is ignored and always return secondary
-                assertEquals(colorResource(R.color.dark_golden_rod), color.secondaryVariant)
-            } else {
-                assertEquals(colorResource(R.color.blue_violet), color.secondaryVariant)
-            }
+            assertEquals(colorResource(R.color.blue_violet), color.secondaryVariant)
 
             assertEquals(colorResource(R.color.spring_green), color.surface)
             assertEquals(colorResource(R.color.navy), color.onSurface)

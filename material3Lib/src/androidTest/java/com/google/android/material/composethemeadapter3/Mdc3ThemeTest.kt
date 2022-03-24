@@ -71,6 +71,7 @@ class Mdc3ThemeTest {
             Assert.assertEquals(colorResource(R.color.light_coral), colorScheme.onSurface)
             Assert.assertEquals(colorResource(R.color.salmon), colorScheme.surfaceVariant)
             Assert.assertEquals(colorResource(R.color.dark_salmon), colorScheme.onSurfaceVariant)
+            Assert.assertEquals(colorResource(R.color.indian_red), colorScheme.surfaceTint)
             Assert.assertEquals(colorResource(R.color.light_salmon), colorScheme.inverseSurface)
             Assert.assertEquals(colorResource(R.color.orchid), colorScheme.inverseOnSurface)
 

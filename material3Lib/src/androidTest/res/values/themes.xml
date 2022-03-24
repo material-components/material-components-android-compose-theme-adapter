@@ -38,6 +38,7 @@
         <item name="colorOnSurface">@color/light_coral</item>
         <item name="colorSurfaceVariant">@color/salmon</item>
         <item name="colorOnSurfaceVariant">@color/dark_salmon</item>
+        <item name="elevationOverlayColor">@color/indian_red</item>
         <item name="colorSurfaceInverse">@color/light_salmon</item>
         <item name="colorOnSurfaceInverse">@color/orchid</item>
         <item name="colorOutline">@color/violet</item>
