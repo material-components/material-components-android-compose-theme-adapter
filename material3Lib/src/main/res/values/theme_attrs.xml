@@ -39,6 +39,7 @@
         <attr name="colorOnSurface" />
         <attr name="colorSurfaceVariant" />
         <attr name="colorOnSurfaceVariant" />
+        <attr name="elevationOverlayColor" />
         <attr name="colorSurfaceInverse" />
         <attr name="colorOnSurfaceInverse" />
         <attr name="colorOutline" />

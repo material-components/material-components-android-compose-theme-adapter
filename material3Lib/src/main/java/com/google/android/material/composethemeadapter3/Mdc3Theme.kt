@@ -161,6 +161,7 @@ fun createMdc3Theme(
             val onSurface = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnSurface)
             val surfaceVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorSurfaceVariant)
             val onSurfaceVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnSurfaceVariant)
+            val elevationOverlay = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_elevationOverlayColor)
             val surfaceInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorSurfaceInverse)
             val onSurfaceInverse = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnSurfaceInverse)
             val outline = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOutline)
@@ -192,6 +193,7 @@ fun createMdc3Theme(
                     onSurface = onSurface,
                     surfaceVariant = surfaceVariant,
                     onSurfaceVariant = onSurfaceVariant,
+                    surfaceTint = elevationOverlay,
                     inverseSurface = surfaceInverse,
                     inverseOnSurface = onSurfaceInverse,
                     outline = outline,
@@ -221,6 +223,7 @@ fun createMdc3Theme(
                     onSurface = onSurface,
                     surfaceVariant = surfaceVariant,
                     onSurfaceVariant = onSurfaceVariant,
+                    surfaceTint = elevationOverlay,
                     inverseSurface = surfaceInverse,
                     inverseOnSurface = onSurfaceInverse,
                     outline = outline,
