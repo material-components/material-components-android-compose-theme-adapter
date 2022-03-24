@@ -18,16 +18,26 @@ package com.google.android.material.composethemeadapter.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -35,15 +45,26 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ComposeView
@@ -146,6 +167,97 @@ fun Material3ComponentsSample() {
             )
             VerticalSpacer()
 
+            Card(modifier = Modifier.size(width = 180.dp, height = 100.dp)) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "Card")
+                }
+            }
+            VerticalSpacer()
+
+            var checkboxChecked by remember { mutableStateOf(true) }
+            Checkbox(
+                checked = checkboxChecked,
+                onCheckedChange = { checkboxChecked = it }
+            )
+            VerticalSpacer()
+
+            var radioButtonChecked by remember { mutableStateOf(true) }
+            Row(Modifier.selectableGroup()) {
+                RadioButton(
+                    selected = radioButtonChecked,
+                    onClick = { radioButtonChecked = true }
+                )
+                RadioButton(
+                    selected = !radioButtonChecked,
+                    onClick = { radioButtonChecked = false }
+                )
+            }
+            VerticalSpacer()
+
+            var linearProgress by remember { mutableStateOf(0.1f) }
+            val animatedLinearProgress by animateFloatAsState(
+                targetValue = linearProgress,
+                animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                LinearProgressIndicator(progress = animatedLinearProgress)
+                HorizontalSpacer()
+                TextButton(
+                    onClick = {
+                        if (linearProgress < 1f) linearProgress += 0.1f
+                    }
+                ) {
+                    Text("Increase")
+                }
+            }
+            VerticalSpacer()
+
+            var circularProgress by remember { mutableStateOf(0.1f) }
+            val animatedCircularProgress by animateFloatAsState(
+                targetValue = circularProgress,
+                animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(progress = animatedCircularProgress)
+                HorizontalSpacer()
+                TextButton(
+                    onClick = {
+                        if (circularProgress < 1f) circularProgress += 0.1f
+                    }
+                ) {
+                    Text("Increase")
+                }
+            }
+            VerticalSpacer()
+
+            var sliderValue by remember { mutableStateOf(0f) }
+            Column {
+                Text(text = sliderValue.toString())
+                Slider(value = sliderValue, onValueChange = { sliderValue = it })
+            }
+            VerticalSpacer()
+
+            var text by rememberSaveable { mutableStateOf("") }
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                label = { Text("Text field") },
+                singleLine = true
+            )
+            VerticalSpacer()
+
+            var outlinedText by rememberSaveable { mutableStateOf("") }
+            OutlinedTextField(
+                value = outlinedText,
+                onValueChange = { outlinedText = it },
+                label = { Text("Outlined text field") },
+                singleLine = true
+            )
+            VerticalSpacer()
+
             Text(
                 text = "Display Large",
                 style = MaterialTheme.typography.displayLarge
@@ -213,4 +325,9 @@ fun Material3ComponentsSample() {
 @Composable
 private fun VerticalSpacer() {
     Spacer(Modifier.height(8.dp))
+}
+
+@Composable
+private fun HorizontalSpacer() {
+    Spacer(Modifier.width(8.dp))
 }
