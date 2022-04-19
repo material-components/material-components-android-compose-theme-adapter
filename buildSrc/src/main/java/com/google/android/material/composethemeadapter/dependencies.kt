@@ -60,7 +60,7 @@ object Libs {
 
             const val ui = "androidx.compose.ui:ui:${version}"
             const val material = "androidx.compose.material:material:${version}"
-            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha08"
+            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha09"
 
             const val tooling = "androidx.compose.ui:ui-tooling:${version}"
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
