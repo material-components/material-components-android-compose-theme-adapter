@@ -77,10 +77,11 @@ fun MaterialComponentsSample() {
                 title = { Text(text = stringResource(R.string.material_integration)) }
             )
         }
-    ) {
+    ) { padding ->
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
+                .padding(padding)
                 .padding(16.dp)
         ) {
             CircularProgressIndicator()
