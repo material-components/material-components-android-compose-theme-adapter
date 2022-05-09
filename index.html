@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://material-components.github.io/material-components-android-compose-theme-adapter/">
       
       <link rel="icon" href="favicon.ico">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
@@ -520,29 +520,29 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">google</span><span class="o">()</span>
-<span class="o">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">google</span><span class="o">()</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 
-<span class="n">dependencies</span> <span class="o">{</span>
-    <span class="c1">// Compatible with Compose Material, includes MdcTheme</span>
-    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span>
-    <span class="c1">// Compatible with Compose Material 3, includes Mdc3Theme</span>
-    <span class="n">implementation</span> <span class="s2">&quot;com.google.android.material:compose-theme-adapter-3:&lt;version&gt;&quot;</span>
-<span class="o">}</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Compatible with Compose Material, includes MdcTheme</span><span class="w"></span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.google.android.material:compose-theme-adapter:&lt;version&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Compatible with Compose Material 3, includes Mdc3Theme</span><span class="w"></span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.google.android.material:compose-theme-adapter-3:&lt;version&gt;&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </code></pre></div>
 <p>See the <a href="https://github.com/material-components/material-components-android-compose-theme-adapter/releases">releases</a> page for the latest versions.</p>
 <hr />
 <h2 id="compose-material">Compose Material<a class="headerlink" href="#compose-material" title="Permanent link">&para;</a></h2>
 <p><img alt="MDC-Android Compose Theme Adapter header" src="docs/header.png" /></p>
 <p>The basis of Material Design 2 theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors"><code>Colors</code></a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes"><code>Shapes</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
-<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span>
-    <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
-    <span class="n">typography</span> <span class="o">=</span> <span class="n">type</span><span class="p">,</span>
-    <span class="n">shapes</span> <span class="o">=</span> <span class="n">shapes</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// M2 Surface, Scaffold, etc.</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colors</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">typography</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">shapes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shapes</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// M2 Surface, Scaffold, etc.</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><a href="https://github.com/material-components/material-components-android">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.MaterialComponents.DayNight&quot;</span><span class="nt">&gt;</span>
@@ -559,10 +559,10 @@
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
 <p>This library attempts to bridge the gap between <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> M2 XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
-<div class="highlight"><pre><span></span><code><span class="n">MdcTheme</span> <span class="p">{</span>
-    <span class="c1">// MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography</span>
-    <span class="c1">// will now contain copies of the Context&#39;s theme</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">MdcTheme</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// will now contain copies of the Context&#39;s theme</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>This is especially handy when you're migrating an existing app, a <code>Fragment</code> (or other UI container) at a time.</p>
 <div class="admonition caution">
@@ -573,23 +573,23 @@ instead, as it attempts to bridge the gap between <a href="https://developer.and
 </div>
 <h3 id="customizing-the-m2-theme">Customizing the M2 theme<a class="headerlink" href="#customizing-the-m2-theme" title="Permanent link">&para;</a></h3>
 <p>The <code>MdcTheme()</code> function will automatically read the host <code>Context</code>'s MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdcTheme()</code> function:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span>
-<span class="kd">val</span> <span class="nv">layoutDirection</span> <span class="o">=</span> <span class="n">LocalLayoutDirection</span><span class="p">.</span><span class="na">current</span>
-<span class="kd">var</span> <span class="p">(</span><span class="nv">colors</span><span class="p">,</span> <span class="nv">typography</span><span class="p">,</span> <span class="nv">shapes</span><span class="p">)</span> <span class="o">=</span> <span class="n">createMdcTheme</span><span class="p">(</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="p">,</span>
-    <span class="n">layoutDirection</span> <span class="o">=</span> <span class="n">layoutDirection</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">layoutDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalLayoutDirection</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span><span class="nv">colors</span><span class="p">,</span><span class="w"> </span><span class="nv">typography</span><span class="p">,</span><span class="w"> </span><span class="nv">shapes</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createMdcTheme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">layoutDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layoutDirection</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="c1">// Modify colors, typography or shapes as required.</span>
-<span class="c1">// Then pass them through to MaterialTheme...</span>
+<span class="c1">// Modify colors, typography or shapes as required.</span><span class="w"></span>
+<span class="c1">// Then pass them through to MaterialTheme...</span><span class="w"></span>
 
-<span class="n">MaterialTheme</span><span class="p">(</span>
-    <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
-    <span class="n">typography</span> <span class="o">=</span> <span class="n">type</span><span class="p">,</span>
-    <span class="n">shapes</span> <span class="o">=</span> <span class="n">shapes</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Rest of M2 layout</span>
-<span class="p">}</span>
+<span class="n">MaterialTheme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colors</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">typography</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">shapes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shapes</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Rest of M2 layout</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>There are some known limitations with the implementation at the moment:</p>
@@ -603,12 +603,12 @@ instead, as it attempts to bridge the gap between <a href="https://developer.and
 <h2 id="compose-material-3">Compose Material 3<a class="headerlink" href="#compose-material-3" title="Permanent link">&para;</a></h2>
 <p><img alt="MDC-Android Compose Theme Adapter header" src="docs/m3header.png" /></p>
 <p>The basis of Material Design 3 theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> is the <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> composable, where you provide <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme"><code>ColorScheme</code></a> and <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/Typography"><code>Typography</code></a> instances containing your styling parameters:</p>
-<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span>
-    <span class="n">colorScheme</span> <span class="o">=</span> <span class="n">colorScheme</span><span class="p">,</span>
-    <span class="n">typography</span> <span class="o">=</span> <span class="n">typography</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// M3 Surface, Scaffold, etc.</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">MaterialTheme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colorScheme</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">typography</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">typography</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// M3 Surface, Scaffold, etc.</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><a href="https://github.com/material-components/material-components-android">Material Components for Android</a> themes allow for similar theming for views via XML theme attributes, like so:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;Theme.MyApp&quot;</span> <span class="na">parent=</span><span class="s">&quot;Theme.Material3.DayNight&quot;</span><span class="nt">&gt;</span>
@@ -623,28 +623,28 @@ instead, as it attempts to bridge the gap between <a href="https://developer.and
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div>
 <p>This library attempts to bridge the gap between <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> M3 XML themes, and themes in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, allowing your composable <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> to be based on the <code>Activity</code>'s XML theme:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Mdc3Theme</span> <span class="p">{</span>
-    <span class="c1">// MaterialTheme.colorScheme, MaterialTheme.typography</span>
-    <span class="c1">// will now contain copies of the Context&#39;s theme</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">Mdc3Theme</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// MaterialTheme.colorScheme, MaterialTheme.typography</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// will now contain copies of the Context&#39;s theme</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>This is especially handy when you're migrating an existing app, a <code>Fragment</code> (or other UI container) at a time.</p>
 <h3 id="customizing-the-m3-theme">Customizing the M3 theme<a class="headerlink" href="#customizing-the-m3-theme" title="Permanent link">&para;</a></h3>
 <p>The <code>Mdc3Theme()</code> function will automatically read the host <code>Context</code>'s MDC theme and pass them to <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme"><code>MaterialTheme</code></a> on your behalf, but if you want to customize the generated values, you can do so via the <code>createMdc3Theme()</code> function:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span>
-<span class="kd">var</span> <span class="p">(</span><span class="nv">colorScheme</span><span class="p">,</span> <span class="nv">typography</span><span class="p">)</span> <span class="o">=</span> <span class="n">createMdc3Theme</span><span class="p">(</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="n">context</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span><span class="nv">colorScheme</span><span class="p">,</span><span class="w"> </span><span class="nv">typography</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createMdc3Theme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="c1">// Modify colorScheme or typography as required.</span>
-<span class="c1">// Then pass them through to MaterialTheme...</span>
+<span class="c1">// Modify colorScheme or typography as required.</span><span class="w"></span>
+<span class="c1">// Then pass them through to MaterialTheme...</span><span class="w"></span>
 
-<span class="n">MaterialTheme</span><span class="p">(</span>
-    <span class="n">colorScheme</span> <span class="o">=</span> <span class="n">colorScheme</span><span class="p">,</span>
-    <span class="n">typography</span> <span class="o">=</span> <span class="n">typography</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Rest of M3 layout</span>
-<span class="p">}</span>
+<span class="n">MaterialTheme</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colorScheme</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">typography</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">typography</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Rest of M3 layout</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="limitations_1">Limitations<a class="headerlink" href="#limitations_1" title="Permanent link">&para;</a></h3>
 <p>There are some known limitations with the implementation at the moment:</p>
@@ -729,7 +729,7 @@ limitations under the License.
     <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
     
   </body>
