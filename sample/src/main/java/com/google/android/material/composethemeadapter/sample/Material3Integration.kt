@@ -112,10 +112,11 @@ fun Material3ComponentsSample() {
                 scrollBehavior = scrollBehavior
             )
         }
-    ) {
+    ) { padding ->
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
+                .padding(padding)
                 .padding(16.dp)
         ) {
             Button(onClick = {}) {

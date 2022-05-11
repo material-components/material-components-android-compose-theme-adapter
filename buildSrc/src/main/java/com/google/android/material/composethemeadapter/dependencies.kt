@@ -28,7 +28,7 @@ object Libs {
     const val mdc = "com.google.android.material:material:1.5.0"
 
     object Kotlin {
-        const val version = "1.6.10"
+        const val version = "1.6.21"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -41,7 +41,7 @@ object Libs {
 
     object AndroidX {
         object Compose {
-            const val snapshot = ""
+            const val snapshot = "8517482"
 
             @JvmStatic
             val snapshotUrl: String
@@ -52,7 +52,7 @@ object Libs {
                     else -> throw IllegalArgumentException("Snapshot version not set")
                 }
 
-            const val version = "1.1.1"
+            const val version = "1.2.0-SNAPSHOT"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
@@ -60,7 +60,7 @@ object Libs {
 
             const val ui = "androidx.compose.ui:ui:${version}"
             const val material = "androidx.compose.material:material:${version}"
-            const val material3 = "androidx.compose.material3:material3:1.0.0-alpha10"
+            const val material3 = "androidx.compose.material3:material3:1.0.0-SNAPSHOT"
 
             const val tooling = "androidx.compose.ui:ui-tooling:${version}"
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
