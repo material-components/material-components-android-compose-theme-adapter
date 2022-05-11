@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter3
+package com.google.android.material.composethemeadapter.test
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.res.Configuration
 
-class NotMdc3Activity : AppCompatActivity()
+/**
+ * This allows us to check whether this [Context]s resource configuration is in 'night mode',
+ * which is also known as dark theme.
+ */
+fun Context.isInDarkTheme(): Boolean {
+    return resources.configuration.uiMode and
+        Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+}

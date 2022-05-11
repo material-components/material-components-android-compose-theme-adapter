@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter.test
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
 /**
- * An [AppCompatActivity] which forces the night mode to 'light theme'.
+ * An [AppCompatActivity] which forces the night mode to 'dark theme'.
  */
-class LightMdcActivity : AppCompatActivity() {
+class DarkMdcActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
-        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         super.attachBaseContext(newBase)
     }
 }

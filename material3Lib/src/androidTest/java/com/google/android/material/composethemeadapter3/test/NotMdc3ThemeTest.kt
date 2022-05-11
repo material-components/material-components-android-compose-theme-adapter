@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 The Android Open Source Project
+ * Copyright 2021 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter3.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.filters.MediumTest
+import com.google.android.material.composethemeadapter3.Mdc3Theme
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,13 +26,13 @@ import org.junit.runners.JUnit4
 
 @MediumTest
 @RunWith(JUnit4::class)
-class NotMdcThemeTest {
+class NotMdc3ThemeTest {
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<NotMdcActivity>()
+    val composeTestRule = createAndroidComposeRule<NotMdc3Activity>()
 
     @Test(expected = IllegalArgumentException::class)
-    fun throwForNonMdcTheme() = composeTestRule.setContent {
-        MdcTheme {
+    fun throwForNonMdc3Theme() = composeTestRule.setContent {
+        Mdc3Theme {
             // Nothing to do here, exception should be thrown
         }
     }

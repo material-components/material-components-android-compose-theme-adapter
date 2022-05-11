@@ -15,7 +15,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.material.composethemeadapter">
+    package="com.google.android.material.composethemeadapter.test">
 
     <uses-sdk android:targetSdkVersion="29" />
 

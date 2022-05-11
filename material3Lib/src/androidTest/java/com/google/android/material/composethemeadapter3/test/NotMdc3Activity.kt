@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter3.test
 
 import androidx.appcompat.app.AppCompatActivity
 
-class DefaultFontFamilyMdcActivity : AppCompatActivity()
+class NotMdc3Activity : AppCompatActivity()

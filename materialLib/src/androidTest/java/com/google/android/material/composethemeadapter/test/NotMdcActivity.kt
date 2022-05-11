@@ -14,16 +14,8 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter.test
 
-import android.content.Context
-import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatActivity
 
-/**
- * This allows us to check whether this [Context]s resource configuration is in 'night mode',
- * which is also known as dark theme.
- */
-fun Context.isInDarkTheme(): Boolean {
-    return resources.configuration.uiMode and
-        Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-}
+class NotMdcActivity : AppCompatActivity()

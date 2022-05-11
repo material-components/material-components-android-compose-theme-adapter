@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter.test
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.shape.CornerSize
@@ -37,7 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.filters.MediumTest
-import com.google.android.material.composethemeadapter.test.R
+import com.google.android.material.composethemeadapter.FontFamilyWithWeight
+import com.google.android.material.composethemeadapter.MdcTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull

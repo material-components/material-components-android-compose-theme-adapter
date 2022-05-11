@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter3
+package com.google.android.material.composethemeadapter3.test
 
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -30,7 +30,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.filters.MediumTest
-import com.google.android.material.composethemeadapter3.test.R
+import com.google.android.material.composethemeadapter3.FontFamilyWithWeight
+import com.google.android.material.composethemeadapter3.Mdc3Theme
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test

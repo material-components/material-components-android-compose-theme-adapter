@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter
+package com.google.android.material.composethemeadapter.test
 
 import android.view.ContextThemeWrapper
 import androidx.annotation.StyleRes
@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.test.filters.MediumTest
 import androidx.test.filters.SdkSuppress
-import com.google.android.material.composethemeadapter.test.R
+import com.google.android.material.composethemeadapter.MdcTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Rule
