@@ -25,7 +25,7 @@ object Libs {
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
-    const val mdc = "com.google.android.material:material:1.5.0"
+    const val mdc = "com.google.android.material:material:1.6.0"
 
     object Kotlin {
         const val version = "1.6.21"
@@ -68,20 +68,20 @@ object Libs {
 
         const val appcompat = "androidx.appcompat:appcompat:1.4.1"
 
-        const val coreKtx = "androidx.core:core-ktx:1.7.0"
+        const val coreKtx = "androidx.core:core-ktx:1.8.0-rc02"
 
         object Activity {
-            const val activityCompose = "androidx.activity:activity-compose:1.4.0"
+            const val activityCompose = "androidx.activity:activity-compose:1.5.0-rc01"
         }
 
         object Test {
-            private const val version = "1.3.0"
+            private const val version = "1.4.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
-            const val ext = "androidx.test.ext:junit:1.1.1"
+            const val ext = "androidx.test.ext:junit:1.1.3"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         }
     }
 

@@ -79,7 +79,7 @@ class Material3IntegrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DynamicColors.applyIfAvailable(this)
+        DynamicColors.applyToActivityIfAvailable(this)
 
         val contentView = ComposeView(this)
         setContentView(contentView)
