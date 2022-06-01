@@ -52,6 +52,8 @@ import java.lang.reflect.Method
  * If `false`, the current value of [MaterialTheme.colorScheme] is preserved.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
  * If `false`, the current value of [MaterialTheme.typography] is preserved.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
+ * If `false`, the current value of [MaterialTheme.shapes] is preserved.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
@@ -123,14 +125,20 @@ data class Theme3Parameters(
  * [androidx.compose.material.ContentAlpha] through [androidx.compose.material.LocalContentAlpha].
  * You can customize this through the [setTextColors] parameter.
  *
+ * For [Shapes], the [layoutDirection] is taken into account when reading corner sizes of
+ * `ShapeAppearance`s from the theme. For example, [Shapes.medium.topStart] will be read from
+ * `cornerSizeTopLeft` for [LayoutDirection.Ltr] and `cornerSizeTopRight` for [LayoutDirection.Rtl].
+ *
  * The individual components of the returned [Theme3Parameters] may be `null`, depending on the
  * matching 'read' parameter. For example, if you set [readColorScheme] to `false`,
  * [Theme3Parameters.colors] will be null.
  *
  * @param context The context to read the theme from.
+ * @param layoutDirection The layout direction to be used when reading shapes.
  * @param density The current density.
  * @param readColorScheme whether the read the MDC color palette from the [context]'s theme.
  * @param readTypography whether the read the MDC text appearances from [context]'s theme.
+ * @param readShapes whether the read the MDC shape appearances from the [context]'s theme.
  * @param setTextColors whether to read the colors from the `TextAppearance`s associated from the
  * theme. Defaults to `false`.
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
