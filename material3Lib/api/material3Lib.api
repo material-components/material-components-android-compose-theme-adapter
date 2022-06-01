@@ -13,20 +13,22 @@ public final class com/google/android/material/composethemeadapter3/FontFamilyWi
 }
 
 public final class com/google/android/material/composethemeadapter3/Mdc3Theme {
-	public static final fun Mdc3Theme (Landroid/content/Context;ZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
-	public static final fun createMdc3Theme (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZ)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
-	public static synthetic fun createMdc3Theme$default (Landroid/content/Context;Landroidx/compose/ui/unit/Density;ZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
+	public static final fun Mdc3Theme (Landroid/content/Context;ZZZZZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun createMdc3Theme (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZ)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
+	public static synthetic fun createMdc3Theme$default (Landroid/content/Context;Landroidx/compose/ui/unit/LayoutDirection;Landroidx/compose/ui/unit/Density;ZZZZZILjava/lang/Object;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
 }
 
 public final class com/google/android/material/composethemeadapter3/Theme3Parameters {
 	public static final field $stable I
-	public fun <init> (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;)V
+	public fun <init> (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;)V
 	public final fun component1 ()Landroidx/compose/material3/ColorScheme;
 	public final fun component2 ()Landroidx/compose/material3/Typography;
-	public final fun copy (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
-	public static synthetic fun copy$default (Lcom/google/android/material/composethemeadapter3/Theme3Parameters;Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;ILjava/lang/Object;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
+	public final fun component3 ()Landroidx/compose/material3/Shapes;
+	public final fun copy (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
+	public static synthetic fun copy$default (Lcom/google/android/material/composethemeadapter3/Theme3Parameters;Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/Typography;Landroidx/compose/material3/Shapes;ILjava/lang/Object;)Lcom/google/android/material/composethemeadapter3/Theme3Parameters;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getColorScheme ()Landroidx/compose/material3/ColorScheme;
+	public final fun getShapes ()Landroidx/compose/material3/Shapes;
 	public final fun getTypography ()Landroidx/compose/material3/Typography;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -35,10 +37,12 @@ public final class com/google/android/material/composethemeadapter3/Theme3Parame
 public final class com/google/android/material/composethemeadapter3/TypedArrayUtilsKt {
 	public static final fun getComposeColor-mxwnekA (Landroid/content/res/TypedArray;IJ)J
 	public static synthetic fun getComposeColor-mxwnekA$default (Landroid/content/res/TypedArray;IJILjava/lang/Object;)J
+	public static final fun getCornerSizeOrNull (Landroid/content/res/TypedArray;I)Landroidx/compose/foundation/shape/CornerSize;
 	public static final fun getFontFamilyOrNull (Landroid/content/res/TypedArray;I)Lcom/google/android/material/composethemeadapter3/FontFamilyWithWeight;
 	public static final fun getTextUnit-lGoEivg (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;J)J
 	public static synthetic fun getTextUnit-lGoEivg$default (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;JILjava/lang/Object;)J
 	public static final fun getTextUnitOrNull (Landroid/content/res/TypedArray;ILandroidx/compose/ui/unit/Density;)Landroidx/compose/ui/unit/TextUnit;
+	public static final fun parseShapeAppearance (Landroid/content/Context;ILandroidx/compose/foundation/shape/CornerBasedShape;Landroidx/compose/ui/unit/LayoutDirection;)Landroidx/compose/foundation/shape/CornerBasedShape;
 	public static final fun textStyleFromTextAppearance (Landroid/content/Context;Landroidx/compose/ui/unit/Density;IZLandroidx/compose/ui/text/font/FontFamily;)Landroidx/compose/ui/text/TextStyle;
 }
 
