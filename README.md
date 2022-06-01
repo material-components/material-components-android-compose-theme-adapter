@@ -34,7 +34,7 @@ See the [releases](https://github.com/material-components/material-components-an
 
 ![MDC-Android Compose Theme Adapter header](docs/header.png)
 
-The basis of Material Design 2 theming in [Jetpack Compose][compose] is the [`MaterialTheme`][materialtheme] composable, where you provide [`Colors`][colors], [`Shapes`][shapes] and [`Typography`][typography] instances containing your styling parameters:
+The basis of Material Design 2 theming in [Jetpack Compose][compose] is the [`MaterialTheme`][materialtheme] composable, where you provide [`Colors`][colors], [`Typography`][typography] and [`Shapes`][shapes] instances containing your styling parameters:
 
 ``` kotlin
 MaterialTheme(
@@ -68,7 +68,7 @@ This library attempts to bridge the gap between [Material Components for Android
 
 ``` kotlin
 MdcTheme {
-    // MaterialTheme.colors, MaterialTheme.shapes, MaterialTheme.typography
+    // MaterialTheme.colors, MaterialTheme.typography, MaterialTheme.shapes
     // will now contain copies of the Context's theme
 }
 ```
@@ -76,7 +76,7 @@ MdcTheme {
 This is especially handy when you're migrating an existing app, a `Fragment` (or other UI container) at a time.
 
 !!! caution
-    If you are using an AppCompat (i.e. non-MDC) theme in your app, you should use the
+    If you are using an AppCompat (i.e. non-MDC) theme in your app, you should use
     [AppCompat Compose Theme Adapter](https://github.com/google/accompanist/tree/main/appcompat-theme)
     instead, as it attempts to bridge the gap between [AppCompat][appcompat] XML themes, and M2 themes in [Jetpack Compose][compose].
 
@@ -118,12 +118,13 @@ There are some known limitations with the implementation at the moment:
 
 ![MDC-Android Compose Theme Adapter header](docs/m3header.png)
 
-The basis of Material Design 3 theming in [Jetpack Compose][compose] is the [`MaterialTheme`][m3materialtheme] composable, where you provide [`ColorScheme`][m3colorscheme] and [`Typography`][m3typography] instances containing your styling parameters:
+The basis of Material Design 3 theming in [Jetpack Compose][compose] is the [`MaterialTheme`][m3materialtheme] composable, where you provide [`ColorScheme`][m3colorscheme], [`Typography`][m3typography] and [`Shapes`][m3shapes] instances containing your styling parameters:
 
 ``` kotlin
 MaterialTheme(
     colorScheme = colorScheme,
-    typography = typography
+    typography = typography,
+    shapes = shapes
 ) {
     // M3 Surface, Scaffold, etc.
 }
@@ -141,6 +142,9 @@ MaterialTheme(
     <!-- Material 3 type attributes-->
     <item name="textAppearanceBodyLarge">@style/TextAppearance.MyApp.BodyLarge</item>
     <item name="textAppearanceBodyMedium">@style/TextAppearance.MyApp.BodyMedium</item>
+    
+    <!-- Material 3 shape attributes-->
+    <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.MyApp.CornerSmall</item>
 </style>
 ```
 
@@ -149,7 +153,7 @@ This library attempts to bridge the gap between [Material Components for Android
 
 ``` kotlin
 Mdc3Theme {
-    // MaterialTheme.colorScheme, MaterialTheme.typography
+    // MaterialTheme.colorScheme, MaterialTheme.typography, MaterialTheme.shapes
     // will now contain copies of the Context's theme
 }
 ```
@@ -162,16 +166,17 @@ The `Mdc3Theme()` function will automatically read the host `Context`'s MDC them
 
 ``` kotlin
 val context = LocalContext.current
-var (colorScheme, typography) = createMdc3Theme(
+var (colorScheme, typography, shapes) = createMdc3Theme(
     context = context
 )
 
-// Modify colorScheme or typography as required.
+// Modify colorScheme, typography or shapes as required.
 // Then pass them through to MaterialTheme...
 
 MaterialTheme(
     colorScheme = colorScheme,
-    typography = typography
+    typography = typography,
+    shapes = shapes
 ) {
     // Rest of M3 layout
 }
@@ -184,6 +189,7 @@ There are some known limitations with the implementation at the moment:
 * This relies on your `Activity`/`Context` theme extending one of the `Theme.Material3` themes.
 * Text colors are not read from the text appearances by default. You can enable it via the `setTextColors` function parameter.
 * Variable fonts are not supported in Compose yet, meaning that the value of `android:fontVariationSettings` are currently ignored.
+* MDC `ShapeAppearances` allow setting of different corner families (cut, rounded) on each corner, whereas Compose's [Shapes][m3shapes] allows only a single corner family for the entire shape. Therefore only the `app:cornerFamily` attribute is read, others (`app:cornerFamilyTopLeft`, etc) are ignored.
 * You can modify the resulting `MaterialTheme` in Compose as required, but this _only_ works in Compose. Any changes you make will not be reflected in the `Activity` theme.
 
 ---
@@ -226,4 +232,5 @@ limitations under the License.
  [shapes]: https://developer.android.com/reference/kotlin/androidx/compose/material/Shapes
  [m3materialtheme]: https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialTheme
  [m3colorscheme]: https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme
+ [m3shapes]: https://developer.android.com/reference/kotlin/androidx/compose/material3/Shapes
  [m3typography]: https://developer.android.com/reference/kotlin/androidx/compose/material3/Typography
