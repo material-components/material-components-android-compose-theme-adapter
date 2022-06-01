@@ -25,6 +25,10 @@ import android.os.Build
 import android.util.TypedValue
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
+import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
@@ -35,7 +39,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.core.content.res.FontResourcesParserCompat
@@ -125,6 +131,60 @@ internal fun textStyleFromTextAppearance(
                 else -> 0.em
             }
         )
+    }
+}
+
+internal fun parseShapeAppearance(
+    context: Context,
+    @StyleRes id: Int,
+    fallbackShape: CornerBasedShape,
+    layoutDirection: LayoutDirection
+): CornerBasedShape {
+    return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
+        val defaultCornerSize = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
+        )
+        val cornerSizeTL = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
+        )
+        val cornerSizeTR = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopRight
+        )
+        val cornerSizeBL = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomLeft
+        )
+        val cornerSizeBR = a.getCornerSizeOrNull(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
+        )
+        val isRtl = layoutDirection == LayoutDirection.Rtl
+        val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
+        val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
+        val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
+        val cornerSizeBE = if (isRtl) cornerSizeBL else cornerSizeBR
+
+        /**
+         * We do not support the individual `cornerFamilyTopLeft`, etc, since Compose only supports
+         * one corner type per shape. Therefore we only read the `cornerFamily` attribute.
+         */
+        when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
+            0 -> {
+                RoundedCornerShape(
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
+                )
+            }
+            1 -> {
+                CutCornerShape(
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
+                )
+            }
+            else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
+        }
     }
 }
 
@@ -253,6 +313,32 @@ internal fun TypedArray.getTextUnitOrNull(
             // For another other types, we let the TypedArray flatten to a px value, and
             // we convert it to an Sp based on the current density
             else -> with(density) { getDimension(index, 0f).toSp() }
+        }
+    }
+    return null
+}
+
+/**
+ * Returns the given index as a [CornerSize], or `null` if the value can not be coerced
+ * to a [CornerSize].
+ *
+ * @param index index of attribute to retrieve.
+ */
+internal fun TypedArray.getCornerSizeOrNull(index: Int): CornerSize? {
+    val tv = tempTypedValue.getOrSet { TypedValue() }
+    if (getValue(index, tv)) {
+        return when (tv.type) {
+            TypedValue.TYPE_DIMENSION -> {
+                when (tv.complexUnitCompat) {
+                    // For DIP and PX values, we convert the value to the equivalent
+                    TypedValue.COMPLEX_UNIT_DIP -> CornerSize(TypedValue.complexToFloat(tv.data).dp)
+                    TypedValue.COMPLEX_UNIT_PX -> CornerSize(TypedValue.complexToFloat(tv.data))
+                    // For another other dim types, we let the TypedArray flatten to a px value
+                    else -> CornerSize(getDimensionPixelSize(index, 0))
+                }
+            }
+            TypedValue.TYPE_FRACTION -> CornerSize(tv.getFraction(1f, 1f))
+            else -> null
         }
     }
     return null

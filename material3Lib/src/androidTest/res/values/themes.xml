@@ -63,6 +63,13 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.Mdc3ThemeTest.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.Mdc3ThemeTest.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TextAppearance.Mdc3ThemeTest.LabelSmall</item>
+
+        <!-- Shape Appearances -->
+        <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.Mdc3ThemeTest.RoundedDifferentSizes</item>
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Mdc3ThemeTest.CutDifferentSizes</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Mdc3ThemeTest.RoundedSameSize</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Mdc3ThemeTest.CutNoSize</item>
+        <item name="shapeAppearanceCornerExtraLarge">@style/ShapeAppearance.Mdc3ThemeTest.RoundedNoSize</item>
     </style>
 
     <style name="Theme.Mdc3ThemeTest.NotMdc3" parent="Theme.MaterialComponents.DayNight" />

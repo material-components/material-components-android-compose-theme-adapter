@@ -16,8 +16,12 @@
 
 package com.google.android.material.composethemeadapter3.test
 
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -26,7 +30,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.filters.MediumTest
@@ -85,6 +91,50 @@ class Mdc3ThemeTest {
 
             // Mdc3Theme updates the LocalContentColor to match the calculated onBackground
             Assert.assertEquals(colorResource(R.color.navy), LocalContentColor.current)
+        }
+    }
+
+    @Test
+    fun shapes() = composeTestRule.setContent {
+        Mdc3Theme {
+            val shapes = MaterialTheme.shapes
+            val density = LocalDensity.current
+
+            shapes.extraSmall.run {
+                Assert.assertTrue(this is RoundedCornerShape)
+                Assert.assertEquals(4f, topStart.toPx(density))
+                Assert.assertEquals(9.dp.scaleToPx(density), topEnd.toPx(density))
+                Assert.assertEquals(5f, bottomEnd.toPx(density))
+                Assert.assertEquals(3.dp.scaleToPx(density), bottomStart.toPx(density))
+            }
+            shapes.small.run {
+                Assert.assertTrue(this is CutCornerShape)
+                Assert.assertEquals(4f, topStart.toPx(density))
+                Assert.assertEquals(9.dp.scaleToPx(density), topEnd.toPx(density))
+                Assert.assertEquals(5f, bottomEnd.toPx(density))
+                Assert.assertEquals(3.dp.scaleToPx(density), bottomStart.toPx(density))
+            }
+            shapes.medium.run {
+                Assert.assertTrue(this is RoundedCornerShape)
+                Assert.assertEquals(12.dp.scaleToPx(density), topStart.toPx(density))
+                Assert.assertEquals(12.dp.scaleToPx(density), topEnd.toPx(density))
+                Assert.assertEquals(12.dp.scaleToPx(density), bottomEnd.toPx(density))
+                Assert.assertEquals(12.dp.scaleToPx(density), bottomStart.toPx(density))
+            }
+            shapes.large.run {
+                Assert.assertTrue(this is CutCornerShape)
+                Assert.assertEquals(16.dp.scaleToPx(density), topStart.toPx(density))
+                Assert.assertEquals(16.dp.scaleToPx(density), topEnd.toPx(density))
+                Assert.assertEquals(16.dp.scaleToPx(density), bottomEnd.toPx(density))
+                Assert.assertEquals(16.dp.scaleToPx(density), bottomStart.toPx(density))
+            }
+            shapes.extraLarge.run {
+                Assert.assertTrue(this is RoundedCornerShape)
+                Assert.assertEquals(28.dp.scaleToPx(density), topStart.toPx(density))
+                Assert.assertEquals(28.dp.scaleToPx(density), topEnd.toPx(density))
+                Assert.assertEquals(28.dp.scaleToPx(density), bottomEnd.toPx(density))
+                Assert.assertEquals(28.dp.scaleToPx(density), bottomStart.toPx(density))
+            }
         }
     }
 
@@ -190,6 +240,11 @@ class Mdc3ThemeTest {
     }
 }
 
+private fun Dp.scaleToPx(density: Density): Float {
+    val dp = this
+    return with(density) { dp.toPx() }
+}
+
 private fun assertTextUnitEquals(expected: TextUnit, actual: TextUnit, density: Density) {
     if (expected.javaClass == actual.javaClass) {
         // If the expected and actual are the same type, compare the raw values with a
@@ -201,3 +256,5 @@ private fun assertTextUnitEquals(expected: TextUnit, actual: TextUnit, density: 
         with(density) { Assert.assertEquals(expected.toPx(), actual.toPx(), 0.001f) }
     }
 }
+
+private fun CornerSize.toPx(density: Density) = toPx(Size.Unspecified, density)

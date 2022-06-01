@@ -22,6 +22,7 @@ import android.content.res.Resources
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -29,8 +30,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
 import java.lang.reflect.Method
@@ -59,6 +62,7 @@ fun Mdc3Theme(
     context: Context = LocalContext.current,
     readColorScheme: Boolean = true,
     readTypography: Boolean = true,
+    readShapes: Boolean = true,
     setTextColors: Boolean = false,
     setDefaultFontFamily: Boolean = false,
     content: @Composable () -> Unit
@@ -72,11 +76,15 @@ fun Mdc3Theme(
     // (via `applyStyle()`, `rebase()`, `setTo()`), but the majority of apps do not use those.
     val key = context.theme.key ?: context.theme
 
+    val layoutDirection = LocalLayoutDirection.current
+
     val themeParams = remember(key) {
         createMdc3Theme(
             context = context,
+            layoutDirection = layoutDirection,
             readColorScheme = readColorScheme,
             readTypography = readTypography,
+            readShapes = readShapes,
             setTextColors = setTextColors,
             setDefaultFontFamily = setDefaultFontFamily
         )
@@ -85,6 +93,7 @@ fun Mdc3Theme(
     MaterialTheme(
         colorScheme = themeParams.colorScheme ?: MaterialTheme.colorScheme,
         typography = themeParams.typography ?: MaterialTheme.typography,
+        shapes = themeParams.shapes ?: MaterialTheme.shapes
     ) {
         // We update the LocalContentColor to match our onBackground. This allows the default
         // content color to be more appropriate to the theme background
@@ -101,7 +110,8 @@ fun Mdc3Theme(
  */
 data class Theme3Parameters(
     val colorScheme: ColorScheme?,
-    val typography: Typography?
+    val typography: Typography?,
+    val shapes: Shapes?
 )
 
 /**
@@ -129,9 +139,11 @@ data class Theme3Parameters(
  */
 fun createMdc3Theme(
     context: Context,
+    layoutDirection: LayoutDirection,
     density: Density = Density(context),
     readColorScheme: Boolean = true,
     readTypography: Boolean = true,
+    readShapes: Boolean = true,
     setTextColors: Boolean = false,
     setDefaultFontFamily: Boolean = false
 ): Theme3Parameters {
@@ -361,9 +373,49 @@ fun createMdc3Theme(
             )
         } else null
 
-        Theme3Parameters(colorScheme, typography)
+        /**
+         * Now read the shape appearances, taking into account the layout direction.
+         */
+        val shapes = if (readShapes) {
+            Shapes(
+                extraSmall = parseShapeAppearance(
+                    context = context,
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceCornerExtraSmall),
+                    fallbackShape = emptyShapes.extraSmall,
+                    layoutDirection = layoutDirection
+                ),
+                small = parseShapeAppearance(
+                    context = context,
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceCornerSmall),
+                    fallbackShape = emptyShapes.small,
+                    layoutDirection = layoutDirection
+                ),
+                medium = parseShapeAppearance(
+                    context = context,
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceCornerMedium),
+                    fallbackShape = emptyShapes.medium,
+                    layoutDirection = layoutDirection
+                ),
+                large = parseShapeAppearance(
+                    context = context,
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceCornerLarge),
+                    fallbackShape = emptyShapes.large,
+                    layoutDirection = layoutDirection
+                ),
+                extraLarge = parseShapeAppearance(
+                    context = context,
+                    id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterTheme_shapeAppearanceCornerExtraLarge),
+                    fallbackShape = emptyShapes.extraLarge,
+                    layoutDirection = layoutDirection
+                )
+            )
+        } else null
+
+        Theme3Parameters(colorScheme, typography, shapes)
     }
 }
+
+private val emptyShapes = Shapes()
 
 /**
  * This is gross, but we need a way to check for theme equality. Theme does not implement
