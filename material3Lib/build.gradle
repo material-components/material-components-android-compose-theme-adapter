@@ -63,6 +63,7 @@ dependencies {
     api Libs.AndroidX.appcompat
     implementation Libs.AndroidX.coreKtx
     implementation Libs.AndroidX.Compose.runtime
+    implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material3
 
     implementation Libs.mdc
