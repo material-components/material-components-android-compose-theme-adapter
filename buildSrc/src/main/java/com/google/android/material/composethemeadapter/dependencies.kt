@@ -28,7 +28,7 @@ object Libs {
     const val mdc = "com.google.android.material:material:1.7.0-alpha02"
 
     object Kotlin {
-        const val version = "1.6.21"
+        const val version = "1.7.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -53,6 +53,7 @@ object Libs {
                 }
 
             const val version = "1.2.0-rc03"
+            const val compilerVersion = "1.2.0"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
