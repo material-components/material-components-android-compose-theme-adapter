@@ -62,6 +62,10 @@ allprojects {
             maven { url Libs.AndroidX.Compose.snapshotUrl }
         }
     }
+    // BUG: https://issuetracker.google.com/issues/240473335
+    configurations.all {
+        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+    }
 }
 
 subprojects {
