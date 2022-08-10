@@ -65,7 +65,7 @@ dependencies {
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.material
 
-    implementation Libs.mdc
+    implementation 'com.google.android.material:material:1.6.1'
 
     implementation Libs.Kotlin.stdlib
 

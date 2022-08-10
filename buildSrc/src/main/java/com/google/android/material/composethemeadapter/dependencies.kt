@@ -25,8 +25,6 @@ object Libs {
 
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
-    const val mdc = "com.google.android.material:material:1.7.0-alpha03"
-
     object Kotlin {
         const val version = "1.7.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
