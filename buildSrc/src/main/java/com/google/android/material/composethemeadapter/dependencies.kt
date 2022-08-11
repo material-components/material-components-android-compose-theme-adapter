@@ -51,7 +51,7 @@ object Libs {
                 }
 
             const val version = "1.2.0"
-            const val compilerVersion = "1.2.0"
+            const val compilerVersion = "1.3.0"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
