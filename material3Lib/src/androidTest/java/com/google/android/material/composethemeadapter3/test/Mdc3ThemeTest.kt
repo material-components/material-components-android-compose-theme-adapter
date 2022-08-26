@@ -83,11 +83,14 @@ class Mdc3ThemeTest {
             Assert.assertEquals(colorResource(R.color.orchid), colorScheme.inverseOnSurface)
 
             Assert.assertEquals(colorResource(R.color.violet), colorScheme.outline)
+            // TODO: MDC-Android doesn't include outlineVariant yet, add when available
 
             Assert.assertEquals(colorResource(R.color.beige), colorScheme.error)
             Assert.assertEquals(colorResource(R.color.white_smoke), colorScheme.onError)
             Assert.assertEquals(colorResource(R.color.olive), colorScheme.errorContainer)
             Assert.assertEquals(colorResource(R.color.olive_drab), colorScheme.onErrorContainer)
+
+            Assert.assertEquals(colorResource(R.color.crimson), colorScheme.scrim)
 
             // Mdc3Theme updates the LocalContentColor to match the calculated onBackground
             Assert.assertEquals(colorResource(R.color.navy), LocalContentColor.current)

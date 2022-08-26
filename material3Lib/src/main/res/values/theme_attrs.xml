@@ -47,6 +47,7 @@
         <attr name="colorOnError" />
         <attr name="colorErrorContainer" />
         <attr name="colorOnErrorContainer" />
+        <attr name="scrimBackground" />
 
         <attr name="fontFamily" />
         <attr name="android:fontFamily" />

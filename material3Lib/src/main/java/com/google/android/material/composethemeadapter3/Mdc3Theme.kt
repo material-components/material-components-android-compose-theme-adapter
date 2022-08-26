@@ -189,6 +189,7 @@ fun createMdc3Theme(
             val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnError)
             val errorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorErrorContainer)
             val onErrorContainer = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_colorOnErrorContainer)
+            val scrimBackground = ta.getComposeColor(R.styleable.ComposeThemeAdapterTheme_scrimBackground)
 
             val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterTheme_isLightTheme, true)
 
@@ -217,10 +218,12 @@ fun createMdc3Theme(
                     inverseSurface = surfaceInverse,
                     inverseOnSurface = onSurfaceInverse,
                     outline = outline,
+                    // TODO: MDC-Android doesn't include outlineVariant yet, add when available
                     error = error,
                     onError = onError,
                     errorContainer = errorContainer,
-                    onErrorContainer = onErrorContainer
+                    onErrorContainer = onErrorContainer,
+                    scrim = scrimBackground
                 )
             } else {
                 darkColorScheme(
@@ -247,10 +250,12 @@ fun createMdc3Theme(
                     inverseSurface = surfaceInverse,
                     inverseOnSurface = onSurfaceInverse,
                     outline = outline,
+                    // TODO: MDC-Android doesn't include outlineVariant yet, add when available
                     error = error,
                     onError = onError,
                     errorContainer = errorContainer,
-                    onErrorContainer = onErrorContainer
+                    onErrorContainer = onErrorContainer,
+                    scrim = scrimBackground
                 )
             }
         } else null

@@ -42,10 +42,12 @@
         <item name="colorSurfaceInverse">@color/light_salmon</item>
         <item name="colorOnSurfaceInverse">@color/orchid</item>
         <item name="colorOutline">@color/violet</item>
+        <!-- TODO: MDC-Android doesn't include outlineVariant yet, add when available -->
         <item name="colorError">@color/beige</item>
         <item name="colorOnError">@color/white_smoke</item>
         <item name="colorErrorContainer">@color/olive</item>
         <item name="colorOnErrorContainer">@color/olive_drab</item>
+        <item name="scrimBackground">@color/crimson</item>
 
         <!-- Text Appearances -->
         <item name="textAppearanceDisplayLarge">@style/TextAppearance.Mdc3ThemeTest.DisplayLarge</item>
