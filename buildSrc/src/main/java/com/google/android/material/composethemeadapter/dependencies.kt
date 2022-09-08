@@ -65,9 +65,9 @@ object Libs {
             const val test = "androidx.compose.ui:ui-test-junit4:${version}"
         }
 
-        const val appcompat = "androidx.appcompat:appcompat:1.5.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.5.1"
 
-        const val coreKtx = "androidx.core:core-ktx:1.8.0"
+        const val coreKtx = "androidx.core:core-ktx:1.9.0"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.5.1"
