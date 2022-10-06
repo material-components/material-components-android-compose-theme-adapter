@@ -26,7 +26,7 @@ object Libs {
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
 
     object Kotlin {
-        const val version = "1.7.10"
+        const val version = "1.7.20"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
@@ -51,7 +51,7 @@ object Libs {
                 }
 
             const val version = "1.2.1"
-            const val compilerVersion = "1.3.1"
+            const val compilerVersion = "1.3.2"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val foundation = "androidx.compose.foundation:foundation:${version}"
