@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.material.composethemeadapter3
+package com.google.android.material.composethemeadapter.core
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -49,7 +49,7 @@ import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import kotlin.concurrent.getOrSet
 
-internal fun textStyleFromTextAppearance(
+fun textStyleFromTextAppearance(
     context: Context,
     density: Density,
     @StyleRes id: Int,
@@ -134,7 +134,7 @@ internal fun textStyleFromTextAppearance(
     }
 }
 
-internal fun parseShapeAppearance(
+fun parseShapeAppearance(
     context: Context,
     @StyleRes id: Int,
     fallbackShape: CornerBasedShape,
@@ -190,7 +190,7 @@ internal fun parseShapeAppearance(
 
 private val tempTypedValue = ThreadLocal<TypedValue>()
 
-internal fun TypedArray.getComposeColor(
+fun TypedArray.getComposeColor(
     index: Int,
     fallbackColor: Color = Color.Unspecified
 ): Color = if (hasValue(index)) Color(getColorOrThrow(index)) else fallbackColor
@@ -201,7 +201,7 @@ internal fun TypedArray.getComposeColor(
  *
  * @param index index of attribute to retrieve.
  */
-internal fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
+fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
     val tv = tempTypedValue.getOrSet(::TypedValue)
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_STRING) {
         return when (tv.string) {
@@ -272,7 +272,7 @@ private fun fontWeightOf(weight: Int): FontWeight = when (weight) {
     else -> FontWeight.W400
 }
 
-internal data class FontFamilyWithWeight(
+data class FontFamilyWithWeight(
     val fontFamily: FontFamily,
     val weight: FontWeight = FontWeight.Normal
 )

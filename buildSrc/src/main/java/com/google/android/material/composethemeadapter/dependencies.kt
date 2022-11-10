@@ -84,6 +84,8 @@ object Libs {
         }
     }
 
+    const val mdc = "com.google.android.material:material:1.7.0"
+
     const val junit = "junit:junit:4.13"
 
     const val truth = "com.google.truth:truth:1.0.1"

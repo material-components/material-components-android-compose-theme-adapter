@@ -17,9 +17,10 @@
 
 <resources>
 
-    <declare-styleable name="ComposeThemeAdapterTheme">
+    <declare-styleable name="ComposeThemeAdapterMaterialTheme">
+        <!-- Is Material theme -->
         <attr name="isMaterialTheme" />
-
+        <!-- Color -->
         <attr name="colorPrimary" />
         <attr name="colorPrimaryVariant" />
         <attr name="colorOnPrimary" />
@@ -32,7 +33,7 @@
         <attr name="colorOnBackground" />
         <attr name="colorError" />
         <attr name="colorOnError" />
-
+        <!-- Typography -->
         <attr name="fontFamily" />
         <attr name="android:fontFamily" />
         <attr name="textAppearanceBody1" />
@@ -48,49 +49,12 @@
         <attr name="textAppearanceOverline" />
         <attr name="textAppearanceSubtitle1" />
         <attr name="textAppearanceSubtitle2" />
-
+        <!-- Shape -->
         <attr name="shapeAppearanceSmallComponent" />
         <attr name="shapeAppearanceMediumComponent" />
         <attr name="shapeAppearanceLargeComponent" />
-
+        <!-- Dark theme -->
         <attr name="isLightTheme" />
-    </declare-styleable>
-
-    <declare-styleable name="ComposeThemeAdapterTextAppearance">
-        <attr name="android:textColor" />
-        <attr name="android:textSize" />
-        <attr name="android:textStyle" />
-        <attr name="android:textFontWeight" />
-
-        <attr name="android:typeface" />
-
-        <attr name="android:shadowColor" />
-        <attr name="android:shadowDx" />
-        <attr name="android:shadowDy" />
-        <attr name="android:shadowRadius" />
-
-        <attr name="lineHeight" />
-        <attr name="android:lineHeight" />
-
-        <attr name="android:letterSpacing" />
-
-        <attr name="android:fontFeatureSettings" />
-
-        <attr name="android:fontFamily" />
-        <attr name="fontFamily" />
-
-        <!-- TODOs below -->
-        <attr name="android:fontVariationSettings" />
-    </declare-styleable>
-
-    <declare-styleable name="ComposeThemeAdapterShapeAppearance">
-        <attr name="cornerSize" />
-        <attr name="cornerSizeTopLeft" />
-        <attr name="cornerSizeTopRight" />
-        <attr name="cornerSizeBottomRight" />
-        <attr name="cornerSizeBottomLeft" />
-
-        <attr name="cornerFamily" />
     </declare-styleable>
 
 </resources>
