@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.test.filters.MediumTest
-import com.google.android.material.composethemeadapter3.FontFamilyWithWeight
+import com.google.android.material.composethemeadapter.core.FontFamilyWithWeight
 import com.google.android.material.composethemeadapter3.Mdc3Theme
 import org.junit.Assert
 import org.junit.Rule
