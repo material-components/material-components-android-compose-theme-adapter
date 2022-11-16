@@ -49,10 +49,32 @@ import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import kotlin.concurrent.getOrSet
 
-fun textStyleFromTextAppearance(
+/**
+ * Returns the given index as a [Color], or [fallbackColor] if the value can't be coerced to a
+ * [Color].
+ *
+ * @param index Index of attribute to retrieve.
+ * @param fallbackColor Value to return if the attribute is not defined or can't be coerced to a
+ * [Color].
+ */
+fun TypedArray.parseColor(
+    index: Int,
+    fallbackColor: Color = Color.Unspecified
+): Color = if (hasValue(index)) Color(getColorOrThrow(index)) else fallbackColor
+
+/**
+ * Returns the given style resource ID as a [TextStyle].
+ *
+ * @param context The current context.
+ * @param id ID of style resource to retrieve.
+ * @param density The current display density.
+ * @param setTextColors Whether to read and set text colors from the style. Defaults to `false`.
+ * @param defaultFontFamily Optional default font family to use in [TextStyle]s.
+ */
+fun parseTextAppearance(
     context: Context,
-    density: Density,
     @StyleRes id: Int,
+    density: Density,
     setTextColors: Boolean,
     defaultFontFamily: FontFamily?
 ): TextStyle {
@@ -65,22 +87,24 @@ fun textStyleFromTextAppearance(
         // Variable fonts are not supported in Compose yet
 
         // FYI, this only works with static font files in assets
-        val fontFamily: FontFamilyWithWeight? = a.getFontFamilyOrNull(
+        val fontFamily: FontFamilyWithWeight? = a.parseFontFamily(
             R.styleable.ComposeThemeAdapterTextAppearance_fontFamily
-        ) ?: a.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
+        ) ?: a.parseFontFamily(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFamily)
 
         TextStyle(
             color = when {
                 setTextColors -> {
-                    a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
+                    a.parseColor(R.styleable.ComposeThemeAdapterTextAppearance_android_textColor)
                 }
                 else -> Color.Unspecified
             },
-            fontSize = a.getTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
+            fontSize = a.parseTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
             lineHeight = run {
-                a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density)
-                    ?: a.getTextUnitOrNull(R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density)
-                    ?: TextUnit.Unspecified
+                a.parseTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density,
+                    fallbackTextUnit = a.parseTextUnit(
+                        R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density
+                    )
+                )
             },
             fontFamily = when {
                 defaultFontFamily != null -> defaultFontFamily
@@ -113,7 +137,7 @@ fun textStyleFromTextAppearance(
             },
             fontFeatureSettings = a.getString(R.styleable.ComposeThemeAdapterTextAppearance_android_fontFeatureSettings),
             shadow = run {
-                val shadowColor = a.getComposeColor(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowColor)
+                val shadowColor = a.parseColor(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowColor)
                 if (shadowColor != Color.Unspecified) {
                     val dx = a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowDx, 0f)
                     val dy = a.getFloat(R.styleable.ComposeThemeAdapterTextAppearance_android_shadowDy, 0f)
@@ -134,74 +158,13 @@ fun textStyleFromTextAppearance(
     }
 }
 
-fun parseShapeAppearance(
-    context: Context,
-    @StyleRes id: Int,
-    fallbackShape: CornerBasedShape,
-    layoutDirection: LayoutDirection
-): CornerBasedShape {
-    return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
-        val defaultCornerSize = a.getCornerSizeOrNull(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
-        )
-        val cornerSizeTL = a.getCornerSizeOrNull(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
-        )
-        val cornerSizeTR = a.getCornerSizeOrNull(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopRight
-        )
-        val cornerSizeBL = a.getCornerSizeOrNull(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomLeft
-        )
-        val cornerSizeBR = a.getCornerSizeOrNull(
-            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
-        )
-        val isRtl = layoutDirection == LayoutDirection.Rtl
-        val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
-        val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
-        val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
-        val cornerSizeBE = if (isRtl) cornerSizeBL else cornerSizeBR
-
-        /**
-         * We do not support the individual `cornerFamilyTopLeft`, etc, since Compose only supports
-         * one corner type per shape. Therefore we only read the `cornerFamily` attribute.
-         */
-        when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
-            0 -> {
-                RoundedCornerShape(
-                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
-                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
-                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
-                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
-                )
-            }
-            1 -> {
-                CutCornerShape(
-                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
-                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
-                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
-                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
-                )
-            }
-            else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
-        }
-    }
-}
-
-private val tempTypedValue = ThreadLocal<TypedValue>()
-
-fun TypedArray.getComposeColor(
-    index: Int,
-    fallbackColor: Color = Color.Unspecified
-): Color = if (hasValue(index)) Color(getColorOrThrow(index)) else fallbackColor
-
 /**
- * Returns the given index as a [FontFamily] and [FontWeight],
- * or `null` if the value can not be coerced to a [FontFamily].
+ * Returns the given index as a [FontFamilyWithWeight], or `null` if the value can't be coerced to
+ * a [FontFamilyWithWeight].
  *
- * @param index index of attribute to retrieve.
+ * @param index Index of attribute to retrieve.
  */
-fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
+fun TypedArray.parseFontFamily(index: Int): FontFamilyWithWeight? {
     val tv = tempTypedValue.getOrSet(::TypedValue)
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_STRING) {
         return when (tv.string) {
@@ -233,10 +196,24 @@ fun TypedArray.getFontFamilyOrNull(index: Int): FontFamilyWithWeight? {
     return null
 }
 
+/**
+ * A lightweight class for storing a [FontFamily] and [FontWeight].
+ */
+data class FontFamilyWithWeight(
+    val fontFamily: FontFamily,
+    val weight: FontWeight = FontWeight.Normal
+)
+
+/**
+ * Returns the given XML resource ID as a [FontFamily], or `null` if the value can't be coerced to
+ * a [FontFamily].
+ *
+ * @param id ID of XML resource to retrieve.
+ */
 @SuppressLint("RestrictedApi") // FontResourcesParserCompat.*
-@RequiresApi(23) // XML font families with >1 fonts are only supported on API 23+
-private fun Resources.parseXmlFontFamily(resourceId: Int): FontFamily? {
-    val parser = getXml(resourceId)
+@RequiresApi(23) // XML font families with > 1 fonts are only supported on API 23+
+fun Resources.parseXmlFontFamily(id: Int): FontFamily? {
+    val parser = getXml(id)
 
     // Can't use {} since XmlResourceParser is AutoCloseable, not Closeable
     @Suppress("ConvertTryFinallyToUseCall")
@@ -272,37 +249,20 @@ private fun fontWeightOf(weight: Int): FontWeight = when (weight) {
     else -> FontWeight.W400
 }
 
-data class FontFamilyWithWeight(
-    val fontFamily: FontFamily,
-    val weight: FontWeight = FontWeight.Normal
-)
-
 /**
- * Returns the given index as a [TextUnit], or [fallback] if the value can not be coerced to
+ * Returns the given index as a [TextUnit], or [fallbackTextUnit] if the value can't be coerced to
  * a [TextUnit].
  *
- * @param index index of attribute to retrieve.
- * @param density the current display density.
- * @param fallback Value to return if the attribute is not defined or cannot be coerced to
- * a [TextUnit].
+ * @param index Index of attribute to retrieve.
+ * @param density The current display density.
+ * @param fallbackTextUnit Value to return if the attribute is not defined or can't be coerced to a
+ * [TextUnit].
  */
-internal fun TypedArray.getTextUnit(
+fun TypedArray.parseTextUnit(
     index: Int,
     density: Density,
-    fallback: TextUnit = TextUnit.Unspecified
-): TextUnit = getTextUnitOrNull(index, density) ?: fallback
-
-/**
- * Returns the given index as a [TextUnit], or `null` if the value can not be coerced to
- * a [TextUnit].
- *
- * @param index index of attribute to retrieve.
- * @param density the current display density.
- */
-internal fun TypedArray.getTextUnitOrNull(
-    index: Int,
-    density: Density
-): TextUnit? {
+    fallbackTextUnit: TextUnit = TextUnit.Unspecified
+): TextUnit {
     val tv = tempTypedValue.getOrSet { TypedValue() }
     if (getValue(index, tv) && tv.type == TypedValue.TYPE_DIMENSION) {
         return when (tv.complexUnitCompat) {
@@ -315,16 +275,80 @@ internal fun TypedArray.getTextUnitOrNull(
             else -> with(density) { getDimension(index, 0f).toSp() }
         }
     }
-    return null
+    return fallbackTextUnit
 }
 
 /**
- * Returns the given index as a [CornerSize], or `null` if the value can not be coerced
- * to a [CornerSize].
+ * Returns the given style resource ID as a [CornerBasedShape], or [fallbackShape] if the value
+ * can't be coerced to a [CornerBasedShape].
  *
- * @param index index of attribute to retrieve.
+ * @param context The current context.
+ * @param id ID of style resource to retrieve.
+ * @param layoutDirection The current display layout direction.
+ * @param fallbackShape Value to return if the style resource ID is not defined or can't be coerced
+ * to a [CornerBasedShape].
  */
-internal fun TypedArray.getCornerSizeOrNull(index: Int): CornerSize? {
+fun parseShapeAppearance(
+    context: Context,
+    @StyleRes id: Int,
+    layoutDirection: LayoutDirection,
+    fallbackShape: CornerBasedShape
+): CornerBasedShape {
+    return context.obtainStyledAttributes(id, R.styleable.ComposeThemeAdapterShapeAppearance).use { a ->
+        val defaultCornerSize = a.parseCornerSize(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSize
+        )
+        val cornerSizeTL = a.parseCornerSize(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopLeft
+        )
+        val cornerSizeTR = a.parseCornerSize(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeTopRight
+        )
+        val cornerSizeBL = a.parseCornerSize(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomLeft
+        )
+        val cornerSizeBR = a.parseCornerSize(
+            R.styleable.ComposeThemeAdapterShapeAppearance_cornerSizeBottomRight
+        )
+        val isRtl = layoutDirection == LayoutDirection.Rtl
+        val cornerSizeTS = if (isRtl) cornerSizeTR else cornerSizeTL
+        val cornerSizeTE = if (isRtl) cornerSizeTL else cornerSizeTR
+        val cornerSizeBS = if (isRtl) cornerSizeBR else cornerSizeBL
+        val cornerSizeBE = if (isRtl) cornerSizeBL else cornerSizeBR
+
+        /**
+         * We do not support the individual `cornerFamilyTopLeft`, etc, since Compose only supports
+         * one corner type per shape. Therefore we only read the `cornerFamily` attribute.
+         */
+        when (a.getInt(R.styleable.ComposeThemeAdapterShapeAppearance_cornerFamily, 0)) {
+            0 -> {
+                RoundedCornerShape(
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
+                )
+            }
+            1 -> {
+                CutCornerShape(
+                    topStart = cornerSizeTS ?: defaultCornerSize ?: fallbackShape.topStart,
+                    topEnd = cornerSizeTE ?: defaultCornerSize ?: fallbackShape.topEnd,
+                    bottomEnd = cornerSizeBE ?: defaultCornerSize ?: fallbackShape.bottomEnd,
+                    bottomStart = cornerSizeBS ?: defaultCornerSize ?: fallbackShape.bottomStart
+                )
+            }
+            else -> throw IllegalArgumentException("Unknown cornerFamily set in ShapeAppearance")
+        }
+    }
+}
+
+/**
+ * Returns the given index as a [CornerSize], or `null` if the value can't be coerced to a
+ * [CornerSize].
+ *
+ * @param index Index of attribute to retrieve.
+ */
+fun TypedArray.parseCornerSize(index: Int): CornerSize? {
     val tv = tempTypedValue.getOrSet { TypedValue() }
     if (getValue(index, tv)) {
         return when (tv.type) {
@@ -352,3 +376,5 @@ private inline val TypedValue.complexUnitCompat
         Build.VERSION.SDK_INT > 22 -> complexUnit
         else -> TypedValue.COMPLEX_UNIT_MASK and (data shr TypedValue.COMPLEX_UNIT_SHIFT)
     }
+
+private val tempTypedValue = ThreadLocal<TypedValue>()

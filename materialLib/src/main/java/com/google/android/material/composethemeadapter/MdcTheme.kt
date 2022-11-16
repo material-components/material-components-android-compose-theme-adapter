@@ -39,10 +39,10 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.content.res.use
 import com.google.android.material.composethemeadapter.core.FontFamilyWithWeight
-import com.google.android.material.composethemeadapter.core.getComposeColor
-import com.google.android.material.composethemeadapter.core.getFontFamilyOrNull
+import com.google.android.material.composethemeadapter.core.parseColor
+import com.google.android.material.composethemeadapter.core.parseFontFamily
 import com.google.android.material.composethemeadapter.core.parseShapeAppearance
-import com.google.android.material.composethemeadapter.core.textStyleFromTextAppearance
+import com.google.android.material.composethemeadapter.core.parseTextAppearance
 import java.lang.reflect.Method
 
 /**
@@ -176,18 +176,18 @@ fun createMdcTheme(
 
         val colors: Colors? = if (readColors) {
             /* First we'll read the Material color palette */
-            val primary = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorPrimary)
-            val primaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorPrimaryVariant)
-            val onPrimary = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnPrimary)
-            val secondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSecondary)
-            val secondaryVariant = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSecondaryVariant)
-            val onSecondary = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnSecondary)
-            val background = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_android_colorBackground)
-            val onBackground = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnBackground)
-            val surface = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSurface)
-            val onSurface = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnSurface)
-            val error = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorError)
-            val onError = ta.getComposeColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnError)
+            val primary = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorPrimary)
+            val primaryVariant = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorPrimaryVariant)
+            val onPrimary = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnPrimary)
+            val secondary = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSecondary)
+            val secondaryVariant = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSecondaryVariant)
+            val onSecondary = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnSecondary)
+            val background = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_android_colorBackground)
+            val onBackground = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnBackground)
+            val surface = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorSurface)
+            val onSurface = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnSurface)
+            val error = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorError)
+            val onError = ta.parseColor(R.styleable.ComposeThemeAdapterMaterialTheme_colorOnError)
 
             val isLightTheme = ta.getBoolean(R.styleable.ComposeThemeAdapterMaterialTheme_isLightTheme, true)
 
@@ -234,102 +234,102 @@ fun createMdcTheme(
 
         val typography = if (readTypography) {
             val defaultFontFamily = if (setDefaultFontFamily) {
-                val defaultFontFamilyWithWeight: FontFamilyWithWeight? = ta.getFontFamilyOrNull(
+                val defaultFontFamilyWithWeight: FontFamilyWithWeight? = ta.parseFontFamily(
                     R.styleable.ComposeThemeAdapterMaterialTheme_fontFamily
-                ) ?: ta.getFontFamilyOrNull(R.styleable.ComposeThemeAdapterMaterialTheme_android_fontFamily)
+                ) ?: ta.parseFontFamily(R.styleable.ComposeThemeAdapterMaterialTheme_android_fontFamily)
                 defaultFontFamilyWithWeight?.fontFamily
             } else {
                 null
             }
             Typography(defaultFontFamily = defaultFontFamily ?: FontFamily.Default).merge(
-                h1 = textStyleFromTextAppearance(
+                h1 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline1),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                h2 = textStyleFromTextAppearance(
+                h2 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline2),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                h3 = textStyleFromTextAppearance(
+                h3 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline3),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                h4 = textStyleFromTextAppearance(
+                h4 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline4),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                h5 = textStyleFromTextAppearance(
+                h5 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline5),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                h6 = textStyleFromTextAppearance(
+                h6 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceHeadline6),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                subtitle1 = textStyleFromTextAppearance(
+                subtitle1 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceSubtitle1),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                subtitle2 = textStyleFromTextAppearance(
+                subtitle2 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceSubtitle2),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                body1 = textStyleFromTextAppearance(
+                body1 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceBody1),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                body2 = textStyleFromTextAppearance(
+                body2 = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceBody2),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                button = textStyleFromTextAppearance(
+                button = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceButton),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                caption = textStyleFromTextAppearance(
+                caption = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceCaption),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 ),
-                overline = textStyleFromTextAppearance(
+                overline = parseTextAppearance(
                     context,
-                    density,
                     ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_textAppearanceOverline),
+                    density,
                     setTextColors,
                     defaultFontFamily
                 )
@@ -344,20 +344,20 @@ fun createMdcTheme(
                 small = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_shapeAppearanceSmallComponent),
-                    fallbackShape = emptyShapes.small,
-                    layoutDirection = layoutDirection
+                    layoutDirection = layoutDirection,
+                    fallbackShape = emptyShapes.small
                 ),
                 medium = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_shapeAppearanceMediumComponent),
+                    layoutDirection = layoutDirection,
                     fallbackShape = emptyShapes.medium,
-                    layoutDirection = layoutDirection
                 ),
                 large = parseShapeAppearance(
                     context = context,
                     id = ta.getResourceIdOrThrow(R.styleable.ComposeThemeAdapterMaterialTheme_shapeAppearanceLargeComponent),
-                    fallbackShape = emptyShapes.large,
-                    layoutDirection = layoutDirection
+                    layoutDirection = layoutDirection,
+                    fallbackShape = emptyShapes.large
                 )
             )
         } else null

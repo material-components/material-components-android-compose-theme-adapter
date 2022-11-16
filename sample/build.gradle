@@ -64,6 +64,6 @@ dependencies {
 
     implementation Libs.AndroidX.coreKtx
 
-    implementation 'com.google.android.material:material:1.7.0-alpha03'
+    implementation Libs.mdc
     implementation Libs.Kotlin.stdlib
 }
