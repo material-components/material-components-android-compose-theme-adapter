@@ -43,6 +43,20 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion Libs.AndroidX.Compose.compilerVersion
     }
+
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+        // We run a full lint analysis as build part in CI, so skip vital checks for assemble tasks
+        checkReleaseBuilds false
+    }
+
+    packagingOptions {
+        // Multiple dependencies bring these files in. Exclude them to enable
+        // our test APK to build (has no effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
 }
 
 dependencies {
@@ -58,3 +72,15 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.AndroidX.Test.runner
 }
+
+apply plugin: 'com.vanniktech.maven.publish'
+
+mavenPublish {
+    targets {
+        uploadArchives {
+            snapshotRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter-core"
+            releaseRepositoryUrl = "https://maven.pkg.github.com/material-components/material-components-android-compose-theme-adapter-core"
+        }
+    }
+}
+
