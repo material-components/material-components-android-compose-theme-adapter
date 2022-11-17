@@ -100,7 +100,8 @@ fun parseTextAppearance(
             },
             fontSize = a.parseTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_android_textSize, density),
             lineHeight = run {
-                a.parseTextUnit(R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density,
+                a.parseTextUnit(
+                    R.styleable.ComposeThemeAdapterTextAppearance_lineHeight, density,
                     fallbackTextUnit = a.parseTextUnit(
                         R.styleable.ComposeThemeAdapterTextAppearance_android_lineHeight, density
                     )
