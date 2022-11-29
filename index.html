@@ -247,6 +247,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#migration" class="md-nav__link">
+    Migration
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-steps" class="md-nav__link">
+    Migration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#original-docs" class="md-nav__link">
+    Original Docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     Usage
   </a>
@@ -408,6 +435,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#migration" class="md-nav__link">
+    Migration
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-steps" class="md-nav__link">
+    Migration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#original-docs" class="md-nav__link">
+    Original Docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     Usage
   </a>
@@ -510,6 +564,28 @@
 
 
 <h1 id="mdc-android-compose-theme-adapter">MDC-Android Compose Theme Adapter<a class="headerlink" href="#mdc-android-compose-theme-adapter" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>These libraries are deprecated in favor of the new <a href="https://github.com/google/accompanist">Accompanist</a> Theme Adapter artifacts. The migration guide and original documentation is below.</strong></p>
+</div>
+<h2 id="migration">Migration<a class="headerlink" href="#migration" title="Permanent link">&para;</a></h2>
+<p>MDC-Android Compose Theme Adapters have moved from:
+* The <code>compose-theme-adapter</code> artifact to the <a href="https://google.github.io/accompanist/themeadapter-material"><code>accompanist/themeadapter-material</code></a> artifact
+* The <code>compose-theme-adapter-3</code> artifact to the <a href="https://google.github.io/accompanist/themeadapter-material3"><code>accompanist/themeadapter-material3</code></a> artifact
+* The <code>compose-theme-adapter-core</code> artifact to the <a href="https://google.github.io/accompanist/themeadapter-core"><code>accompanist/themeadapter-core</code></a> artifact</p>
+<p>The implementations are identical but the dependencies and import packages have changed.</p>
+<h3 id="migration-steps">Migration steps<a class="headerlink" href="#migration-steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Change any dependencies from:</li>
+<li><code>com.google.android.material:compose-theme-adapter:&lt;mdcThemeAdapterVersion&gt;</code> to <code>com.google.accompanist:accompanist-themeadapter-material:&lt;accompanistVersion&gt;</code></li>
+<li><code>com.google.android.material:compose-theme-adapter-3:&lt;mdcThemeAdapter3Version&gt;</code> to <code>com.google.accompanist:accompanist-themeadapter-material3:&lt;accompanistVersion&gt;</code></li>
+<li><code>com.google.android.material:compose-theme-adapter-core:&lt;mdcThemeAdapterCoreVersion&gt;</code> to <code>com.google.accompanist:accompanist-themeadapter-core:&lt;accompanistVersion&gt;</code></li>
+<li>Change any imports from:</li>
+<li><code>com.google.android.material.composethemeadapter.*</code> to <code>com.google.accompanist.themeadapter.material.*</code></li>
+<li><code>com.google.android.material.composethemeadapter3.*</code> to <code>com.google.accompanist.themeadapter.material3.*</code></li>
+<li><code>com.google.android.material.composethemeadapter.core.*</code> to <code>com.google.accompanist.themeadapter.core.*</code></li>
+</ol>
+<h2 id="original-docs">Original Docs<a class="headerlink" href="#original-docs" title="Permanent link">&para;</a></h2>
 <p>A library that enables reuse of <a href="https://github.com/material-components/material-components-android">Material Components for Android</a> XML themes for theming in <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>There are two artifacts available:</p>
