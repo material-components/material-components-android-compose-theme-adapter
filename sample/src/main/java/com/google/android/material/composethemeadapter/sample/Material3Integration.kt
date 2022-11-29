@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.google.android.material.composethemeadapter.sample
 
 import android.os.Bundle

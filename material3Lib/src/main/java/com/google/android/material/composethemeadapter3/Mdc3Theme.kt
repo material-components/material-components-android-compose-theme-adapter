@@ -15,6 +15,8 @@
  */
 
 @file:JvmName("Mdc3Theme")
+@file:Suppress("DEPRECATION")
+
 package com.google.android.material.composethemeadapter3
 
 import android.content.Context
@@ -64,6 +66,13 @@ import java.lang.reflect.Method
  * @param setDefaultFontFamily whether to read and prioritize the `fontFamily` attributes from
  * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
  */
+@Deprecated(
+    """
+     compose-theme-adapter-3 is deprecated.
+     The API has moved to accompanist/themeadapter/material3.
+     For more information, please visit https://google.github.io/accompanist/themeadapter-material3
+    """
+)
 @Composable
 fun Mdc3Theme(
     context: Context = LocalContext.current,
@@ -115,6 +124,13 @@ fun Mdc3Theme(
  * This class contains the individual components of a [MaterialTheme]: [ColorScheme] and
  * [Typography].
  */
+@Deprecated(
+    """
+     compose-theme-adapter-3 is deprecated.
+     The API has moved to accompanist/themeadapter/material3.
+     For more information, please visit https://google.github.io/accompanist/themeadapter-material3
+    """
+)
 data class Theme3Parameters(
     val colorScheme: ColorScheme?,
     val typography: Typography?,
@@ -150,6 +166,13 @@ data class Theme3Parameters(
  * [context]'s theme, over any specified in the MDC text appearances. Defaults to `false`.
  * @return [Theme3Parameters] instance containing the resulting [ColorScheme] and [Typography].
  */
+@Deprecated(
+    """
+     compose-theme-adapter-3 is deprecated.
+     The API has moved to accompanist/themeadapter/material3.
+     For more information, please visit https://google.github.io/accompanist/themeadapter-material3
+    """
+)
 fun createMdc3Theme(
     context: Context,
     layoutDirection: LayoutDirection,

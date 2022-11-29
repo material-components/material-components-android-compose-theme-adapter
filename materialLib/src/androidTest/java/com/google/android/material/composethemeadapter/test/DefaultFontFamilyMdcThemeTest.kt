@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.google.android.material.composethemeadapter.test
 
 import android.view.ContextThemeWrapper

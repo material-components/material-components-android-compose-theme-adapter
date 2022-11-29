@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.google.android.material.composethemeadapter.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule

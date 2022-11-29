@@ -1,5 +1,30 @@
 # MDC-Android Compose Theme Adapter
 
+!!! warning
+    **These libraries are deprecated in favor of the new [Accompanist][accompanist] Theme Adapter artifacts. The migration guide and original documentation is below.**
+
+## Migration
+
+MDC-Android Compose Theme Adapters have moved from:
+* The `compose-theme-adapter` artifact to the [`accompanist/themeadapter-material`][themeadaptermateriallib] artifact
+* The `compose-theme-adapter-3` artifact to the [`accompanist/themeadapter-material3`][themeadaptermaterial3lib] artifact
+* The `compose-theme-adapter-core` artifact to the [`accompanist/themeadapter-core`][themeadaptercorelib] artifact
+
+The implementations are identical but the dependencies and import packages have changed.
+
+### Migration steps
+
+1. Change any dependencies from:
+   1. `com.google.android.material:compose-theme-adapter:<mdcThemeAdapterVersion>` to `com.google.accompanist:accompanist-themeadapter-material:<accompanistVersion>`
+   2. `com.google.android.material:compose-theme-adapter-3:<mdcThemeAdapter3Version>` to `com.google.accompanist:accompanist-themeadapter-material3:<accompanistVersion>`
+   3. `com.google.android.material:compose-theme-adapter-core:<mdcThemeAdapterCoreVersion>` to `com.google.accompanist:accompanist-themeadapter-core:<accompanistVersion>`
+2. Change any imports from:
+   1. `com.google.android.material.composethemeadapter.*` to `com.google.accompanist.themeadapter.material.*`
+   2. `com.google.android.material.composethemeadapter3.*` to `com.google.accompanist.themeadapter.material3.*`
+   3. `com.google.android.material.composethemeadapter.core.*` to `com.google.accompanist.themeadapter.core.*`
+
+## Original Docs
+
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
 ## Usage
@@ -234,3 +259,7 @@ limitations under the License.
  [m3colorscheme]: https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme
  [m3shapes]: https://developer.android.com/reference/kotlin/androidx/compose/material3/Shapes
  [m3typography]: https://developer.android.com/reference/kotlin/androidx/compose/material3/Typography
+ [accompanist]: https://github.com/google/accompanist
+ [themeadaptermateriallib]: https://google.github.io/accompanist/themeadapter-material
+ [themeadaptermaterial3lib]: https://google.github.io/accompanist/themeadapter-material3
+ [themeadaptercorelib]: https://google.github.io/accompanist/themeadapter-core
