@@ -1,29 +1,10 @@
 # MDC-Android Compose Theme Adapter
 
+## Deprecated
 !!! warning
-    **These libraries are deprecated in favor of the new [Accompanist][accompanist] Theme Adapter artifacts. The migration guide and original documentation is below.**
+    **Material Theme Adapter is deprecated. Use the Material Theme Builder tool, to generate a matching XML and Compose theme implementation for your app. See [Migrating XML themes to Compose][migratexmltocompose] to learn more.**
 
-## Migration
-
-MDC-Android Compose Theme Adapters have moved from:
-* The `compose-theme-adapter` artifact to the [`accompanist/themeadapter-material`][themeadaptermateriallib] artifact
-* The `compose-theme-adapter-3` artifact to the [`accompanist/themeadapter-material3`][themeadaptermaterial3lib] artifact
-* The `compose-theme-adapter-core` artifact to the [`accompanist/themeadapter-core`][themeadaptercorelib] artifact
-
-The implementations are identical but the dependencies and import packages have changed.
-
-### Migration steps
-
-1. Change any dependencies from:
-   1. `com.google.android.material:compose-theme-adapter:<mdcThemeAdapterVersion>` to `com.google.accompanist:accompanist-themeadapter-material:<accompanistVersion>`
-   2. `com.google.android.material:compose-theme-adapter-3:<mdcThemeAdapter3Version>` to `com.google.accompanist:accompanist-themeadapter-material3:<accompanistVersion>`
-   3. `com.google.android.material:compose-theme-adapter-core:<mdcThemeAdapterCoreVersion>` to `com.google.accompanist:accompanist-themeadapter-core:<accompanistVersion>`
-2. Change any imports from:
-   1. `com.google.android.material.composethemeadapter.*` to `com.google.accompanist.themeadapter.material.*`
-   2. `com.google.android.material.composethemeadapter3.*` to `com.google.accompanist.themeadapter.material3.*`
-   3. `com.google.android.material.composethemeadapter.core.*` to `com.google.accompanist.themeadapter.core.*`
-
-## Original Docs
+## Library Docs
 
 A library that enables reuse of [Material Components for Android][mdc] XML themes for theming in [Jetpack Compose][compose].
 
@@ -247,7 +228,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
+ [migratexmltocompose]: https://developer.android.com/jetpack/compose/designsystems/views-to-compose
  [compose]: https://developer.android.com/jetpack/compose
  [mdc]: https://github.com/material-components/material-components-android
  [appcompat]: https://developer.android.com/jetpack/androidx/releases/appcompat
