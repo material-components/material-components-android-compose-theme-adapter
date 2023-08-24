@@ -4,8 +4,6 @@
 
 **Material Theme Adapter is deprecated. Use the Material Theme Builder tool, to generate a matching XML and Compose theme implementation for your app. See [Migrating XML themes to Compose][migratexmltocompose] to learn more.**
 
-for usage refer to [Usage][USAGE.md] doc.
-
 ## License
 
 ```
